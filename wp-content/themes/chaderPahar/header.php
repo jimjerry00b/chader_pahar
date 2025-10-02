@@ -11,7 +11,9 @@
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>
+
     <button id="scrollTopBtn"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/scroll_top.svg" style=" width: 20px; height: auto; " alt="Scroll to Top"></button>
+    
     <section id="header">
         <div class="container">
             <div class="row">
