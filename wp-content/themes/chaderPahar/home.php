@@ -105,23 +105,25 @@
                         <span class="date">১২ জানুয়ারী ২০২৫</span>
                     </div>
                 </div>
+
+                <div class="col-12 col-md-6 col-lg-3 mb-1">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
+                    <div class="px-1 py-3">
+                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
+                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
+                        <span class="date">১২ জানুয়ারী ২০২৫</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3 mb-1">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
+                    <div class="px-1 py-3">
+                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
+                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
+                        <span class="date">১২ জানুয়ারী ২০২৫</span>
+                    </div>
+                </div>
                 
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
                 <div class="col-12 col-md-6 col-lg-3 mb-1">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
                     <div class="px-1 py-3">
