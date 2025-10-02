@@ -3,20 +3,21 @@ name: Deploy WordPress
 on:
   push:
     branches:
-      - master  # deploy only when pushing to main branch
+      - master
 
 jobs:
-  ftp-deploy:
+  ssh-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
 
-      - name: Deploy to Server via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Deploy using rsync
+        uses: burnett01/rsync-deployments@5.2
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./ # root of your WP project
-          server-dir: /public_html/ # path on server
+          switches: -avzr --delete
+          path: ./
+          remote_path: /var/www/html/wordpress
+          remote_host: ${{ secrets.SERVER_IP }}
+          remote_user: ${{ secrets.SERVER_USER }}
+          remote_key: ${{ secrets.SERVER_SSH_KEY }}
