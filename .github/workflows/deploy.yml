@@ -1,23 +1,24 @@
-name: Deploy WordPress
+name: Deploy to cPanel via FTP
 
 on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
-  ssh-deploy:
+  ftp-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Deploy using rsync
-        uses: burnett01/rsync-deployments@5.2
+      - name: FTP Deploy to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          switches: -avzr --delete
-          path: ./
-          remote_path: /var/www/html/wordpress
-          remote_host: ${{ secrets.SERVER_IP }}
-          remote_user: ${{ secrets.SERVER_USER }}
-          remote_key: ${{ secrets.SERVER_SSH_KEY }}
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 22
+          local-dir: ./   # Your WordPress files
+          server-dir: /public_html/  # Path on your cPanel server
