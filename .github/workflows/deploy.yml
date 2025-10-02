@@ -3,7 +3,7 @@ name: Deploy WordPress
 on:
   push:
     branches:
-      - main  # deploy only when pushing to main branch
+      - master  # deploy only when pushing to main branch
 
 jobs:
   ftp-deploy:
