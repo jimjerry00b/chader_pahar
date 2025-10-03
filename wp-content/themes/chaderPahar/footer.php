@@ -91,6 +91,20 @@
         });
         };
     </script>
+
+    <script>
+        window.addEventListener("scroll", function() {
+        const header = document.querySelector("nav"); // target <nav>
+        const headerOffset = header.offsetTop;
+
+        if (window.scrollY > headerOffset) {
+            header.classList.add("fixed-header");
+        } else {
+            header.classList.remove("fixed-header");
+        }
+        });
+
+    </script>
     <?php wp_footer(); ?>
   </body>
 </html>

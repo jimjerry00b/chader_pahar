@@ -7,7 +7,7 @@
 
 body{
     font-family: 'TiroBangla Regular';
-    font-size: 18px;
+    font-size: 20px;
 }
 
 h4{
@@ -253,6 +253,30 @@ footer{
     background-color: #555;
 }
 
+#about-us .container{
+    background: var(--second-color);
+    color: #fff;
+}
+
+
+#about_section_2{
+    background: #dcdcdc52;
+}
+
+#about_section_2 p{
+    margin: 0;
+    font-size: 18px;
+}
+
+.fixed-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
 
 @media (max-width: 1199px) {
     .img-responsive{
@@ -266,6 +290,10 @@ footer{
 
     .section-eight-text-section div{
         width: 100%;
+    }
+
+    .about_section_2_name_list{
+        padding: 20px 10px;
     }
 }
 
@@ -283,6 +311,11 @@ footer{
             linear-gradient(to right, #fff 0%, #ffffffd1 50%) no-repeat center / cover,
             url("../images/img_09.jpg") no-repeat top right / auto;
         min-height: auto;
+    }
+
+    nav .nav-link{
+        font-size: 20px;
+        padding: 6px 10px 3px 10px;
     }
 
     .footer{
