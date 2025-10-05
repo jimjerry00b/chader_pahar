@@ -75,7 +75,7 @@ nav .nav-link{
     padding: 8px 15px 3px 15px;
 }
 
-nav .nav-item .nav-link:hover, nav .nav-item .nav-link:focus, nav .nav-item .active{
+nav .nav-item .nav-link:hover, nav .nav-item .nav-link:focus, nav .nav-item .active, .current_page_item{
     background: var(--primary-color);
     color: #fff;
 }
@@ -277,6 +277,29 @@ footer{
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   transition: all 0.3s ease;
 }
+
+.protibedon_section h2{
+    background: var(--second-color);
+    color: #fff;
+    width: fit-content;
+    padding: 15px 25px 10px 25px;
+}
+
+#pagination_one{
+    background: initial;
+}
+
+#pagination_one .active .page-link{
+    background: var(--primary-color);
+    color: #fff;
+    border-color: var(--primary-color)
+}
+
+#pagination_one .page-link{
+    color: var(--second-color);
+    font-size: 20px;
+}
+
 
 @media (max-width: 1199px) {
     .img-responsive{

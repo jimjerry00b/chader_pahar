@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php bloginfo('name'); ?></title>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=1.0">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=2.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <?php wp_head(); ?>
   </head>
@@ -28,7 +28,7 @@
         </div>
     </section>
 
-    <nav>
+    <nav id="main_menu">
         <div class="container">
             <?php
             wp_nav_menu(array(
