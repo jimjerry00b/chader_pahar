@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php bloginfo('name'); ?></title>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=2.0">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=4.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <?php wp_head(); ?>
   </head>
@@ -18,7 +18,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-2 text-center">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Chader Pahar Logo" class="img-fluid my-4" style="max-width: 150px;">
+                    <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Chader Pahar Logo" class="img-fluid my-4" style="max-width: 150px;"></a>
                 </div>
 
                 <div class="col-md-10 text-center d-flex align-items-center justify-content-center">

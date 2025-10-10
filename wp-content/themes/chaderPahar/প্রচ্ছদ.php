@@ -19,49 +19,40 @@
     <section id="categories">
         <div class="container">
             <div class="d-grid gap-4 my-5 category_container">
-                <div class="border text-center">
-                    <div class="cat-header pt-3 pb-2">
-                        <h3>গল্প</h3>
-                    </div>
-                    <div class="p-3">
-                        <div class="category-img"><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/categories_icons/1.svg" alt="Category 1" class="img-fluid"></div>
-                        <p class="p-3">আমাদের লেখক ও পাঠকদের লেখা ছোট  গল্পের আসর </p>
-                        <button class="btn btn-primary mb-3">পড়ুন</button>
-                    </div>
-                </div>
 
-                <div class="border text-center">
-                    <div class="cat-header pt-3 pb-2">
-                        <h3>কবিতা</h3>
-                    </div>
-                    <div class="p-3">
-                        <div class="category-img"><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/categories_icons/2.svg" alt="Category 2" class="img-fluid"></div>
-                        <p class="p-3">আমাদের লেখক ও পাঠকদের লেখা ছোট  গল্পের আসর </p>
-                        <button class="btn btn-primary mb-3">পড়ুন</button>
-                    </div>
-                </div>
+                <?php
+                // Get all categories except "Uncategorized"
+                $categories = get_categories(array(
+                'hide_empty' => false,
+                'exclude' => get_cat_ID('Uncategorized'),
+                ));
 
-                <div class="border text-center">
-                    <div class="cat-header pt-3 pb-2">
-                        <h3>প্রবন্ধ</h3>
-                    </div>
-                    <div class="p-3">
-                        <div class="category-img"><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/categories_icons/3.svg" alt="Category 3" class="img-fluid"></div>
-                        <p class="p-3">আমাদের লেখক ও পাঠকদের লেখা ছোট  গল্পের আসর </p>
-                        <button class="btn btn-primary mb-3">পড়ুন</button>
-                    </div>
-                </div>
+                if (!empty($categories)) : ?>
+                
+                    <?php foreach ($categories as $cat) : 
+                        $link = get_category_link($cat->term_id);
+                        $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : '';
+                    ?>
+                        
 
-                <div class="border text-center">
-                    <div class="cat-header pt-3 pb-2">
-                        <h3>সাক্ষাৎকার</h3>
-                    </div>
-                    <div class="p-3">
-                        <div class="category-img"><img class="img-responsive" src="<?php echo get_template_directory_uri(); ?>/assets/images/categories_icons/4.svg" alt="Category 4" class="img-fluid"></div>
-                        <p class="p-3">আমাদের লেখক ও পাঠকদের লেখা ছোট  গল্পের আসর </p>
-                        <button class="btn btn-primary mb-3">পড়ুন</button>
-                    </div>
-                </div>
+                        <a href="<?php echo esc_url($link); ?>">
+                            <div class="border text-center">
+                                <div class="cat-header pt-3 pb-2">
+                                    <h3><?= esc_html($cat->name) ?></h3>
+                                </div>
+                                <div class="p-3">
+                                    <div class="category-img">
+                                        <img class="img-responsive" src="<?php echo esc_url($thumb_url); ?>" alt="<?php echo esc_attr($cat->name); ?>" class="img-fluid">
+                                    </div>
+                                    <p class="p-3">আমাদের লেখক ও পাঠকদের লেখা ছোট  গল্পের আসর </p>
+                                    <button class="btn btn-primary mb-3">পড়ুন</button>
+                                </div>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+                    
+                <?php endif; ?>
+
                 
             </div>
         </div>

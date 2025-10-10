@@ -300,6 +300,53 @@ footer{
     font-size: 20px;
 }
 
+.contact-us{
+    background: var(--primary-color);
+    color: #fff;
+}
+
+.category_container a{
+    text-decoration: none;
+    color: initial;
+}
+
+.category-container .category-description{
+    margin: 0;
+  }
+
+  .category-header-post{
+    height: 50px;
+    background: var(--second-color);
+  }
+  .category-header {
+    text-align: center;
+    background: var(--second-color);
+    color: #fff;
+  }
+
+  .category-header h3 {
+    line-height: 60px;
+  }
+
+  .category-description {
+    padding: 20px;
+    margin: -8px 0 0 0;
+  }
+
+  .default_text_one {
+    padding-top: 15px;
+  }
+
+  .default_text_one p {
+    color: var(--primary-color);
+    line-height: 12px;
+  }
+
+  .category-container .default_text_one p {
+    color: initial;
+    line-height: 25px;
+  }
+
 
 @media (max-width: 1199px) {
     .img-responsive{

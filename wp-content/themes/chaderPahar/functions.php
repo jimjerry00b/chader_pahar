@@ -6,6 +6,8 @@ function chaderpahar_register_menus() {
         'primary-menu' => __('Primary Menu', 'chaderpahar'),
     ));
 }
+
+add_theme_support( 'post-thumbnails' );
 add_action('after_setup_theme', 'chaderpahar_register_menus');
 
 // Add custom classes to menu items
