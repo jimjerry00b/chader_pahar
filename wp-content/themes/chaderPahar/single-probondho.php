@@ -20,8 +20,9 @@
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <?php echo category_description(); ?>
-            <div class="default_text_one">
+            <div class="default_text_one text-center">
                 <h2><?php the_title(); ?></h2>
+                <?php the_excerpt(); ?>
                 <?php echo category_description(); ?>
             </div>
           </div>
