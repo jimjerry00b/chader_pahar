@@ -1,17 +1,22 @@
-<?php
-$categories = get_the_category();
-
-if (!empty($categories)) {
-    $category_slug = $categories[0]->slug; // first category slug
-    $template_name = 'single-' . $category_slug . '.php';
-
-    if (locate_template($template_name)) {
-        include(locate_template($template_name));
-        exit;
-    }
-}
-?>
 <?php get_header(); ?>
+
+<?php
+// Get YouTube URL from custom field
+$youtube_url = get_post_meta(get_the_ID(), '_youtube_url', true);
+
+// Function to extract YouTube video ID from URL
+function get_youtube_id($url) {
+    preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
+    if (isset($matches[1])) {
+        return $matches[1];
+    }
+    // Handle youtu.be URLs
+    preg_match('/youtu\\.be\\/([^\\?\\&]+)/', $url, $matches);
+    return isset($matches[1]) ? $matches[1] : '';
+}
+
+$video_id = get_youtube_id($youtube_url);
+?>
 
 <div class="container">
   <div class="row">
@@ -20,23 +25,28 @@ if (!empty($categories)) {
         <h3><?php the_title(); ?></h3>
       </div>
       <div class="border category-description">
-        <?php $category_id = get_queried_object_id(); ?>
-        <?php $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : ''; ?>
         <div class="row">
-          <div class="col-md-6 d-flex align-items-center justify-content-center">
-            <img class="img-fluid" src="<?php echo $thumb_url; ?>" alt="">
-            <?php if ( has_post_thumbnail() ) : ?>
-                <div class="post-thumbnail">
-                    <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-3']); ?>
-                </div>
+          <div class="col-md-12">
+            <?php if ($video_id) : ?>
+              <div class="video-container mb-4">
+                <iframe 
+                  width="100%" 
+                  height="500" 
+                  src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>" 
+                  frameborder="0" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+            <?php elseif (has_post_thumbnail()) : ?>
+              <div class="post-thumbnail mb-4">
+                <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded']); ?>
+              </div>
             <?php endif; ?>
           </div>
-          <div class="col-md-6">
-            <?php echo category_description(); ?>
+          <div class="col-md-12">
             <div class="default_text_one">
-                <h2><?php the_title(); ?></h2>
-                <?php echo category_description(); ?>
-                <?php the_content(); ?>
+              <?php the_content(); ?>
             </div>
           </div>
         </div>
@@ -45,11 +55,30 @@ if (!empty($categories)) {
   </div>
 </div>
 
-
 <style>
     .default_text_one p{
         color: initial;
         line-height: 24px;
+    }
+
+    .category-header{
+        background: var(--second-color);
+        height: 50px;
+    }
+
+    .category-description {
+        padding: 20px;
+        margin: 0;
+    }
+
+    .video-container {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .video-container iframe {
+        border-radius: 8px;
     }
 </style>
 
