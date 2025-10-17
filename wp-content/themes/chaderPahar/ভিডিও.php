@@ -16,13 +16,31 @@ function get_youtube_id_from_url($url) {
     return isset($matches[1]) ? $matches[1] : '';
 }
 
+// Function to convert English numbers to Bengali numbers in link text only (not URLs)
+function convert_pagination_numbers_to_bengali($html) {
+    $english = array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+    $bengali = array('০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯');
+    
+    // Convert numbers in <a> tag content (between > and </a>)
+    $html = preg_replace_callback('/>(\d+)<\/a>/', function($matches) use ($english, $bengali) {
+        return '>' . str_replace($english, $bengali, $matches[1]) . '</a>';
+    }, $html);
+    
+    // Convert numbers in <span> tag content (between > and </span>)
+    $html = preg_replace_callback('/>(\d+)<\/span>/', function($matches) use ($english, $bengali) {
+        return '>' . str_replace($english, $bengali, $matches[1]) . '</span>';
+    }, $html);
+    
+    return $html;
+}
+
 // Get current page for pagination
 $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
 // Query videos custom post type with meta query
 $args = array(
     'post_type'      => 'videos',
-    'posts_per_page' => 9,
+    'posts_per_page' => 3,
     'paged'          => $paged,
     'meta_query'     => array(
         array(
@@ -62,6 +80,9 @@ $video_query = new WP_Query($args);
                     endif;
                 endwhile; 
                 ?>
+
+                
+
             <?php else : ?>
                 <div class="col-12">
                     <p class="text-center">কোনো ভিডিও পাওয়া যায়নি।</p>
@@ -73,10 +94,10 @@ $video_query = new WP_Query($args);
         <?php if ($video_query->max_num_pages > 1) : ?>
             <div class="pagination-wrapper text-center mt-5">
                 <nav id="pagination_one" aria-label="Page navigation">
-                    <ul class="pagination justify-content-center">
+                    
                         <?php
                         $big = 999999999;
-                        echo paginate_links(array(
+                        $pagination = paginate_links(array(
                             'base'      => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
                             'format'    => '?paged=%#%',
                             'current'   => max(1, $paged),
@@ -85,8 +106,17 @@ $video_query = new WP_Query($args);
                             'next_text' => 'পরবর্তী',
                             'type'      => 'list',
                         ));
+                        // Replace default class with Bootstrap pagination classes
+                        $pagination = str_replace('page-numbers', 'pagination justify-content-center', $pagination);
+                        $pagination = str_replace('<li>', '<li class="page-item">', $pagination);
+                        $pagination = str_replace('<a ', '<a class="page-link" ', $pagination);
+                        $pagination = str_replace('<span ', '<span class="page-link" ', $pagination);
+                        // Add active class to li containing aria-current="page"
+                        $pagination = str_replace('<li class="page-item"><span class="page-link" aria-current="page"', '<li class="page-item active"><span class="page-link" aria-current="page"', $pagination);
+                        // Convert English numbers to Bengali numbers (only in visible text, not URLs)
+                        $pagination = convert_pagination_numbers_to_bengali($pagination);
+                        echo $pagination;
                         ?>
-                    </ul>
                 </nav>
             </div>
         <?php endif; ?>
@@ -163,6 +193,11 @@ wp_reset_postdata();
     font-size: 14px;
     font-weight: 600;
     text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+.pagination li{
+    list-style-type: none;
+    float: left;
 }
 </style>
 

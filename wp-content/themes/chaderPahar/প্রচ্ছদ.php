@@ -30,6 +30,9 @@
                 if (!empty($categories)) : ?>
                 
                     <?php foreach ($categories as $cat) : 
+                        if($cat->cat_ID == 8){
+                            continue;
+                        }
                         $link = get_category_link($cat->term_id);
                         $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : '';
                     ?>
@@ -61,68 +64,66 @@
     <section id="section-five">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6 col-lg-6 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_01.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
 
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_02.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
+            <?php
+            $category_query = new WP_Query( array(
+                'category_name' => 'report', // use category slug
+                'posts_per_page' => 7      // number of posts to show
+            ) );
 
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
+            $i = 1;
 
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
+            foreach($category_query->posts as $cat_data){ 
 
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
-
-                <div class="col-12 col-md-6 col-lg-3 mb-1">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
-                    <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
-                    </div>
-                </div>
                 
+                
+            
+                if($i == 1){ ?>
+
+                <div class="col-12 col-md-6 col-lg-6 mb-1">
+                    <a href="<?php echo get_permalink($cat_data->ID); ?>">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_01.jpg" alt="Section Five Image" class="img-fluid">
+                        <div class="px-1 py-3">
+                            <h3 class="dynamic-color dynamic-color-1"><?= $cat_data->post_title; ?></h3>
+                            <div class="content-part-1">
+                                <p><?= $cat_data->post_content; ?></p>
+                            </div>
+                            <span class="date">
+                                <?php
+                                    $english_date = date("d F Y", strtotime($cat_data->post_modified));
+                                    echo convert_to_bengali_date($english_date);
+                                ?>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+                    
+                <?php } ?>
+                
+            
                 <div class="col-12 col-md-6 col-lg-3 mb-1">
+                <a href="<?php echo get_permalink($cat_data->ID); ?>">
                     <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_03.jpg" alt="Section Five Image" class="img-fluid">
                     <div class="px-1 py-3">
-                        <h3 class="dynamic-color">বর্ষপূর্তি পালিত হলো চাঁদের পাহাড়ের এক বছর পূর্তি অনুষ্ঠান </h3>
-                        <p>আনন্দঘন অনুষ্ঠানের মধ্যে দিয়ে পালিত হলো চাঁদের পাহাড়ের একবছর পূর্তি অনুষ্ঠান।  দিনটি শুরু হয় শিশুদের ছবি আঁকার মধ্য দিয়ে..... বিস্তারিত </p>
-                        <span class="date">১২ জানুয়ারী ২০২৫</span>
+                        <h3 class="dynamic-color dynamic-color-1"><?= $cat_data->post_title?></h3>
+                        <div class="content-part-2">
+                            <p><?= $cat_data->post_content; ?></p>
+                        </div>
+                        <span class="date">
+                            <?php
+                                $english_date = date("d F Y", strtotime($cat_data->post_modified));
+                                echo convert_to_bengali_date($english_date);
+                            ?>
+                        </span>
                     </div>
-                </div>
+                </a>
+            </div>
+            
+            
+                
+            <?php $i++; } ?>
+
+                
             </div>
         </div>
     </section>
@@ -251,5 +252,49 @@
             </div>
         </div>
     </section>
+
+
+    <style>
+
+        .dynamic-color-1{
+            height: 35px;
+            overflow: hidden;
+            padding-top: 4px;
+            padding-left: 4px;
+        }
+
+        .content-part-1{
+            height: 60px;
+            overflow: hidden;
+        }
+
+        .content-part-2 {
+            height: 270px;
+            overflow: hidden;
+        }
+
+        #section-five a{
+            text-decoration: none;
+            color: initial;
+        }
+
+
+
+        @media screen and (max-width: 1199px) {
+            .content-part-1{
+                height: auto;
+            }
+            .content-part-2 {
+                height: 180px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .dynamic-color-1{
+                height: 28px;
+            }
+        }
+
+    </style>
 
     <?php get_footer(); ?>
