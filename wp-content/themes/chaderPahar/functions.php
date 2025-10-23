@@ -455,4 +455,254 @@ if (!wp_next_scheduled('cleanup_expired_otps_event')) {
 }
 add_action('cleanup_expired_otps_event', 'cleanup_expired_otps');
 
+// Add Members admin menu
+function add_members_admin_menu() {
+    add_menu_page(
+        'Members',                    // Page title
+        'Members',                    // Menu title
+        'manage_options',            // Capability required
+        'members-management',        // Menu slug
+        'members_list_page',         // Callback function
+        'dashicons-groups',          // Icon
+        25                           // Position
+    );
+    
+    add_submenu_page(
+        'members-management',        // Parent slug
+        'All Members',              // Page title
+        'All Members',              // Menu title
+        'manage_options',           // Capability
+        'members-management',       // Menu slug (same as parent)
+        'members_list_page'         // Callback
+    );
+    
+    add_submenu_page(
+        'members-management',        // Parent slug
+        'Edit Member',              // Page title
+        null,                       // Menu title (null to hide from menu)
+        'manage_options',           // Capability
+        'edit-member',              // Menu slug
+        'edit_member_page'          // Callback
+    );
+}
+add_action('admin_menu', 'add_members_admin_menu');
+
+// Members list page
+function members_list_page() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'members';
+    
+    // Handle delete action
+    if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])) {
+        $id = intval($_GET['id']);
+        check_admin_referer('delete_member_' . $id);
+        
+        $wpdb->delete($table_name, array('id' => $id), array('%d'));
+        echo '<div class="notice notice-success is-dismissible"><p>Member deleted successfully!</p></div>';
+    }
+    
+    // Pagination
+    $per_page = 20;
+    $current_page = isset($_GET['paged']) ? max(1, intval($_GET['paged'])) : 1;
+    $offset = ($current_page - 1) * $per_page;
+    
+    // Get total count
+    $total_items = $wpdb->get_var("SELECT COUNT(*) FROM $table_name");
+    $total_pages = ceil($total_items / $per_page);
+    
+    // Get members
+    $members = $wpdb->get_results($wpdb->prepare(
+        "SELECT * FROM $table_name ORDER BY created_at DESC LIMIT %d OFFSET %d",
+        $per_page,
+        $offset
+    ));
+    
+    ?>
+    <div class="wrap">
+        <h1 class="wp-heading-inline">Members</h1>
+        <hr class="wp-header-end">
+        
+        <?php if ($members): ?>
+            <table class="wp-list-table widefat fixed striped">
+                <thead>
+                    <tr>
+                        <th style="width: 50px;">ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Registered On</th>
+                        <th style="width: 150px;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($members as $member): ?>
+                        <tr>
+                            <td><?php echo esc_html($member->id); ?></td>
+                            <td><strong><?php echo esc_html($member->name); ?></strong></td>
+                            <td><?php echo esc_html($member->email); ?></td>
+                            <td><?php echo esc_html($member->phone); ?></td>
+                            <td><?php echo esc_html(date('F j, Y, g:i a', strtotime($member->created_at))); ?></td>
+                            <td>
+                                <a href="<?php echo admin_url('admin.php?page=edit-member&id=' . $member->id); ?>" class="button button-small">Edit</a>
+                                <a href="<?php echo wp_nonce_url(admin_url('admin.php?page=members-management&action=delete&id=' . $member->id), 'delete_member_' . $member->id); ?>" 
+                                   class="button button-small" 
+                                   onclick="return confirm('Are you sure you want to delete this member?');">Delete</a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+            
+            <?php if ($total_pages > 1): ?>
+                <div class="tablenav bottom">
+                    <div class="tablenav-pages">
+                        <?php
+                        echo paginate_links(array(
+                            'base' => add_query_arg('paged', '%#%'),
+                            'format' => '',
+                            'prev_text' => __('&laquo; Previous'),
+                            'next_text' => __('Next &raquo;'),
+                            'total' => $total_pages,
+                            'current' => $current_page
+                        ));
+                        ?>
+                    </div>
+                </div>
+            <?php endif; ?>
+            
+        <?php else: ?>
+            <p>No members found.</p>
+        <?php endif; ?>
+    </div>
+    
+    <style>
+        .wp-list-table th, .wp-list-table td {
+            padding: 10px;
+        }
+        .tablenav-pages {
+            margin: 20px 0;
+        }
+        .tablenav-pages .pagination-links {
+            display: inline-block;
+        }
+        .tablenav-pages a, .tablenav-pages span {
+            padding: 5px 10px;
+            margin: 0 2px;
+            border: 1px solid #ddd;
+            text-decoration: none;
+        }
+        .tablenav-pages .current {
+            background: #2271b1;
+            color: white;
+        }
+    </style>
+    <?php
+}
+
+// Edit member page
+function edit_member_page() {
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'members';
+    
+    if (!isset($_GET['id'])) {
+        wp_die('Invalid member ID');
+    }
+    
+    $id = intval($_GET['id']);
+    $member = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $id));
+    
+    if (!$member) {
+        wp_die('Member not found');
+    }
+    
+    // Handle form submission
+    if (isset($_POST['update_member'])) {
+        check_admin_referer('update_member_' . $id);
+        
+        $name = sanitize_text_field($_POST['name']);
+        $email = sanitize_email($_POST['email']);
+        $phone = sanitize_text_field($_POST['phone']);
+        
+        if (empty($name) || empty($email) || empty($phone)) {
+            echo '<div class="notice notice-error is-dismissible"><p>All fields are required!</p></div>';
+        } elseif (!is_email($email)) {
+            echo '<div class="notice notice-error is-dismissible"><p>Invalid email format!</p></div>';
+        } else {
+            // Check if email is already used by another member
+            $existing = $wpdb->get_var($wpdb->prepare(
+                "SELECT id FROM $table_name WHERE email = %s AND id != %d",
+                $email,
+                $id
+            ));
+            
+            if ($existing) {
+                echo '<div class="notice notice-error is-dismissible"><p>Email already in use by another member!</p></div>';
+            } else {
+                $updated = $wpdb->update(
+                    $table_name,
+                    array(
+                        'name' => $name,
+                        'email' => $email,
+                        'phone' => $phone
+                    ),
+                    array('id' => $id),
+                    array('%s', '%s', '%s'),
+                    array('%d')
+                );
+                
+                if ($updated !== false) {
+                    echo '<div class="notice notice-success is-dismissible"><p>Member updated successfully!</p></div>';
+                    // Refresh member data
+                    $member = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table_name WHERE id = %d", $id));
+                } else {
+                    echo '<div class="notice notice-error is-dismissible"><p>Failed to update member!</p></div>';
+                }
+            }
+        }
+    }
+    
+    ?>
+    <div class="wrap">
+        <h1>Edit Member</h1>
+        <a href="<?php echo admin_url('admin.php?page=members-management'); ?>" class="page-title-action">← Back to Members</a>
+        
+        <form method="post" style="max-width: 600px; margin-top: 20px;">
+            <?php wp_nonce_field('update_member_' . $id); ?>
+            
+            <table class="form-table">
+                <tr>
+                    <th scope="row"><label for="name">Name</label></th>
+                    <td>
+                        <input type="text" id="name" name="name" value="<?php echo esc_attr($member->name); ?>" class="regular-text" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="email">Email</label></th>
+                    <td>
+                        <input type="email" id="email" name="email" value="<?php echo esc_attr($member->email); ?>" class="regular-text" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="phone">Phone</label></th>
+                    <td>
+                        <input type="text" id="phone" name="phone" value="<?php echo esc_attr($member->phone); ?>" class="regular-text" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Registered On</th>
+                    <td>
+                        <p class="description"><?php echo esc_html(date('F j, Y, g:i a', strtotime($member->created_at))); ?></p>
+                    </td>
+                </tr>
+            </table>
+            
+            <p class="submit">
+                <input type="submit" name="update_member" class="button button-primary" value="Update Member">
+                <a href="<?php echo admin_url('admin.php?page=members-management'); ?>" class="button">Cancel</a>
+            </p>
+        </form>
+    </div>
+    <?php
+}
+
 ?>
