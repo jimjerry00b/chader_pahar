@@ -5,16 +5,6 @@
     Template Name: ভিডিও
 */
 
-// Function to extract YouTube video ID from URL
-function get_youtube_id_from_url($url) {
-    preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $url, $matches);
-    if (isset($matches[1])) {
-        return $matches[1];
-    }
-    // Handle youtu.be URLs
-    preg_match('/youtu\\.be\\/([^\\?\\&]+)/', $url, $matches);
-    return isset($matches[1]) ? $matches[1] : '';
-}
 
 // Function to convert English numbers to Bengali numbers in link text only (not URLs)
 function convert_pagination_numbers_to_bengali($html) {

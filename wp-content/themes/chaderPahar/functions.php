@@ -10,6 +10,14 @@ function chaderpahar_register_menus() {
 add_theme_support( 'post-thumbnails' );
 add_action('after_setup_theme', 'chaderpahar_register_menus');
 
+// Set posts per page for goddo category
+function chaderpahar_goddo_posts_per_page( $query ) {
+    if ( !is_admin() && $query->is_main_query() && $query->is_category('goddo') ) {
+        $query->set( 'posts_per_page', 9 );
+    }
+}
+add_action( 'pre_get_posts', 'chaderpahar_goddo_posts_per_page' );
+
 // Create OTP table on theme activation
 function create_otp_table() {
     global $wpdb;
@@ -73,6 +81,16 @@ function add_menu_list_item_class($classes, $item, $args) {
     return $classes;
 }
 add_filter('nav_menu_css_class', 'add_menu_list_item_class', 1, 3);
+
+// Extract YouTube video ID from URL
+function get_youtube_id_from_url($url) {
+    preg_match('/[\?\&]v=([^\?\&]+)/', $url, $matches);
+    if (isset($matches[1])) {
+        return $matches[1];
+    }
+    preg_match('/youtu\.be\/([^\?\&]+)/', $url, $matches);
+    return isset($matches[1]) ? $matches[1] : '';
+}
 
 // Register Custom Post Type for Videos
 function register_videos_post_type() {
@@ -193,6 +211,50 @@ function save_youtube_url_meta_box_data($post_id) {
     }
 }
 add_action('save_post', 'save_youtube_url_meta_box_data');
+
+// Add meta box for custom author field on Posts
+function add_custom_author_meta_box() {
+    add_meta_box(
+        'custom_author_meta_box',
+        'লেখক (Author)',
+        'custom_author_meta_box_callback',
+        'post',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_custom_author_meta_box');
+
+// Meta box callback
+function custom_author_meta_box_callback($post) {
+    wp_nonce_field('custom_author_meta_box', 'custom_author_meta_box_nonce');
+    $custom_author = get_post_meta($post->ID, '_custom_author', true);
+    ?>
+    <label for="custom_author"><strong>লেখকের নাম:</strong></label>
+    <input type="text" id="custom_author" name="custom_author" value="<?php echo esc_attr($custom_author); ?>" style="width: 100%; padding: 5px; margin-top: 4px;" placeholder="লেখকের নাম লিখুন">
+    <p class="description">এখানে লেখকের নাম লিখুন। এটি সাইটে প্রদর্শিত হবে।</p>
+    <?php
+}
+
+// Save custom author meta data
+function save_custom_author_meta_box_data($post_id) {
+    if (!isset($_POST['custom_author_meta_box_nonce'])) {
+        return;
+    }
+    if (!wp_verify_nonce($_POST['custom_author_meta_box_nonce'], 'custom_author_meta_box')) {
+        return;
+    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    if (isset($_POST['custom_author'])) {
+        update_post_meta($post_id, '_custom_author', sanitize_text_field($_POST['custom_author']));
+    }
+}
+add_action('save_post', 'save_custom_author_meta_box_data');
 
 // Convert English date to Bengali
 function convert_to_bengali_date($englishDate) {

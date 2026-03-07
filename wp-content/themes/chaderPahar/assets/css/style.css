@@ -19,6 +19,7 @@ h4 {
   --primary-color: #f2a100;
   --second-color: #001870;
   --third-color: #8f8f8f;
+  --gold-color: #f5a623;
 }
 
 .btn-primary {
@@ -78,7 +79,8 @@ nav .nav-link {
 nav .nav-item .nav-link:hover,
 nav .nav-item .nav-link:focus,
 nav .nav-item .active,
-.current_page_item {
+.current_page_item,
+.current-menu-item {
   background: var(--primary-color);
   color: #fff;
 }
@@ -338,8 +340,9 @@ footer {
 }
 .category-header {
   text-align: center;
-  background: var(--second-color);
-  color: #fff;
+  /* background: var(--second-color); */
+  color: var(--second-color);
+  font-size: 30px;
 }
 
 .category-header h3 {
@@ -347,7 +350,7 @@ footer {
 }
 
 .category-description {
-  padding: 20px;
+  padding: 0;
   margin: -8px 0 0 0;
 }
 
