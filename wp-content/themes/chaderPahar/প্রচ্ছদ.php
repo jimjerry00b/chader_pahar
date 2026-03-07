@@ -20,7 +20,7 @@
             <div class="row">
                 <?php
                 $gadya_query = new WP_Query( array(
-                    'category_name'  => 'goddo',
+                    'category_name'  => 'godya',
                     'posts_per_page' => 3,
                     'orderby'        => 'date',
                     'order'          => 'ASC',
