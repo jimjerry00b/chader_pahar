@@ -221,7 +221,7 @@
     
     <section id="section-gadya" class="py-5" style="background: 
         linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)),
-        url('http://localhost/chader-pahar/wp-content/themes/chaderPahar/assets/images/bg_03.jpg');
+        url('<?= get_template_directory_uri(); ?>/assets/images/bg_03.jpg');
         
     background-size: cover;
     background-position: center;
