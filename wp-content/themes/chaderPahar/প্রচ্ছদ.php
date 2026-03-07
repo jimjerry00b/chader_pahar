@@ -43,7 +43,8 @@
                                 </div>
                                 <div class="gadya-info pt-2">
                                     <h5><?php the_title(); ?></h5>
-                                    <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+                                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : get_the_author(); ?></p>
                                 </div>
                             </a>
                         </div>
