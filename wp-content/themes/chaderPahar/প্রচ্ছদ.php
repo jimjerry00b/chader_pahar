@@ -6,13 +6,82 @@
 */
 ?>
 
-    
+    <section id="section-featured-slider" class="py-4 py-md-5">
+        <div class="container">
+            <div class="cp-slider-shell" data-cp-slider>
+                <button class="cp-slider-arrow cp-slider-prev" type="button" aria-label="Previous" data-cp-prev>
+                    <span aria-hidden="true">&#10094;</span>
+                </button>
+
+                <div class="cp-slider-viewport">
+                    <div class="cp-slider-track" data-cp-track>
+                        <?php
+                        $featured_query = new WP_Query( array(
+                            'post_type'      => 'post',
+                            'post_status'    => 'publish',
+                            'posts_per_page' => 10,
+                            'orderby'        => 'date',
+                            'order'          => 'DESC',
+                        ) );
+
+                        if ( $featured_query->have_posts() ) :
+                            while ( $featured_query->have_posts() ) : $featured_query->the_post();
+                                $slider_thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+                                $slider_author = get_post_meta( get_the_ID(), '_custom_author', true );
+                                $slider_author = $slider_author ? $slider_author : get_the_author();
+                        ?>
+                            <article class="cp-slide-card" data-cp-card>
+                                <a href="<?php the_permalink(); ?>" class="cp-slide-link">
+                                    <div class="cp-slide-image-wrap">
+                                        <?php if ( $slider_thumb ) : ?>
+                                            <img src="<?php echo esc_url( $slider_thumb ); ?>" alt="<?php the_title_attribute(); ?>" class="cp-slide-image">
+                                        <?php else : ?>
+                                            <div class="cp-slide-no-image"></div>
+                                        <?php endif; ?>
+                                    </div>
+                                    <div class="cp-slide-content">
+                                        <h3 class="cp-slide-title"><?php the_title(); ?></h3>
+                                        <p class="cp-slide-author"><?php echo esc_html( $slider_author ); ?></p>
+                                    </div>
+                                </a>
+                            </article>
+                        <?php
+                            endwhile;
+                            wp_reset_postdata();
+                        else :
+                            for ( $slider_i = 0; $slider_i < 5; $slider_i++ ) :
+                        ?>
+                            <article class="cp-slide-card" data-cp-card>
+                                <a href="#" class="cp-slide-link">
+                                    <div class="cp-slide-image-wrap">
+                                        <div class="cp-slide-no-image"></div>
+                                    </div>
+                                    <div class="cp-slide-content">
+                                        <h3 class="cp-slide-title">নতুন লেখা শীঘ্রই আসছে</h3>
+                                        <p class="cp-slide-author">চাদের পাহাড় সম্পাদকীয়</p>
+                                    </div>
+                                </a>
+                            </article>
+                        <?php
+                            endfor;
+                        endif;
+                        ?>
+                    </div>
+                </div>
+
+                <button class="cp-slider-arrow cp-slider-next" type="button" aria-label="Next" data-cp-next>
+                    <span aria-hidden="true">&#10095;</span>
+                </button>
+            </div>
+            <div class="cp-slider-dots" data-cp-dots></div>
+        </div>
+    </section>
 
     
 
     <section id="section-gadya" class="py-5">
         <div class="container">
-            <div class="row">
+            <div class="row g-4">
                 <div class="col-12 text-center mb-4">
                     <h2 class="gadya-section-title">গদ্য</h2>
                 </div>
@@ -44,7 +113,7 @@
                                 <div class="gadya-info pt-2">
                                     <h5><?php the_title(); ?></h5>
                                     <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
-                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : get_the_author(); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -81,7 +150,7 @@
     </section>
 
 
-    <section id="section-gadya" class="py-5">
+    <section id="section-prabandha" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-4">
@@ -151,7 +220,7 @@
     </section>
 
 
-    <section id="section-gadya" class="py-5">
+    <section id="section-golpo" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-4">
@@ -220,10 +289,7 @@
         </div>
     </section>
     
-    <section id="section-gadya" class="py-5" style="background: 
-        linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.28)),
-        url('<?= get_template_directory_uri(); ?>/assets/images/bg_03.jpg');
-        
+    <section id="section-kobita" class="py-5" style="background: url('<?= get_template_directory_uri(); ?>/assets/images/bg_03.jpg');       
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;">
@@ -237,7 +303,7 @@
                 <?php
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'kobita',
-                    'posts_per_page' => 3,
+                    'posts_per_page' => 6,
                     'orderby'        => 'date',
                     'order'          => 'ASC',
                 ) );
@@ -247,8 +313,8 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4 mb-4 bg-white p-0">
-                            <a href="<?php the_permalink(); ?>" class="gadya-card">
+                        <div class="col-12 col-md-4">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card bg-white">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -295,7 +361,7 @@
         </div>
     </section>
     
-    <section id="section-gadya" class="py-5">
+    <section id="section-protibedon" class="py-5">
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-4">
@@ -487,6 +553,155 @@
     
 
     <style>
+
+        #section-featured-slider {
+            background: #efeff1;
+        }
+
+        .cp-slider-shell {
+            position: relative;
+            padding: 0 38px;
+        }
+
+        .cp-slider-viewport {
+            overflow: hidden;
+        }
+
+        .cp-slider-track {
+            display: flex;
+            gap: 18px;
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+
+        .cp-slide-card {
+            flex: 0 0 calc((100% - 36px) / 3);
+            background: #fff;
+            border: 1px solid #d8d8d8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .cp-slide-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .cp-slide-image-wrap {
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            background: #d8d8d8;
+        }
+
+        .cp-slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .cp-slide-link:hover .cp-slide-image {
+            transform: scale(1.05);
+        }
+
+        .cp-slide-no-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ddd, #cfcfcf);
+        }
+
+        .cp-slide-content {
+            padding: 10px 12px 14px;
+            min-height: 88px;
+        }
+
+        .cp-slide-title {
+            margin: 0 0 5px;
+            font-size: 18px;
+            line-height: 1.35;
+            color: #15356e;
+        }
+
+        .cp-slide-author {
+            margin: 0;
+            font-size: 14px;
+            color: #c68a1f;
+            line-height: 1.35;
+        }
+
+        .cp-slider-arrow {
+            position: absolute;
+            top: 42%;
+            transform: translateY(-50%);
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            color: #2954a3;
+            font-size: 30px;
+            line-height: 1;
+            padding: 0;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .cp-slider-prev {
+            left: 0;
+        }
+
+        .cp-slider-next {
+            right: 0;
+        }
+
+        .cp-slider-arrow:disabled {
+            opacity: 0.35;
+            cursor: default;
+        }
+
+        .cp-slider-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .cp-slider-dot {
+            width: 9px;
+            height: 9px;
+            border: none;
+            border-radius: 50%;
+            background: #bdbdbd;
+            padding: 0;
+        }
+
+        .cp-slider-dot.is-active {
+            background: #0f3d9a;
+        }
+
+        @media (max-width: 991px) {
+            .cp-slide-card {
+                flex: 0 0 calc((100% - 18px) / 2);
+            }
+        }
+
+        @media (max-width: 575px) {
+            .cp-slider-shell {
+                padding: 0 30px;
+            }
+
+            .cp-slide-card {
+                flex: 0 0 100%;
+            }
+
+            .cp-slide-title {
+                font-size: 17px;
+            }
+
+            .cp-slider-arrow {
+                top: 40%;
+                font-size: 26px;
+            }
+        }
 
         /* ── Section Gadya ── */
         #section-gadya {
@@ -835,6 +1050,161 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
+        const sliderRoot = document.querySelector('[data-cp-slider]');
+
+        if (sliderRoot) {
+            const sliderTrack = sliderRoot.querySelector('[data-cp-track]');
+            const sliderCards = sliderRoot.querySelectorAll('[data-cp-card]');
+            const prevBtn = sliderRoot.querySelector('[data-cp-prev]');
+            const nextBtn = sliderRoot.querySelector('[data-cp-next]');
+            const dotsWrap = document.querySelector('[data-cp-dots]');
+            const autoplayDelay = 4000;
+
+            let currentPage = 0;
+            let totalPages = 1;
+            let autoplayTimer = null;
+
+            function getCardsPerPage() {
+                if (window.innerWidth < 576) {
+                    return 1;
+                }
+
+                if (window.innerWidth < 992) {
+                    return 2;
+                }
+
+                return 3;
+            }
+
+            function renderDots() {
+                if (!dotsWrap) {
+                    return;
+                }
+
+                dotsWrap.innerHTML = '';
+
+                for (let i = 0; i < totalPages; i++) {
+                    const dotBtn = document.createElement('button');
+                    dotBtn.type = 'button';
+                    dotBtn.className = 'cp-slider-dot' + (i === currentPage ? ' is-active' : '');
+                    dotBtn.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                    dotBtn.addEventListener('click', function() {
+                        currentPage = i;
+                        updateSliderPosition();
+                        restartAutoplay();
+                    });
+                    dotsWrap.appendChild(dotBtn);
+                }
+            }
+
+            function updateSliderPosition() {
+                const cardsPerPage = getCardsPerPage();
+                const cardCount = sliderCards.length;
+                totalPages = Math.max(1, Math.ceil(cardCount / cardsPerPage));
+
+                renderDots();
+
+                if (currentPage > totalPages - 1) {
+                    currentPage = totalPages - 1;
+                }
+
+                const maxOffset = Math.max(0, sliderTrack.scrollWidth - sliderRoot.querySelector('.cp-slider-viewport').clientWidth);
+                const firstCard = sliderCards[0];
+                const gapSize = 18;
+                const step = firstCard ? (firstCard.getBoundingClientRect().width + gapSize) * cardsPerPage : 0;
+                const offset = Math.min(maxOffset, currentPage * step);
+
+                sliderTrack.style.transform = 'translateX(-' + offset + 'px)';
+
+                if (prevBtn) {
+                    prevBtn.disabled = totalPages <= 1;
+                }
+
+                if (nextBtn) {
+                    nextBtn.disabled = totalPages <= 1;
+                }
+
+                const dots = sliderRoot.parentElement.querySelectorAll('.cp-slider-dot');
+                dots.forEach(function(dot, index) {
+                    dot.classList.toggle('is-active', index === currentPage);
+                });
+            }
+
+            function goToNext() {
+                if (totalPages <= 1) {
+                    return;
+                }
+
+                currentPage = currentPage >= totalPages - 1 ? 0 : currentPage + 1;
+                updateSliderPosition();
+            }
+
+            function goToPrev() {
+                if (totalPages <= 1) {
+                    return;
+                }
+
+                currentPage = currentPage <= 0 ? totalPages - 1 : currentPage - 1;
+                updateSliderPosition();
+            }
+
+            function stopAutoplay() {
+                if (autoplayTimer) {
+                    window.clearInterval(autoplayTimer);
+                    autoplayTimer = null;
+                }
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+
+                if (totalPages <= 1) {
+                    return;
+                }
+
+                autoplayTimer = window.setInterval(function() {
+                    goToNext();
+                }, autoplayDelay);
+            }
+
+            function restartAutoplay() {
+                startAutoplay();
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function() {
+                    goToPrev();
+                    restartAutoplay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function() {
+                    goToNext();
+                    restartAutoplay();
+                });
+            }
+
+            updateSliderPosition();
+            startAutoplay();
+
+            sliderRoot.addEventListener('mouseenter', stopAutoplay);
+            sliderRoot.addEventListener('mouseleave', startAutoplay);
+
+            window.addEventListener('resize', function() {
+                updateSliderPosition();
+                restartAutoplay();
+            });
+
+            document.addEventListener('visibilitychange', function() {
+                if (document.hidden) {
+                    stopAutoplay();
+                } else {
+                    startAutoplay();
+                }
+            });
+        }
+
         const hpVideoModal = document.getElementById('hpVideoModal');
         const hpVideoFrame = document.getElementById('hpVideoFrame');
         const hpVideoModalLabel = document.getElementById('hpVideoModalLabel');

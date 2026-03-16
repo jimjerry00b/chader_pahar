@@ -1,4 +1,4 @@
-<?php get_header(); ?>
+﻿<?php get_header(); ?>
 
 <?php
 /*
@@ -6,66 +6,177 @@
 */
 ?>
 <main>
-    <section id="about-us" class="">
-        <div class="container px-0" style="margin: 0 auto; text-align: center;" class="mt-4">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_10.jpg" alt="Chader Pahar" class="img-fluid">
-        </div>
+    <nav class="pahar-tab-menu" style="background: var(--four-color);">
         <div class="container">
-            <div class="row">
-                <div class="col-12 text-center my-5">
-                    <h2 class="text-white"> চাঁদের পাহাড় পরিচিতি  </h2>
-                </div>
-            </div>
+            <ul>
+                <li class="active" data-tab="tab-parichiti"><a href="#">পরিচিতি</a></li>
+                <li data-tab="tab-boi-data"><a href="#">বই দাতা</a></li>
+                <li data-tab="tab-ajibon-shodosso"><a href="#">আজীবন সদস্য</a></li>
+                <li data-tab="tab-chobi"><a href="#">ছবি</a></li>
+            </ul>
         </div>
-    </section>
+    </nav>
 
-    <section>
-        <div class="container my-5">
-            <div class="row">
-                <div class="col-12 pb-5">
-                    <h2 class="text-secondary">ভূমিকা</h2>
-                    <p>চাঁদের পাহাড় বুক ক্যাফের প্রথম বর্ষপূর্তিতে ঢাকার নবাবগঞ্জ উপজেলার বান্দুরা ইউনিয়নের মোলাশীকান্দা এলাকায় ছবি আঁকা উৎসব ও আলোচনা সভা অনুষ্ঠিত হয়েছে।</p>
-                    <p>সোমবার সকালে উপজেলার মোলাশীকান্দা উদ্যোগী সংঘের ক্লাব প্রাঙ্গনে সাহিত্য অনুষ্ঠান ‘বই পড়ার সেকাল একাল’ অনুষ্ঠানে প্রবন্ধ পাঠ করেন গল্পকার ও সাংবাদিক অলাত এহ্সান। তিনি বলেন, ‘জহির রায়হানের ‘হাজার বছর ধরে’ উপন্যাসে আমরা দেখি একটা পুকুর কেন্দ্র করে একটা গ্রামের পত্তন হচ্ছে। গ্রামায়ণের ইতিহাসই এমন নদী, পুকুর, বনের পাশে গ্রাম গড়ে উঠেছে। বড় বটগাছের নিচে বাজার বসছে। একটা লাইব্রেরি, বুক ক্লাব গ্রামের সাংস্কৃতিক কেন্দ্র হয়ে উঠতে পারে। এখানেই চাঁদের পাহাড় বুক ক্যাফে গুরুত্বপূর্ণ। গত বছর বিজয় দিবসের দিনে এর সূচনা হয়ে আজ তার প্রথম বর্ষপূর্তি হলো। আমাদের উচিত হবে একে সমৃদ্ধ করা, বাড়িয়ে তোলা।’</p>
+    <div class="container">
+        <div id="tab-parichiti" class="pahar-tab-content active">
+            <section class="parichiti-section">
+                <div class="parichiti-text">
+                    <h2>বইয়ের সঙ্গে কাটুক সময়</h2>
+                    <p>এই সময়ের কেন লাইটেরিয়া? যখন মোবাইলে টাচ করলেই সবকিছু চোখের সামনে চলে আসে! অনেকে বলে মানুষ এখন পড়ে না। আমি মনে করি মানুষ আগের চেয়ে বেশি পড়ে। আমি-আপনি ফেসবুকের মতো সামাজিক যোগাযোগ মাধ্যমে, ইন্টারনেটে প্রতিনিয়ত পড়ছি। তাহলে লাইটেরিয়া কেন? এখন পিডিএফ বই আছে, ইন্টারনেটে পড়া যাচ্ছে, পডকাস্ট- যেখানে আপনি গল্প-উপন্যাস বা যেকোন বই শুনতে পারেন। অনেক সুযোধ আচে। তবে এটী ঠিক, এখন পড়ার ঝোঁক দেখা হচ্ছে বেশি। অর্থাৎ শখের জায়গাতে ছবি বা ভিডিও বাবহার হচ্ছে। তাহলে বই নিয়ে এই ডিজিটাল দুনিয়ার মানুষকে পাগলামির একটী মানে আছে- সেটী হলো এই ডিজিটাল, এই প্রতিছিক জীবন থেকে সামরিক ছুটি নেওয়া। উদার দেশে পড়ার লাইটেরিয়া আছে এবং মানুষ দীর্ঘ বই পড়ে। লন্ডনে, টার্মিনালে ছোট ছোট বুক শেলফ থাকে যে কেউ পড়তে পারে। তাহলে এই যে আমরা কথা বলছি পড়তে হবে, এটা কিছু অনেকটা অনুভূত। তবে এই অনুভূতটাকে আমরা পরিচিত করে ফেলেছি। ফলে এটা আর এখন অনুভূত হিসেবে প্রতীয়মান হচ্ছে না। আমরা এই অনুভূতটাকে একদিন লাভজনক ফেলতে চাই।</p>
+                    <p>চাঁদের পাহাড় ওয়েব মাগাজিন আমাদের বহুদিনের স্বপ্নের ফসল। সৃজনশীল লেখালেখির চর্চা ও নতুন নতুন চিন্তা নিয়ে আমরা কাজ করতে চাই। পিছু থেকে শুরু করে সমাজসচেতন মানুষদের নিয়ে আমরা একটি প্ল্যাটফর্মে করতে চাই উন্নত বোধ চর্চা ও সৃষ্টি করতে।</p>
                 </div>
+                <div class="parichiti-image">
+                    <!-- Add your image here -->
+                    <div class="parichiti-image-placeholder">
+                        <img class="img-fluid" src="<?= get_template_directory_uri(); ?>/assets/images/img_16.jpg">
+                    </div>
+                </div>
+            </section>
 
-                <div class="col-12 pb-5">
-                    <h2 class="text-secondary">আমাদের স্বপ্ন</h2>
-                    <p>সাংবাদিক এহ্সান আরো বলেন, ‘‘নব্বইয়ের দশকের প্রথম দিকে নবাবগঞ্জের একটা গ্রামে শিক্ষাজীবনের শুরুতে স্কুলে লাইব্রেরি থাকার ব্যাপারটাই আমাদের মাথায় ছিল। স্কুলে শিক্ষাদপ্তর থেকে পাওয়া ‘চারুপাঠ’, স্কুল ম্যাগাজিনই ছিল সে অর্থে ‘বাইরের বই’। পাঠ্য বইয়ের বাইরে পড়ায় শিক্ষকরাও তেমন উৎসাহ দিয়েছেন বলে মনে পড়ে না। বান্দুরা হলিক্রস উচ্চ বিদ্যালয়, সেন্ট ইউফ্রেজীস গার্লস হাইস্কুল, নবাবগঞ্জ পাইলট উচ্চ বিদ্যালয়ের বাইরে এই উপজেলায় কোনো মাধ্যমিক বিদ্যালয়ে লাইব্রেরি থাকার কথাই শুনিনি। ফলে আমার আগে ও পরে বড় একটা প্রজন্ম শিশু সাহিত্য পাঠ ছাড়াই শৈশব-কৈশোর পার করেছে। ফলে কলেজ-বিশ্ববিদ্যালয়ে গিয়ে শহরের ছেলেমেয়েদের সঙ্গে অসম্ভব, অসম্ভব প্রতিযোগিতায় পড়তে হয়; সেখানে শিক্ষক যে উদাহরণ টেনে কথা বলেন, তা বুঝতেই কষ্ট হয় গ্রাম থেকে যাওয়া ছেলেমেয়ের।</p>
+            <section class="parichiti-section">
+                <div class="parichiti-image">
+                    <!-- Add your image here -->
+                    <div class="parichiti-image-placeholder">
+                        <img class="img-fluid" src="<?= get_template_directory_uri(); ?>/assets/images/img_17.jpg">
+                    </div>
                 </div>
+                <div class="parichiti-text">
+                    <h2>বইয়ের সঙ্গে কাটুক সময়</h2>
+                    <p>এই সময়ের কেন লাইটেরিয়া? যখন মোবাইলে টাচ করলেই সবকিছু চোখের সামনে চলে আসে! অনেকে বলে মানুষ এখন পড়ে না। আমি মনে করি মানুষ আগের চেয়ে বেশি পড়ে। আমি-আপনি ফেসবুকের মতো সামাজিক যোগাযোগ মাধ্যমে, ইন্টারনেটে প্রতিনিয়ত পড়ছি। তাহলে লাইটেরিয়া কেন? এখন পিডিএফ বই আছে, ইন্টারনেটে পড়া যাচ্ছে, পডকাস্ট- যেখানে আপনি গল্প-উপন্যাস বা যেকোন বই শুনতে পারেন। অনেক সুযোধ আচে। তবে এটী ঠিক, এখন পড়ার ঝোঁক দেখা হচ্ছে বেশি। অর্থাৎ শখের জায়গাতে ছবি বা ভিডিও বাবহার হচ্ছে। তাহলে বই নিয়ে এই ডিজিটাল দুনিয়ার মানুষকে পাগলামির একটী মানে আছে- সেটী হলো এই ডিজিটাল, এই প্রতিছিক জীবন থেকে সামরিক ছুটি নেওয়া। উদার দেশে পড়ার লাইটেরিয়া আছে এবং মানুষ দীর্ঘ বই পড়ে। লন্ডনে, টার্মিনালে ছোট ছোট বুক শেলফ থাকে যে কেউ পড়তে পারে। তাহলে এই যে আমরা কথা বলছি পড়তে হবে, এটা কিছু অনেকটা অনুভূত। তবে এই অনুভূতটাকে আমরা পরিচিত করে ফেলেছি। ফলে এটা আর এখন অনুভূত হিসেবে প্রতীয়মান হচ্ছে না। আমরা এই অনুভূতটাকে একদিন লাভজনক ফেলতে চাই।</p>
+                    <p>চাঁদের পাহাড় ওয়েব মাগাজিন আমাদের বহুদিনের স্বপ্নের ফসল। সৃজনশীল লেখালেখির চর্চা ও নতুন নতুন চিন্তা নিয়ে আমরা কাজ করতে চাই। পিছু থেকে শুরু করে সমাজসচেতন মানুষদের নিয়ে আমরা একটি প্ল্যাটফর্মে করতে চাই উন্নত বোধ চর্চা ও সৃষ্টি করতে।</p>
+                </div>
+            </section>
 
-                <div class="col-12 pb-5">
-                    <h2 class="text-secondary">আমাদের উদেশ্য</h2>
-                    <p>একই অবস্থায় পড়তে হয়েছে আমাকে, ঢাকার বাইরে একটা মফস্বল জেলা শহরের কলেজে পড়াকালে নিভৃত লাইব্রেরিতে পড়ে নিজেকে তৈরি করতে হয়েছে। কিন্তু শিশু-কিশোর সাহিত্য পাঠের যে ঘাটতি, তা এখনো আমার মধ্যে রয়ে গেছে। একটা উপজেলা শহর, প্রবাসী অধ্যুসিত এলাকা, প্রভাবশালী ধনী রাজনীতিকদের নির্বাচনী আসন হলেও নবাবগঞ্জে এখনো সরকারি কোনো লাইব্রেরির হয়নি, ব্যক্তিগত উদ্যোগে সমৃদ্ধ পাবলিক লাইব্রেরি গড়ে উঠেনি। অর্থনৈতিক উন্নতি, পাকা ঘরবাড়ি, আধুনিক প্রযুক্তির সঙ্গে যদি ঘরে ঘরে দুই-দশটা আউট বুক ঢুকত, পড়ার চর্চা হতো, তাহলে নবাবগঞ্জের চিন্তা-সাংস্কৃতিক উন্নতি হতো। সেটাই এখন জরুরি।’</p>
-                </div>
-            </div>
+            <style>
+                .parichiti-section {
+                    display: flex;
+                    gap: 40px;
+                    align-items: flex-start;
+                    padding: 40px 0;
+                }
+                .parichiti-text {
+                    flex: 1;
+                }
+                .parichiti-text h2 {
+                    font-size: 26px;
+                    font-weight: 700;
+                    margin-bottom: 16px;
+                    color: var(--primary-color);
+                }
+                .parichiti-text p {
+                    font-size: 16px;
+                    line-height: 1.9;
+                    margin-bottom: 16px;
+                    color: #333;
+                    text-align: justify;
+                }
+                .parichiti-image {
+                    flex: 0 0 380px;
+                    max-width: 380px;
+                }
+                .parichiti-image img {
+                    width: 100%;
+                    height: auto;
+                    display: block;
+                }
+                
+                @media (max-width: 768px) {
+                    .parichiti-section {
+                        flex-direction: column;
+                    }
+                    .parichiti-image {
+                        flex: unset;
+                        max-width: 100%;
+                    }
+                }
+            </style>
         </div>
-    </section>
 
-    <section id="about_section_2">
-        <div class="container my-5">
-            <div class="row align-items-center">
-                <div class="col-12 col-md-6 about_section_2_name_list">
-                    <p>সভাপতি : জেমস আনজুস</p>
-                    <p>সহসভাপতি : মুহম্মদ আল হাসান</p>
-                    <p>সহসভাপতি : ফ্রান্সিসকা জেনেভী বিথী</p>
-                    <p>সাধারণ সম্পাদক : অমিত কুমার বর্মন</p>
-                    <p>সহসাধারণ সম্পাদক : সৌরভ দেছা</p>
-                    <p>অর্থ সম্পাদক : ক্লেমেন্ট প্রলয় গমেজ</p>
-                    <p>সাংগঠনিক সম্পাদক : ফেরদৌস রহমান খান (তমাল)</p>
-                    <p>সহসাংগঠনিক সম্পাদক : লরেন্স বাপ্পি গমেজ</p>
-                    <p>তথ্য ও প্রযুক্তি সম্পাদক : প্লাসিড প্রণয় গমেজ</p>
-                    <p>সাংস্কৃতিক সম্পাদক : লিভাইট আঞ্জুস</p>
-                    <p>সহসাংস্কৃতি সম্পাদক : ফ্রান্সিস মৃদুল গমেজ</p>
-                    <p>সমাজসেবা সম্পাদক : রিত্তিকা ডি কস্তা</p>
-                    <p>যোগাযোগ সম্পাদক : নিলয় দে রয়</p>
-                </div>
-
-                <div class="col-12 col-md-6">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_11.jpg" alt="Chader Pahar" class="img-fluid">
-                </div>
-            </div>
+        <div id="tab-boi-data" class="pahar-tab-content" style="display:none;">
+            <!-- বই দাতা content here -->
+            <p>বই দাতা বিষয়বস্তু এখানে লিখুন।</p>
         </div>
-    </section>
+
+        <div id="tab-ajibon-shodosso" class="pahar-tab-content" style="display:none;">
+            <!-- আজীবন সদস্য content here -->
+            <p>আজীবন সদস্য বিষয়বস্তু এখানে লিখুন।</p>
+        </div>
+
+        <div id="tab-chobi" class="pahar-tab-content" style="display:none;">
+            <!-- ছবি content here -->
+            <p>ছবি বিষয়বস্তু এখানে লিখুন।</p>
+        </div>
+    </div>
+
+
+
+    <style>
+        .pahar-tab-menu {
+            margin: 20px 0;
+        }
+        .pahar-tab-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+        .pahar-tab-menu ul li {
+            cursor: pointer;
+        }
+        .pahar-tab-menu ul li a {
+            display: block;
+            padding: 16px 30px 10px 30px;
+            background-color: var(--gold-color);
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            transition: background-color 0.2s;
+            margin: 10px 5px;
+        }
+        .pahar-tab-menu ul li a:hover {
+            background-color: var(--second-color);
+            color: #fff;
+        }
+        .pahar-tab-menu ul li.active a {
+            background-color: var(--second-color);
+            color: #fff;
+        }
+        .pahar-tab-content {
+            padding: 20px 0;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabItems = document.querySelectorAll('.pahar-tab-menu ul li');
+            const tabContents = document.querySelectorAll('.pahar-tab-content');
+
+            tabItems.forEach(function (item) {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    // Remove active from all tabs
+                    tabItems.forEach(function (t) { t.classList.remove('active'); });
+
+                    // Hide all contents
+                    tabContents.forEach(function (c) { c.style.display = 'none'; });
+
+                    // Set clicked tab active
+                    item.classList.add('active');
+
+                    // Show matching content
+                    const targetId = item.getAttribute('data-tab');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.style.display = 'block';
+                    }
+                });
+            });
+        });
+    </script>
 </main>
 
 <?php get_footer(); ?>

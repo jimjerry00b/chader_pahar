@@ -20,6 +20,7 @@ h4 {
   --second-color: #001870;
   --third-color: #8f8f8f;
   --gold-color: #f5a623;
+  --four-color: #d9d9d9;
 }
 
 .btn-primary {
@@ -28,6 +29,11 @@ h4 {
   background: var(--primary-color);
   color: #fff;
   border: var(--primary-color);
+}
+
+.site-description {
+  color: var(--second-color);
+  font-size: 30px;
 }
 
 .text-primary {
