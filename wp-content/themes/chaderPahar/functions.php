@@ -15,6 +15,11 @@ function chaderpahar_goddo_posts_per_page( $query ) {
     if ( !is_admin() && $query->is_main_query() && $query->is_category('goddo') ) {
         $query->set( 'posts_per_page', 9 );
     }
+
+    // Keep main query pagination in sync with the custom child-category template.
+    if ( !is_admin() && $query->is_main_query() && $query->is_category('shishu-shahitto') ) {
+        $query->set( 'posts_per_page', 1 );
+    }
 }
 add_action( 'pre_get_posts', 'chaderpahar_goddo_posts_per_page' );
 
@@ -369,7 +374,7 @@ function handle_send_otp_ajax() {
     wp_send_json_success([
         'message' => 'OTP sent successfully',
         'email' => $email,
-        'otp' => $otp
+        // 'otp' => $otp
     ]);
 }
 

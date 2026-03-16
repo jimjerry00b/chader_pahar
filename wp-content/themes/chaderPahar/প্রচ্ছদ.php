@@ -100,8 +100,8 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="<?php the_permalink(); ?>" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -110,7 +110,7 @@
                                         <div class="gadya-no-thumb"></div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
                                     <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                                     <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
@@ -126,12 +126,12 @@
                     $placeholder_authors = array( 'ড. নুর মো. শোয়ারফ রেজা', 'কাজেল হামান সিদ্দেই', 'ইউনিকেচ তিলমোট্ন ব্লোর' );
                     for ( $j = 0; $j < 3; $j++ ) : ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="#" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="#" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <div class="gadya-no-thumb"></div>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
                                     <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
                                 </div>
@@ -171,8 +171,8 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="<?php the_permalink(); ?>" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -181,7 +181,7 @@
                                         <div class="gadya-no-thumb"></div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
                                     <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
                                 </div>
@@ -196,12 +196,12 @@
                     $placeholder_authors = array( 'ড. নুর মো. শোয়ারফ রেজা', 'কাজেল হামান সিদ্দেই', 'ইউনিকেচ তিলমোট্ন ব্লোর' );
                     for ( $j = 0; $j < 3; $j++ ) : ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="#" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="#" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <div class="gadya-no-thumb"></div>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
                                     <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
                                 </div>
@@ -241,8 +241,8 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="<?php the_permalink(); ?>" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -251,7 +251,7 @@
                                         <div class="gadya-no-thumb"></div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
                                     <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
                                 </div>
@@ -266,12 +266,12 @@
                     $placeholder_authors = array( 'ড. নুর মো. শোয়ারফ রেজা', 'কাজেল হামান সিদ্দেই', 'ইউনিকেচ তিলমোট্ন ব্লোর' );
                     for ( $j = 0; $j < 3; $j++ ) : ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="#" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="#" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <div class="gadya-no-thumb"></div>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
                                     <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
                                 </div>
@@ -313,8 +313,8 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="<?php the_permalink(); ?>" class="gadya-card bg-white">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card bg-white h-100">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -338,12 +338,12 @@
                     $placeholder_authors = array( 'ড. নুর মো. শোয়ারফ রেজা', 'কাজেল হামান সিদ্দেই', 'ইউনিকেচ তিলমোট্ন ব্লোর' );
                     for ( $j = 0; $j < 3; $j++ ) : ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="#" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="#" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <div class="gadya-no-thumb"></div>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
                                     <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
                                 </div>
@@ -382,8 +382,8 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="<?php the_permalink(); ?>" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -392,7 +392,7 @@
                                         <div class="gadya-no-thumb"></div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
                                     <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
                                 </div>
@@ -407,12 +407,12 @@
                     $placeholder_authors = array( 'ড. নুর মো. শোয়ারফ রেজা', 'কাজেল হামান সিদ্দেই', 'ইউনিকেচ তিলমোট্ন ব্লোর' );
                     for ( $j = 0; $j < 3; $j++ ) : ?>
 
-                        <div class="col-12 col-md-4 mb-4">
-                            <a href="#" class="gadya-card">
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="#" class="gadya-card h-100">
                                 <div class="gadya-img-wrapper">
                                     <div class="gadya-no-thumb"></div>
                                 </div>
-                                <div class="gadya-info pt-2">
+                                <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
                                     <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
                                 </div>
@@ -578,7 +578,8 @@
             flex: 0 0 calc((100% - 36px) / 3);
             background: #fff;
             border: 1px solid #d8d8d8;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 2px 8px #0000003d;
+            margin-bottom: 8px;
         }
 
         .cp-slide-link {
@@ -730,7 +731,13 @@
         .gadya-card {
             text-decoration: none;
             color: inherit;
-            display: block;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px #0000003d;
+        }
+
+        .gadya-info {
+            flex: 1 1 auto;
         }
 
         .gadya-img-wrapper {
