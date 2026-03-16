@@ -25,18 +25,34 @@
         </div>
     </section>
 
-    <nav id="main_menu">
+    <nav id="main_menu" class="navbar navbar-expand-lg">
         <div class="container">
-            <?php
-            wp_nav_menu(array(
-                'theme_location'  => 'primary',
-                'depth'           => 2,
-                'container'       => false,
-                'menu_class'      => 'nav justify-content-center py-2',
-                'add_li_class'    => 'nav-item',
-                'link_class'      => 'nav-link',
-                'fallback_cb'     => false
-            ));
-            ?>
+            <button class="navbar-toggler main-menu-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#primaryMenu" aria-controls="primaryMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="primaryMenu">
+                <?php
+                $menu_locations = get_nav_menu_locations();
+                $resolved_menu_id = 0;
+
+                if ( ! empty( $menu_locations['primary-menu'] ) ) {
+                    $resolved_menu_id = $menu_locations['primary-menu'];
+                } elseif ( ! empty( $menu_locations['primary'] ) ) {
+                    $resolved_menu_id = $menu_locations['primary'];
+                }
+
+                wp_nav_menu(array(
+                    'theme_location'  => ! empty( $menu_locations['primary-menu'] ) ? 'primary-menu' : 'primary',
+                    'menu'            => $resolved_menu_id,
+                    'depth'           => 2,
+                    'container'       => false,
+                    'menu_class'      => 'navbar-nav justify-content-center align-items-lg-center w-100 py-2',
+                    'add_li_class'    => 'nav-item',
+                    'link_class'      => 'nav-link',
+                    'fallback_cb'     => 'wp_page_menu',
+                ));
+                ?>
+            </div>
         </div>
     </nav>

@@ -313,7 +313,7 @@
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-md-4 mb-4">
                             <a href="<?php the_permalink(); ?>" class="gadya-card bg-white">
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
