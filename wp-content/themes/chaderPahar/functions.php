@@ -234,10 +234,15 @@ add_action('add_meta_boxes', 'add_custom_author_meta_box');
 function custom_author_meta_box_callback($post) {
     wp_nonce_field('custom_author_meta_box', 'custom_author_meta_box_nonce');
     $custom_author = get_post_meta($post->ID, '_custom_author', true);
+    $custom_class  = get_post_meta($post->ID, '_custom_class', true);
     ?>
     <label for="custom_author"><strong>লেখকের নাম:</strong></label>
     <input type="text" id="custom_author" name="custom_author" value="<?php echo esc_attr($custom_author); ?>" style="width: 100%; padding: 5px; margin-top: 4px;" placeholder="লেখকের নাম লিখুন">
     <p class="description">এখানে লেখকের নাম লিখুন। এটি সাইটে প্রদর্শিত হবে।</p>
+    <br>
+    <label for="custom_class"><strong>শ্রেণী:</strong></label>
+    <input type="text" id="custom_class" name="custom_class" value="<?php echo esc_attr($custom_class); ?>" style="width: 100%; padding: 5px; margin-top: 4px;" placeholder="শ্রেণী লিখুন (যেমন: ৭ম শ্রেণী)">
+    <p class="description">এখানে শ্রেণী লিখুন। এটি সাইটে প্রদর্শিত হবে।</p>
     <?php
 }
 
@@ -257,6 +262,9 @@ function save_custom_author_meta_box_data($post_id) {
     }
     if (isset($_POST['custom_author'])) {
         update_post_meta($post_id, '_custom_author', sanitize_text_field($_POST['custom_author']));
+    }
+    if (isset($_POST['custom_class'])) {
+        update_post_meta($post_id, '_custom_class', sanitize_text_field($_POST['custom_class']));
     }
 }
 add_action('save_post', 'save_custom_author_meta_box_data');

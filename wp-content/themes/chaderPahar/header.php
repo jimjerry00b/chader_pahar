@@ -5,6 +5,16 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php bloginfo('name'); ?></title>
+
+    <?php if ( is_singular() ) : ?>
+      <meta property="og:type" content="article" />
+      <meta property="og:title" content="<?php echo esc_attr( get_the_title() ); ?>" />
+      <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>" />
+      <?php if ( has_post_thumbnail() ) : ?>
+        <meta property="og:image" content="<?php echo esc_url( get_the_post_thumbnail_url( null, 'full' ) ); ?>" />
+      <?php endif; ?>
+      <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo('name') ); ?>" />
+    <?php endif; ?>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=5">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">

@@ -13,82 +13,11 @@
 <div class="container pb-5">
   <?php
   $paged = max( 1, get_query_var( 'paged' ) );
-  $kichirmichir_query = new WP_Query( array(
+  $chitrankan_query = new WP_Query( array(
     'cat'            => get_queried_object_id(),
     'post_type'      => 'post',
     'posts_per_page' => 3,
     'paged'          => $paged,
-  ) );
-  ?>
-  <div class="row g-4">
-    <?php if ( $kichirmichir_query->have_posts() ) : while ( $kichirmichir_query->have_posts() ) : $kichirmichir_query->the_post(); ?>
-    
-      <div class="col-md-4 d-flex">
-        <a href="<?php the_permalink(); ?>" class="goddo-card h-100 w-100">
-          <div class="goddo-card-img">
-            <?php if (has_post_thumbnail()) : ?>
-              <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid']); ?>
-            <?php else : ?>
-              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg" alt="">
-            <?php endif; ?>
-          </div>
-          <div class="goddo-card-body p-4">
-            <h5 class="goddo-card-title"><?php the_title(); ?></h5>
-            <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
-            <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
-          </div>
-        </a>
-      </div>
-    <?php endwhile;
-    else: ?>
-      <p>No posts found in this category.</p>
-    <?php endif; ?>
-  </div>
-
-  <?php if ( $kichirmichir_query->max_num_pages > 1 ) : ?>
-  <div class="row">
-    <div class="col-md-12">
-      <nav id="pagination_one" aria-label="Page navigation">
-        <?php
-        echo paginate_links(array(
-          'total' => $kichirmichir_query->max_num_pages,
-          'current' => $paged,
-          'prev_text' => '&laquo;',
-          'next_text' => '&raquo;',
-          'type' => 'list',
-          'mid_size' => 2,
-          'end_size' => 1,
-        ));
-        ?>
-      </nav>
-    </div>
-  </div>
-  <?php endif; ?>
-  <?php if ( $kichirmichir_query->found_posts >= 3 ) : ?>
-    <div class="row">
-      <div class="col-12 text-center mt-3">
-        <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'শিশু-সাহিত্য' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো পড়ুন</a>
-      </div>
-    </div>
-  <?php endif; ?>
-
-  <?php wp_reset_postdata(); ?>
-</div>
-
-<div class="container pb-5">
-  <div class="row">
-    <div class="col-md-12 p-0 mb-4">
-      <div class="category-header">
-        <h2 class="gadya-section-title">চিত্রাঙ্কন</h2>
-      </div>
-    </div>
-  </div>
-  <?php
-  $chitrankan_cat_id = get_cat_ID( 'চিত্রাঙ্কন' );
-  $chitrankan_query  = new WP_Query( array(
-    'cat'            => $chitrankan_cat_id,
-    'post_type'      => 'post',
-    'posts_per_page' => 3,
   ) );
   ?>
   <div class="row g-4">
@@ -132,13 +61,31 @@
       <p>No posts found in this category.</p>
     <?php endif; ?>
   </div>
+
+  <?php if ( $chitrankan_query->max_num_pages > 1 ) : ?>
   <div class="row">
-    <div class="col-12 text-center mt-3">
-      <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'চিত্রাঙ্কন' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো পড়ুন</a>
+    <div class="col-md-12">
+      <nav id="pagination_one" aria-label="Page navigation">
+        <?php
+        echo paginate_links(array(
+          'total' => $chitrankan_query->max_num_pages,
+          'current' => $paged,
+          'prev_text' => '&laquo;',
+          'next_text' => '&raquo;',
+          'type' => 'list',
+          'mid_size' => 2,
+          'end_size' => 1,
+        ));
+        ?>
+      </nav>
     </div>
   </div>
+  <?php endif; ?>
 
-  <!-- চিত্রাঙ্কন Modal -->
+  <?php wp_reset_postdata(); ?>
+</div>
+
+<!-- চিত্রাঙ্কন Modal -->
   <div class="modal fade" id="chitrankanModal" tabindex="-1" aria-labelledby="chitrankanModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
@@ -160,36 +107,6 @@
     </div>
   </div>
 
-  <?php if ( $chitrankan_query->found_posts >= 3 ) : ?>
-    <div class="row">
-      <div class="col-12 text-center mt-3">
-        <a href="<?php echo esc_url( get_category_link( $chitrankan_cat_id ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো দেখুন</a>
-      </div>
-    </div>
-  <?php endif; ?>
-
-  <?php wp_reset_postdata(); ?>
-</div>
-
-<!-- চিত্রাঙ্কন জমা দিন Section -->
-<div class="container pb-5">
-  <div class="chitrankan-notice-box">
-    <div class="row g-0 align-items-center">
-      <div class="col-md-4">
-        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_18.jpg" alt="চিত্রাঙ্কন" class="img-fluid chitrankan-notice-img">
-      </div>
-      <div class="col-md-8">
-        <div class="chitrankan-notice-content p-4">
-          <p>তোমরা যারা ছবি আঁকতে ভালোবাসো তারা ছবি এঁকে আমাদের কাছে পাঠিয়ে দাও</p>
-          <p class="chitrankan-notice-highlight">প্রতিমাসে নির্বাচিত চিত্র প্রকাশিত হবে আমাদের ওয়েবসাইটে</p>
-          <p>তোমরা ছবি পাঠাতে পারো আমাদের ইমেইলে অথবা আমাদের অফিসে এসে</p>
-          <p>ছবির সাথে তোমার নাম, স্কুলের নাম, মোবাইল নম্বর ও কোন ক্লাস পড়ো লিখতে ভুলো না।</p>
-          <p class="chitrankan-notice-highlight">ইমেইল: contact@chaderpahar.com</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 <style>
@@ -256,29 +173,6 @@
 
   #pagination_one .page-numbers li {
     display: inline-block;
-  }
-
-  .chitrankan-notice-box {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  .chitrankan-notice-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .chitrankan-notice-content p {
-    font-size: 22px;
-    color: var(--second-color);
-    margin-bottom: 8px;
-    line-height: 1.7;
-  }
-  .chitrankan-notice-highlight {
-    color: var(--gold-color)!important;
-    font-weight: 500;
   }
 
   .chitrankan-card {
