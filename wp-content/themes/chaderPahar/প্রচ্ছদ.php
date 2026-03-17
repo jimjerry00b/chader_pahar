@@ -430,6 +430,74 @@
         </div>
     </section>
 
+    <section id="section-kichirmichir-hp" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-4">
+                    <h2 class="gadya-section-title">কিচিরমিচির</h2>
+                </div>
+            </div>
+            <div class="row">
+                <?php
+                $gadya_query = new WP_Query( array(
+                    'category_name'  => 'kichirmichir',
+                    'posts_per_page' => 3,
+                    'orderby'        => 'date',
+                    'order'          => 'DESC',
+                ) );
+
+                if ( $gadya_query->have_posts() ) :
+                    while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
+
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
+                                <div class="gadya-img-wrapper">
+                                    <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
+                                    <?php if ( $thumb ) : ?>
+                                        <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php the_title_attribute(); ?>" class="img-fluid w-100">
+                                    <?php else : ?>
+                                        <div class="gadya-no-thumb"></div>
+                                    <?php endif; ?>
+                                </div>
+                                <div class="gadya-info p-3">
+                                    <h5><?php the_title(); ?></h5>
+                                    <?php $custom_author = get_post_meta( get_the_ID(), '_custom_author', true ); ?>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html( $custom_author ) : esc_html( get_the_author() ); ?></p>
+                                </div>
+                            </a>
+                        </div>
+
+                    <?php endwhile;
+                    wp_reset_postdata();
+
+                else :
+                    $placeholder_titles  = array( 'কাজকোবান কাব্য ইতিহাস চেতনা', 'সাহিত্য ও সংস্কৃতি', 'অহে হেরেভিল নাফির হোরিভ' );
+                    $placeholder_authors = array( 'ড. নুর মো. শোয়ারফ রেজা', 'কাজেল হামান সিদ্দেই', 'ইউনিকেচ তিলমোট্ন ব্লোর' );
+                    for ( $j = 0; $j < 3; $j++ ) : ?>
+
+                        <div class="col-12 col-md-4 mb-4 d-flex">
+                            <a href="#" class="gadya-card h-100">
+                                <div class="gadya-img-wrapper">
+                                    <div class="gadya-no-thumb"></div>
+                                </div>
+                                <div class="gadya-info p-3">
+                                    <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
+                                    <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
+                                </div>
+                            </a>
+                        </div>
+
+                    <?php endfor;
+                endif; ?>
+            </div>
+            <div class="row">
+                <div class="col-12 text-center mt-3">
+                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'kichirmichir' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো কিচিরমিচির</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ── লেখা আহবান (Call for Writing) ── -->
     <section id="section-lekha-ahban" class="py-0 mt-5">
         <div class="lekha-ahban-wrapper">
@@ -540,7 +608,7 @@
                             শিল্প চর্চা দেখতে পড়ুন<br>
                             আমাদের সব আয়োজন
                         </p>
-                        <a href="#" class="btn kichirmichir-btn">ক্লিক করুন</a>
+                        <a href="" class="btn kichirmichir-btn">ক্লিক করুন</a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 kichirmichir-right p-0">
