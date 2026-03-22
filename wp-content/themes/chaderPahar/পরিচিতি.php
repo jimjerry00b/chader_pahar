@@ -93,18 +93,156 @@
         </div>
 
         <div id="tab-boi-data" class="pahar-tab-content" style="display:none;">
-            <!-- বই দাতা content here -->
-            <p>বই দাতা বিষয়বস্তু এখানে লিখুন।</p>
+            <div class="boi-data-box">
+                <p class="boi-data-heading">যারা বই দিয়ে গড়ে তুলেছেন এই চাঁদের পাহাড়:</p>
+                <ol class="boi-data-list">
+                    <li>মহিউদ্দীনআহমদ বকশী (গবেষক ওসমান), শিশু সাহিত্যিক ও মনুষ্যত্বের জনক | নবাবগঞ্জ(সড়ক), ঢাকা |</li>
+                    <li>শেখ মুকতাদ গওসুল, হাজেরা জুবায়দীয়া, জনপ্রিয় ছড়া প্রশিক্ষণ, ঢাকা |</li>
+                    <li>প্রকৃতি ও পরিচয় -প্রদীপ পারভেজ, লেখক ও বিশ্বপ্রদায়ী, নরসিংদী, ঢাকা |</li>
+                    <li>পাঠক প্রকাশনী, দোকান | নবাবপাড়া, ঢাকা |</li>
+                    <li>একটি বিচরণ ও বিশ্লেষণা (প্রবন্ধ), কবিতাদুলালগুহ শিশুকিশোর | নবাবপাড়া, ঢাকা |</li>
+                    <li>সোহাগ কেওরাত, চাঁদপুর | নবাবগড়, ঢাকা |</li>
+                    <li>জামীলুল মাসারের নিলবকার, সেবাও ও পাঠদেশ প্রকাশনা, প্রশিক্ষণ-পাঠপরিচয় প্রকাশন | নবাবগড়া, ঢাকা</li>
+                    <li>হাসনাতিক বাণসু পাঠবসর, কবিতানুশীলনী | নবাবগড়া, ঢাকা</li>
+                    <li>বিজ্ঞান নিলেটস, সেবাও ও প্রশিক্ষণ পরামর্শনালয় | নবাবগড়া, ঢাকা</li>
+                    <li>বাৎসাল প্রশিক্ষণ নির্দেশিকাপত্রিকা, কবিতাপ বালিকা, ঢাকা |</li>
+                    <li>কবিতানিরিত্তিত পারবেশ (কবিতালা), পারাদসেবারক, বাংলাপাড়ে, নবাবগড়া, ঢাকা |</li>
+                    <li>সাহিত্যিক ত্বরা (পাঠক্ষণ, কবিতাবাসর বাসাল্পবালী পরীক্ষণালয়), ঢাকা |</li>
+                    <li>কিরীপে কি কথা, পাঠদেশ পশ্চিমালয়, এনাব | নবাবগড়া, ঢাকা |</li>
+                    <li>সোলেশন গ্রুপ পারভেজ, কবিতানিরিত্তী | নবাবগড়া, ঢাকা |</li>
+                    <li>সিকদার বালিকী, বরিশ | ঢাকা |</li>
+                    <li>মারিজুকে তিজরত্ন চিরাপ, পাঠবেশ পশ্চিমালয়, এনাব | নবাবগড়া, ঢাকা |</li>
+                    <li>সেকেল নিশা, বাঙলীনগর | নবাবগড়া, ঢাকা |</li>
+                    <li>জাতীয় সাহিত্য পাঠবেশ, চাক চালনিরিত্তী | নবাবগড়া, ঢাকা |</li>
+                    <li>আবদুর রউফী পারভেজ | নবাবগড়া, ঢাকা |</li>
+                    <li>শামীম দান আত, ময়মনসিংহ, ঢাকা |</li>
+                    <li>শিল্পা ইজরায়েলী পারভেজ, বুশরা | নবাবগড়া, ঢাকা |</li>
+                    <li>ক্ষেতী মোয়াজ্জেম, চকবাজার | ঢাকা |</li>
+                    <li>জেনিসাল ত্রিকেটন, হামানবান, নবাবগড়া, ঢাকা |</li>
+                    <li>পিরিজিল পাঠবেশ, ছুফারা | শিবিরবাড়ী, নবাবগড়া, ঢাকা |</li>
+                    <li>সারতা তৃণমল পারভেজ | হায়দারনগর, নবাবগড়া, ঢাকা |</li>
+                    <li>কবিতানরই ও সীমা পারবেশ | সেনপত্রীক, নবাবগড়া, ঢাকা |</li>
+                    <li>সিশিউন্ডি পারভেজ | ছুফারাশ, নবাবগড়া, ঢাকা |</li>
+                    <li>জমিল ইসহাক পারবেশ, বরিশ | নবাবগড়া, ঢাকা |</li>
+                    <li>সিনামিত বাহনপুর, সাংবহনী প্রশিক্ষণী | নবাবগড়া, ঢাকা |</li>
+                    <li>নর্থিত প্রশিক্ষণ পারভেজ, বসুরানী | নবাবগড়া, ঢাকা |</li>
+                    <li>পাচিড উসমান পারবেশ, বসুরালী | নবাবগড়া, ঢাকা |</li>
+                    <li>বিচকে মাবনপুর, সাংবহনী পিমল | নবাবগড়া, ঢাকা |</li>
+                    <li>হাসনান আজহার শিল্পা, সেনপত ও গ্যালারী | নবাবগড়ী, ঢাকা |</li>
+                    <li>জেনেসাল সোহাগের | নবাবগড়া, ঢাকা |</li>
+                    <li>আনামোয়ায়েদ আজনালাম, প্রশিক্ষণবারক | নবাবগড়া, ঢাকা |</li>
+                    <li>অ. আকবর রহমান পুকুরা, ঢাকা |</li>
+                    <li>চৌ. মিনা জামীল হায়দার, ময়মনসিংহ ও নওল্যান্ডারী বিশ্ববিদ্যালয় |</li>
+                    <li>কুসতুল আরদ হাসান, পাঠবেশ ও যাকাশ |</li>
+                    <li>মাহাবুরিত বার্ণসু পারবেশ, নবাবগড়া, ঢাকা |</li>
+                    <li>হায়দা তার পারবেশ, চট্টগ্রাম, ঢাকা |</li>
+                    <li>অলি. মিশুকশোভ্যান সিকদার | বাগুলা, গ্রাহফী, ঢাকা |</li>
+                    <li>শ. কলি. সোবসাশ চট্রোপায, আচিমতত, আকত্কিয়া সিনেম, ঢাকা বিশ্ববিদ্যালয় |</li>
+                    <li>চৌ. মিশুকশোভ্যান সিকদার | বাগুলা, গ্রাফিতি, ঢাকা |</li>
+                    <li>শ. কলি. সোবহান চট্রোপাধ্যায়, আচিমতত, আর্কিটেক্ট সিনেম, ঢাকা |</li>
+                    <li>ড. মিশুকুল ইসলাম | বাগুলা, গ্রাফিতি, ঢাকা |</li>
+                    <li>শ. কলি. সোবহান চট্রোপাধ্যায়, আচিমতত, ইতিহাস বিভাগ, ঢাকা বিশ্ববিদ্যালয় |</li>
+                </ol>
+            </div>
         </div>
 
         <div id="tab-ajibon-shodosso" class="pahar-tab-content" style="display:none;">
-            <!-- আজীবন সদস্য content here -->
-            <p>আজীবন সদস্য বিষয়বস্তু এখানে লিখুন।</p>
+            <div class="ajibon-box">
+                <p class="ajibon-heading">আজীবন সদস্য হয়ে যারা বাড়িয়েছেন সহযোগিতার হাত:</p>
+                <ol class="ajibon-list">
+                    <li>গ্রেগার দীপ। মোলাশীকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>যোসেফ টনি রোজারিও। মোলাশীকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>সানি আলফ্রেড রোজারিও। মোলাশীকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>কর্নেলিয়াস সুজিত গমেজ। মোলাশীকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>সমুয়েল মৃদুল গমেজ। পাত্রিকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>ডমিনিক রতন গমেজ। মোলাশীকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>ভিনসেন্ট আনজুস। মোলাশীকান্দা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>এন্ড রনি রোজারিও। হাসনাবাদ, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>রাসেল রহমান শিমুল।  নবাবগঞ্জ, ঢাকা।</li>
+                    <li>মজনু মোল্লা, বিশিষ্ট ব্যবসায়ী, বান্দুরা, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>কবি সুকান্ত এফ. গমেজ। নবাবগঞ্জ, ঢাকা।</li>
+                    <li>আনোয়ার হোসেন (আনু), বিশিষ্ট ব্যবসায়ী।</li>
+                    <li>টনি সাহা, বান্দুরা, নবাবগঞ্জ, ঢাকা</li>
+                    <li>গিয়াস উদ্দিন, ব্যাংকার, নবাবগঞ্জ, ঢাকা।</li>
+                    <li>খন্দকার মাসুদুর রহমান, সুইডেন প্রবাসী</li>
+                    <li>আবুল কালাম শফিউদ্দিন, নিউজিল্যান্ড প্রবাসী।</li>
+                    <li>লুইস রঞ্জন গমেজ, হাসনাবাদ, নবাবগঞ্জ, ঢাকা।</li>
+                </ol>
+            </div>
         </div>
 
         <div id="tab-chobi" class="pahar-tab-content" style="display:none;">
-            <!-- ছবি content here -->
-            <p>ছবি বিষয়বস্তু এখানে লিখুন।</p>
+            <?php
+            $chobi_paged = isset( $_GET['chobi_page'] ) ? max( 1, intval( $_GET['chobi_page'] ) ) : 1;
+            $chobi_per_page = 8;
+            $chobi_query = new WP_Query( array(
+                'post_type'      => 'attachment',
+                'post_mime_type' => 'image',
+                'post_status'    => 'inherit',
+                'posts_per_page' => $chobi_per_page,
+                'paged'          => $chobi_paged,
+                'post_parent__in' => get_posts( array(
+                    'post_type'   => 'page',
+                    'name'        => 'parichiti-gallery',
+                    'fields'      => 'ids',
+                    'numberposts' => 1,
+                ) ),
+            ) );
+            ?>
+            <div class="chobi-gallery">
+                <?php if ( $chobi_query->have_posts() ) : ?>
+                    <?php while ( $chobi_query->have_posts() ) : $chobi_query->the_post(); ?>
+                        <div class="chobi-item">
+                            <img src="<?php echo esc_url( wp_get_attachment_image_url( get_the_ID(), 'large' ) ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
+                        </div>
+                    <?php endwhile; wp_reset_postdata(); ?>
+                <?php else : ?>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_01.jpg" alt="ছবি ১">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_02.jpg" alt="ছবি ২">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_03.jpg" alt="ছবি ৩">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_04.jpg" alt="ছবি ৪">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_05.jpg" alt="ছবি ৫">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_09.jpg" alt="ছবি ৬">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_10.jpg" alt="ছবি ৭">
+                    </div>
+                    <div class="chobi-item">
+                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_11.jpg" alt="ছবি ৮">
+                    </div>
+                <?php endif; ?>
+            </div>
+
+            <?php
+            $chobi_total = $chobi_query->max_num_pages ? $chobi_query->max_num_pages : 6;
+            if ( $chobi_total > 1 ) :
+                $bn_digits = array( '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯' );
+            ?>
+            <div class="chobi-pagination">
+                <?php for ( $i = 1; $i <= $chobi_total; $i++ ) :
+                    $bn_num = '';
+                    $num_str = (string) $i;
+                    for ( $c = 0; $c < strlen( $num_str ); $c++ ) {
+                        $bn_num .= $bn_digits[ (int) $num_str[ $c ] ];
+                    }
+                ?>
+                    <a href="?chobi_page=<?php echo $i; ?>" class="chobi-page-link <?php echo $chobi_paged === $i ? 'active' : ''; ?>" data-page="<?php echo $i; ?>">
+                        <?php echo $bn_num; ?>
+                    </a>
+                <?php endfor; ?>
+            </div>
+            <?php endif; ?>
         </div>
     </div>
 
@@ -146,6 +284,153 @@
         }
         .pahar-tab-content {
             padding: 20px 0;
+        }
+
+        /* ── বই দাতা Section ── */
+        .boi-data-box {
+            background: #f7f7f7;
+            color: #222;
+            padding: 30px 35px;
+            border-radius: 6px;
+        }
+
+        .boi-data-heading {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .boi-data-list {
+            list-style: none;
+            counter-reset: boi-counter;
+            padding: 0;
+            margin: 0;
+        }
+
+        .boi-data-list li {
+            counter-increment: boi-counter;
+            padding: 10px 15px;
+            font-size: 15px;
+            line-height: 1.75;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fff;
+        }
+
+        .boi-data-list li:nth-child(odd) {
+            background: #fafafa;
+        }
+
+        .boi-data-list li::before {
+            content: counter(boi-counter, bengali) " | ";
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* ── আজীবন সদস্য Section ── */
+        .ajibon-box {
+            background: #f7f7f7;
+            color: #222;
+            padding: 30px 35px;
+            border-radius: 6px;
+        }
+
+        .ajibon-heading {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111;
+            margin-bottom: 20px;
+        }
+
+        .ajibon-list {
+            list-style: none;
+            counter-reset: ajibon-counter;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ajibon-list li {
+            counter-increment: ajibon-counter;
+            padding: 10px 15px;
+            font-size: 15px;
+            line-height: 1.75;
+            border-bottom: 1px solid #e0e0e0;
+            background: #fff;
+        }
+
+        .ajibon-list li:nth-child(odd) {
+            background: #fafafa;
+        }
+
+        .ajibon-list li::before {
+            content: counter(ajibon-counter, bengali) " | ";
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* ── ছবি Gallery Section ── */
+        .chobi-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .chobi-item {
+            overflow: hidden;
+            border-radius: 4px;
+            background: #e0e0e0;
+        }
+
+        .chobi-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            aspect-ratio: 4 / 3;
+            transition: transform 0.35s ease;
+        }
+
+        .chobi-item:hover img {
+            transform: scale(1.04);
+        }
+
+        .chobi-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+            padding-bottom: 10px;
+        }
+
+        .chobi-page-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--gold-color);
+            background: transparent;
+            transition: all 0.2s;
+        }
+
+        .chobi-page-link:hover {
+            background: var(--gold-color);
+            color: #fff;
+        }
+
+        .chobi-page-link.active {
+            background: var(--gold-color);
+            color: #fff;
+        }
+
+        @media (max-width: 575px) {
+            .chobi-gallery {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 
