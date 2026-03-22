@@ -132,11 +132,7 @@
       <p>No posts found in this category.</p>
     <?php endif; ?>
   </div>
-  <div class="row">
-    <div class="col-12 text-center mt-3">
-      <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'চিত্রাঙ্কন' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো পড়ুন</a>
-    </div>
-  </div>
+
 
   <!-- চিত্রাঙ্কন Modal -->
   <div class="modal fade" id="chitrankanModal" tabindex="-1" aria-labelledby="chitrankanModalLabel" aria-hidden="true">
