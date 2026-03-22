@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
-                                    <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -253,7 +253,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
-                                    <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -325,7 +325,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
-                                    <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -394,7 +394,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
-                                    <p class="gadya-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -414,7 +414,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
-                                    <p class="gadya-desc"><?php echo esc_html( $placeholder_authors[ $j ] ); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -462,7 +462,7 @@
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
                                     <?php $custom_author = get_post_meta( get_the_ID(), '_custom_author', true ); ?>
-                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html( $custom_author ) : esc_html( get_the_author() ); ?></p>
+                                    <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
                         </div>
@@ -831,7 +831,7 @@
         }
 
         .gadya-info h5 {
-            font-size: 26px;
+            font-size: 20px;
             font-weight: 500;
             color: #222;
             margin: 8px 0 4px;
@@ -839,7 +839,7 @@
         }
 
         .gadya-desc {
-            font-size: 20px;
+            font-size: 17px;
             color: var(--gold-color);
             margin: 0;
             line-height: 1.5;

@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="Chader Pahar Logo" class="img-fluid my-4" style="max-width: 348px;"></a>
+                    <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="Chader Pahar Logo" class="img-fluid" style="max-width: 215px;"></a>
                     <p class="site-description">সাহিত্য, সংস্কৃতি ও চিন্তা-শিল্পের পত্রিকা</p>
                 </div>
             </div>
