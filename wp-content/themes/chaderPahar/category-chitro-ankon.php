@@ -50,7 +50,7 @@
           <div class="goddo-card-body p-4">
             <h5 class="goddo-card-title"><?php echo $chitrankan_author ? esc_html( $chitrankan_author ) : esc_html( get_the_title() ); ?></h5>
             <?php if ( $chitrankan_class ) : ?>
-              <p class="goddo-card-desc"><?php echo esc_html( $chitrankan_class ); ?></p>
+              <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
             <?php endif; ?>
           </div>
         </div>
@@ -144,14 +144,14 @@
     padding: 12px 4px;
   }
   .goddo-card-title {
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 500;
     color: #1a1a1a;
     margin: 0 0 4px 0;
     line-height: 1.4;
   }
   .goddo-card-desc {
-    font-size: 20px;
+    font-size: 17px;
     color: var(--gold-color);
     margin: 4px 0 8px 0;
     line-height: 1.5;

@@ -2,8 +2,8 @@
         <div class="footer_section_one container py-5">
             <div class="row">
                 <div class="col-12 text-center py-3">
-                    <h1 class="text-secondary">আজই চাঁদের পাহাড়ের সদস্য হও</h1>
-                    <p>মোবাইল : ০১৯১১-৪০১৩৪৩ , ইমেইল : contact@chanderpahar.com </p>
+                    <h1 class="text-secondary">চাঁদের পাহাড় বুক ক্যাফে এর সদস্যপদ গ্রহন করুন</h1>
+                    <p>মোবাইল : ০১৯১১-৪০১৩৪৩ , ইমেইল : contact@chaderpahar.com </p>
                     <button id="registration-btn" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#registrationModal">রেজিস্ট্রেশন</button>
                 </div>
             </div>
@@ -105,12 +105,12 @@
             <div class="col-12 col-md-5">
                 <div class="">
                     <p>মোবাইল : ০১৯১১-৪০১৩৪৩</p>
-                    <p>ইমেইল : contact@chanderpahar.com</p>
+                    <p>ইমেইল : contact@chaderpahar.com</p>
                     <div class="social-links">
                         <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                        <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
                         <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
-                        <a href="#" class="tiktok"><i class="bi bi-tiktok"></i></a>
+                        <!-- <a href="#" class="tiktok"><i class="bi bi-tiktok"></i></a> -->
                     </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
         <div class="container-fluid copyright-section">
             <div class="row">
                 <div class="col-12 text-center">
-                <p class="copyright m-0 pt-1 pb-2">&copy; ২০২৫ চাঁদের পাহাড়। সর্বস্বত্ব সংরক্ষিত।</p>
+                <p class="copyright m-0 pt-1 pb-2">&copy; ২০২৬ চাঁদের পাহাড়। সর্বস্বত্ব সংরক্ষিত।</p>
                 </div>
             </div>
         </div>

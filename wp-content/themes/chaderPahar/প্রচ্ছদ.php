@@ -213,7 +213,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center mt-3">
-                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'প্রবন্ধ' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো গদ্য</a>
+                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'প্রবন্ধ' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো প্রবন্ধ</a>
                 </div>
             </div>
         </div>
@@ -283,7 +283,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center mt-3">
-                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'গল্প' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো গদ্য</a>
+                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'গল্প' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো গল্প</a>
                 </div>
             </div>
         </div>
@@ -355,7 +355,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center mt-3">
-                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'কবিতা' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো গদ্য</a>
+                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'কবিতা' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো কবিতা</a>
                 </div>
             </div>
         </div>
@@ -424,7 +424,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center mt-3">
-                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'প্রতিবেদন' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো গদ্য</a>
+                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'প্রতিবেদন' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো প্রতিবেদন</a>
                 </div>
             </div>
         </div>
@@ -811,6 +811,7 @@
         .gadya-img-wrapper {
             overflow: hidden;
             aspect-ratio: 4 / 3;
+            flex: 0 0 auto;
         }
 
         .gadya-img-wrapper img {
@@ -824,6 +825,13 @@
             width: 100%;
             height: 100%;
             background-color: #e0e0e0;
+        }
+
+        .gadya-info h5 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .gadya-card:hover .gadya-img-wrapper img {

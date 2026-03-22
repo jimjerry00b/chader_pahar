@@ -24,7 +24,7 @@
           </div>
           <div class="goddo-card-body p-4">
             <h5 class="goddo-card-title"><?php the_title(); ?></h5>
-            <p class="goddo-card-desc"><?php echo wp_trim_words( get_the_excerpt(), 15, '...' ); ?></p>
+            <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
           </div>
         </a>
       </div>
@@ -87,14 +87,14 @@
     padding: 12px 4px;
   }
   .goddo-card-title {
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 500;
     color: #1a1a1a;
     margin: 0 0 4px 0;
     line-height: 1.4;
   }
   .goddo-card-desc {
-    font-size: 20px;
+    font-size: 17px;
     color: var(--gold-color);
     margin: 4px 0 8px 0;
     line-height: 1.5;
