@@ -160,11 +160,17 @@
             </div>
             <div class="row">
                 <?php
+                // $gadya_query = new WP_Query( array(
+                //     'category_name'  => 'probondho',
+                //     'posts_per_page' => 3,
+                //     'orderby'        => 'menu_order',
+                //     'order'          => 'ASC',
+                // ) );
+
                 $gadya_query = new WP_Query( array(
-                    'category_name'  => 'probondho',
+                    'post__in'       => array( 191, 186, 268),
                     'posts_per_page' => 3,
-                    'orderby'        => 'menu_order',
-                    'order'          => 'ASC',
+                    'orderby'        => 'post__in',
                 ) );
 
                 $img_index = 0;
