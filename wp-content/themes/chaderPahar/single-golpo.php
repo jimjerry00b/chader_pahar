@@ -10,7 +10,7 @@
         <?php $category_id = get_queried_object_id(); ?>
         <?php $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : ''; ?>
         <div class="row">
-          <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <div class="col-md-6 d-flex align-items-center justify-content-center p-4">
             <img class="img-fluid" src="<?php echo $thumb_url; ?>" alt="">
             <?php if ( has_post_thumbnail() ) : ?>
                 <div class="post-thumbnail">
@@ -18,7 +18,7 @@
                 </div>
             <?php endif; ?>
           </div>
-          <div class="col-md-6 d-flex align-items-center justify-content-center">
+          <div class="col-md-6 d-flex align-items-center justify-content-center p-4">
             <?php echo category_description(); ?>
             <div class="default_text_one text-center">
                 <h2><?php the_title(); ?></h2>
