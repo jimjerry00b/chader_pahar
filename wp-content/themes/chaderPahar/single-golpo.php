@@ -31,7 +31,7 @@
 
           <div class="col-md-12">
             <?php echo category_description(); ?>
-            <div class="default_text_one">
+            <div class="default_text_one p-4">
                 <?php echo category_description(); ?>
                 <?php the_content(); ?>
             </div>
