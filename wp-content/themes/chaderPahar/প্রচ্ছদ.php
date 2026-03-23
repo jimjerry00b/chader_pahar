@@ -91,10 +91,9 @@
             <div class="row">
                 <?php
                 $gadya_query = new WP_Query( array(
-                    'category_name'  => 'godya',
+                    'post__in'       => array( 155, 159, 163 ),
                     'posts_per_page' => 3,
-                    'orderby'        => 'date',
-                    'order'          => 'ASC',
+                    'orderby'        => 'post__in',
                 ) );
 
                 $img_index = 0;
@@ -104,6 +103,7 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
+                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -164,7 +164,7 @@
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'probondho',
                     'posts_per_page' => 3,
-                    'orderby'        => 'date',
+                    'orderby'        => 'menu_order',
                     'order'          => 'ASC',
                 ) );
 
@@ -175,6 +175,7 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
+                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -234,7 +235,7 @@
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'golpo',
                     'posts_per_page' => 3,
-                    'orderby'        => 'date',
+                    'orderby'        => 'menu_order',
                     'order'          => 'ASC',
                 ) );
 
@@ -245,6 +246,7 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
+                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -306,7 +308,7 @@
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'kobita',
                     'posts_per_page' => 6,
-                    'orderby'        => 'date',
+                    'orderby'        => 'menu_order',
                     'order'          => 'ASC',
                 ) );
 
@@ -317,6 +319,7 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card bg-white h-100">
+                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -375,7 +378,7 @@
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'report',
                     'posts_per_page' => 3,
-                    'orderby'        => 'date',
+                    'orderby'        => 'menu_order',
                     'order'          => 'ASC',
                 ) );
 
@@ -386,6 +389,7 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
+                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -444,15 +448,18 @@
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'kichirmichir',
                     'posts_per_page' => 3,
-                    'orderby'        => 'date',
-                    'order'          => 'DESC',
+                    'orderby'        => 'menu_order',
+                    'order'          => 'ASC',
                 ) );
+
+                $img_index = 0;
 
                 if ( $gadya_query->have_posts() ) :
                     while ( $gadya_query->have_posts() ) : $gadya_query->the_post(); ?>
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
+                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -469,7 +476,7 @@
                             </a>
                         </div>
 
-                    <?php endwhile;
+                    <?php $img_index++; endwhile;
                     wp_reset_postdata();
 
                 else :
@@ -799,11 +806,30 @@
         }
 
         .gadya-card {
+            position: relative;
             text-decoration: none;
             color: inherit;
             display: flex;
             flex-direction: column;
             box-shadow: 0 2px 8px #0000003d;
+        }
+
+        .cp-order-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 30px;
+            height: 30px;
+            background: var(--gold-color);
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            z-index: 2;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
 
         .gadya-info {

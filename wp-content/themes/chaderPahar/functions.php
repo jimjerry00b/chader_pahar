@@ -8,6 +8,7 @@ function chaderpahar_register_menus() {
 }
 
 add_theme_support( 'post-thumbnails' );
+add_post_type_support( 'post', 'page-attributes' );
 add_action('after_setup_theme', 'chaderpahar_register_menus');
 
 // Set posts per page for goddo category
@@ -415,6 +416,32 @@ function slider_sortable_columns( $columns ) {
     return $columns;
 }
 add_filter( 'manage_edit-slider_sortable_columns', 'slider_sortable_columns' );
+
+// ── Post Admin: Order Column (like Slider) ──
+function post_admin_order_column( $columns ) {
+    $new = array();
+    foreach ( $columns as $key => $val ) {
+        $new[ $key ] = $val;
+        if ( $key === 'title' ) {
+            $new['menu_order'] = 'Order';
+        }
+    }
+    return $new;
+}
+add_filter( 'manage_posts_columns', 'post_admin_order_column' );
+
+function post_admin_order_column_content( $column, $post_id ) {
+    if ( $column === 'menu_order' ) {
+        echo intval( get_post_field( 'menu_order', $post_id ) );
+    }
+}
+add_action( 'manage_posts_custom_column', 'post_admin_order_column_content', 10, 2 );
+
+function post_admin_sortable_order_column( $columns ) {
+    $columns['menu_order'] = 'menu_order';
+    return $columns;
+}
+add_filter( 'manage_edit-post_sortable_columns', 'post_admin_sortable_order_column' );
 
 // Convert English date to Bengali
 function convert_to_bengali_date($englishDate) {
