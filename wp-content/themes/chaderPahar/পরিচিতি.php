@@ -173,14 +173,12 @@
 
         <div id="tab-chobi" class="pahar-tab-content" style="display:none;">
             <?php
-            $chobi_paged = isset( $_GET['chobi_page'] ) ? max( 1, intval( $_GET['chobi_page'] ) ) : 1;
             $chobi_per_page = 8;
             $chobi_query = new WP_Query( array(
                 'post_type'      => 'attachment',
                 'post_mime_type' => 'image',
                 'post_status'    => 'inherit',
-                'posts_per_page' => $chobi_per_page,
-                'paged'          => $chobi_paged,
+                'posts_per_page' => -1,
                 'post_parent__in' => get_posts( array(
                     'post_type'   => 'page',
                     'name'        => 'parichiti-gallery',
@@ -189,7 +187,7 @@
                 ) ),
             ) );
             ?>
-            <div class="chobi-gallery">
+            <div class="chobi-gallery" id="chobi-gallery">
                 <?php if ( $chobi_query->have_posts() ) : ?>
                     <?php while ( $chobi_query->have_posts() ) : $chobi_query->the_post(); ?>
                         <div class="chobi-item">
@@ -224,25 +222,7 @@
                 <?php endif; ?>
             </div>
 
-            <?php
-            $chobi_total = $chobi_query->max_num_pages ? $chobi_query->max_num_pages : 6;
-            if ( $chobi_total > 1 ) :
-                $bn_digits = array( '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯' );
-            ?>
-            <div class="chobi-pagination">
-                <?php for ( $i = 1; $i <= $chobi_total; $i++ ) :
-                    $bn_num = '';
-                    $num_str = (string) $i;
-                    for ( $c = 0; $c < strlen( $num_str ); $c++ ) {
-                        $bn_num .= $bn_digits[ (int) $num_str[ $c ] ];
-                    }
-                ?>
-                    <a href="?chobi_page=<?php echo $i; ?>" class="chobi-page-link <?php echo $chobi_paged === $i ? 'active' : ''; ?>" data-page="<?php echo $i; ?>">
-                        <?php echo $bn_num; ?>
-                    </a>
-                <?php endfor; ?>
-            </div>
-            <?php endif; ?>
+            <div class="chobi-pagination" id="chobi-pagination"></div>
         </div>
     </div>
 
@@ -460,6 +440,51 @@
                     }
                 });
             });
+            // ── Chobi gallery JS pagination ──
+            (function() {
+                var gallery = document.getElementById('chobi-gallery');
+                var paginationEl = document.getElementById('chobi-pagination');
+                if (!gallery || !paginationEl) return;
+
+                var items = Array.prototype.slice.call(gallery.querySelectorAll('.chobi-item'));
+                var perPage = <?php echo intval( $chobi_per_page ); ?>;
+                var totalPages = Math.ceil(items.length / perPage);
+                var currentPage = 1;
+                var bnDigits = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+
+                function toBanglaNum(n) {
+                    return String(n).split('').map(function(d){ return bnDigits[parseInt(d)]; }).join('');
+                }
+
+                function showPage(page) {
+                    currentPage = page;
+                    var start = (page - 1) * perPage;
+                    var end = start + perPage;
+                    items.forEach(function(item, i) {
+                        item.style.display = (i >= start && i < end) ? '' : 'none';
+                    });
+                    renderPagination();
+                }
+
+                function renderPagination() {
+                    if (totalPages <= 1) { paginationEl.innerHTML = ''; return; }
+                    var html = '';
+                    for (var i = 1; i <= totalPages; i++) {
+                        html += '<a href="#" class="chobi-page-link' + (i === currentPage ? ' active' : '') + '" data-page="' + i + '">' + toBanglaNum(i) + '</a>';
+                    }
+                    paginationEl.innerHTML = html;
+                    paginationEl.querySelectorAll('.chobi-page-link').forEach(function(link) {
+                        link.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            showPage(parseInt(this.getAttribute('data-page')));
+                            gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        });
+                    });
+                }
+
+                showPage(1);
+            })();
+
         });
     </script>
 </main>

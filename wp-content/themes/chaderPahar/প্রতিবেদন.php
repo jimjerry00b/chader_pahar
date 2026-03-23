@@ -6,162 +6,144 @@
 */
 ?>
 
-<section>
-    <div class="container mt-3 protibedon_section">
-        <div class="row">
-            <div class="col-12 mb-4 text-center d-flex justify-content-center align-items-center">
-                <h2>চাঁদের পাহাড় প্রতিবেদন</h2>
-            </div>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 p-0 mt-5 mb-2">
+      <div class="category-header">
+        <h2 class="gadya-section-title">চাঁদের পাহাড় প্রতিবেদন</h2>
+      </div>
     </div>
-</section>
+  </div>
+</div>
 
-<section id="section-five">
-    <div class="container">
-        <div class="row">
+<div class="container pb-5">
+  <div class="row g-4">
+    <?php
+    $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 
-            <?php
-            $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-            
-            $category_query = new WP_Query( array(
-                'category_name' => 'report', // use category slug
-                'posts_per_page' => 3,      // number of posts to show
-                'paged' => $paged
-            ) );
+    $category_query = new WP_Query( array(
+      'category_name'  => 'report',
+      'posts_per_page' => 9,
+      'paged'          => $paged,
+    ) );
 
-            $i = 1;
+    if ( $category_query->have_posts() ) : while ( $category_query->have_posts() ) : $category_query->the_post(); ?>
+      <div class="col-md-4">
+        <a href="<?php the_permalink(); ?>" class="goddo-card">
+          <div class="goddo-card-img">
+            <?php if (has_post_thumbnail()) : ?>
+              <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid']); ?>
+            <?php else : ?>
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg" alt="">
+            <?php endif; ?>
+          </div>
+          <div class="goddo-card-body p-4">
+            <h5 class="goddo-card-title"><?php the_title(); ?></h5>
+            <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
+            <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক"; ?></p>
+          </div>
+        </a>
+      </div>
+    <?php endwhile;
+    else: ?>
+      <p>No posts found in this category.</p>
+    <?php endif; ?>
+  </div>
 
-            foreach($category_query->posts as $cat_data){
-                if($i == 1){
-            ?>
-
-            <div class="col-12 col-md-6 col-lg-6 mb-5">
-                <div class="px-1 py-3">
-                    <h3 class="dynamic-color"><?= $cat_data->post_title?></h3>
-                    <div class="content-part-1">
-                        <p><?= $cat_data->post_content; ?></p>
-                    </div>
-                </div>
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_01.jpg" alt="Section Five Image" class="img-fluid">
-                <span class="date">
-                    <?php
-                        $english_date = date("d F Y", strtotime($cat_data->post_modified));
-                        echo convert_to_bengali_date($english_date);
-                    ?>
-                </span>
-            </div>
-
-            <?php } ?>
-
-            <div class="col-12 col-md-6 col-lg-3 mb-1">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_02.jpg" alt="Section Five Image" class="img-fluid">
-                <div class="px-1 py-3">
-                    <h3 class="dynamic-color"><?= $cat_data->post_title?></h3>
-                    <div class="content-part-2">
-                        <p><?= $cat_data->post_content; ?></p>
-                    </div>
-                    <span class="date">
-                        <?php
-                            $english_date = date("d F Y", strtotime($cat_data->post_modified));
-                            echo convert_to_bengali_date($english_date);
-                        ?>
-                    </span>
-                </div>
-            </div>
-
-            <?php $i++; } ?>
-        </div>
-
-        <!-- Bengali Pagination -->
-        <?php if ($category_query->max_num_pages > 1) : ?>
-        <div class="pagination-wrapper text-center mt-5">
-            <nav id="pagination_one" aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <?php if ($paged > 1) : ?>
-                    <li class="page-item">
-                        <a class="page-link" href="<?php echo get_pagenum_link($paged - 1); ?>" aria-label="Previous">পূর্ববর্তী</a>
-                    </li>
-                    <?php endif; ?>
-
-                    <?php
-                    $total_pages = $category_query->max_num_pages;
-                    $range = 2; // Number of pages to show before and after current page
-                    
-                    for ($i = 1; $i <= $total_pages; $i++) :
-                        // Show first page, last page, current page, and pages within range
-                        if ($i == 1 || $i == $total_pages || ($i >= $paged - $range && $i <= $paged + $range)) :
-                    ?>
-                        <li class="page-item <?php echo ($paged == $i) ? 'active' : ''; ?>">
-                            <a class="page-link" href="<?php echo get_pagenum_link($i); ?>"><?php echo convert_to_bengali_number($i); ?></a>
-                        </li>
-                    <?php 
-                        // Add dots if there's a gap
-                        elseif ($i == $paged - $range - 1 || $i == $paged + $range + 1) :
-                    ?>
-                        <li class="page-item disabled">
-                            <span class="page-link">...</span>
-                        </li>
-                    <?php 
-                        endif;
-                    endfor; 
-                    ?>
-
-                    <?php if ($paged < $total_pages) : ?>
-                    <li class="page-item">
-                        <a class="page-link" href="<?php echo get_pagenum_link($paged + 1); ?>" aria-label="Next">পরবর্তী</a>
-                    </li>
-                    <?php endif; ?>
-                </ul>
-            </nav>
-        </div>
-        <?php endif; ?>
-        <?php wp_reset_postdata(); ?>
+  <?php if ( $category_query->max_num_pages > 1 ) : ?>
+  <div class="row">
+    <div class="col-md-12">
+      <nav id="pagination_one" aria-label="Page navigation">
+        <?php
+        echo paginate_links(array(
+          'total'     => $category_query->max_num_pages,
+          'current'   => $paged,
+          'prev_text' => '&laquo;',
+          'next_text' => '&raquo;',
+          'type'      => 'list',
+          'mid_size'  => 2,
+          'end_size'  => 1,
+        ));
+        ?>
+      </nav>
     </div>
-</section>
-
-
+  </div>
+  <?php endif; ?>
+  <?php wp_reset_postdata(); ?>
+</div>
 
 <style>
+  .goddo-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .goddo-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    color: inherit;
+  }
+  .goddo-card-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+  .goddo-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .goddo-card-body {
+    padding: 12px 4px;
+  }
+  .goddo-card-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin: 0 0 4px 0;
+    line-height: 1.4;
+  }
+  .goddo-card-desc {
+    font-size: 17px;
+    color: var(--gold-color);
+    margin: 4px 0 8px 0;
+    line-height: 1.5;
+  }
 
-    .dynamic-color-1{
-        height: 35px;
-        overflow: hidden;
-        padding-top: 4px;
-        padding-left: 4px;
-    }
+  #pagination_one .page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+    gap: 5px;
+  }
 
-    .content-part-1{
-        height: 60px;
-        overflow: hidden;
-    }
-
-    .content-part-2 {
-        height: 180px;
-        overflow: hidden;
-    }
-
-    #section-five a{
-        text-decoration: none;
-        color: initial;
-    }
-
-
-
-    @media screen and (max-width: 1199px) {
-        .content-part-1{
-            height: auto;
-        }
-        .content-part-2 {
-            height: 180px;
-        }
-    }
-
-    @media screen and (max-width: 768px) {
-        .dynamic-color-1{
-            height: 28px;
-        }
-    }
-
+  #pagination_one .page-numbers li {
+    display: inline-block;
+  }
 </style>
+
+<script>
+  function convertToBengaliNumbers() {
+    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
+    const paginationLinks = document.querySelectorAll('#pagination_one .page-numbers a, #pagination_one .page-numbers .current');
+
+    paginationLinks.forEach(link => {
+      let text = link.textContent;
+      if (/^\d+$/.test(text.trim())) {
+        let bengaliText = text.replace(/\d/g, digit => bengaliDigits[parseInt(digit)]);
+        link.textContent = bengaliText;
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', convertToBengaliNumbers);
+</script>
 
 <?php get_footer(); ?>

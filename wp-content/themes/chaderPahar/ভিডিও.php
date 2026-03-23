@@ -30,7 +30,7 @@ $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 // Query videos custom post type with meta query
 $args = array(
     'post_type'      => 'videos',
-    'posts_per_page' => 3,
+    'posts_per_page' => 9,
     'paged'          => $paged,
     'meta_query'     => array(
         array(
