@@ -174,7 +174,6 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
-                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -245,7 +244,6 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
-                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -318,7 +316,6 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card bg-white h-100">
-                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -388,7 +385,6 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
-                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
@@ -458,7 +454,6 @@
 
                         <div class="col-12 col-md-4 mb-4 d-flex">
                             <a href="<?php the_permalink(); ?>" class="gadya-card h-100">
-                                <span class="cp-order-badge"><?php echo $img_index + 1; ?></span>
                                 <div class="gadya-img-wrapper">
                                     <?php $thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' ); ?>
                                     <?php if ( $thumb ) : ?>
