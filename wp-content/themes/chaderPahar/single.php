@@ -19,7 +19,7 @@ if (!empty($categories)) {
       <div class="border category-description overflow-hidden">
         <div class="row g-0">
           <div class="col-md-12" style="height: 50px; background: var(--second-color);"></div>
-          <div class="col-md-6 single-post-image-col">
+          <div class="col-md-6 single-post-image-col p-4">
             <?php if ( has_post_thumbnail() ) : ?>
                 <?php the_post_thumbnail('large', ['class' => 'single-post-thumbnail']); ?>
             <?php endif; ?>
