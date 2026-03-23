@@ -90,7 +90,7 @@
         <div class="row">
             <div class="col-12 col-md-5 mb-4 mb-md-0 d-grid align-items-center justify-content-center justify-content-lg-start">
                 <div class="">
-                    <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" alt="Chader Pahar Logo" class="img-fluid mb-3" style="max-width: 150px;"></a>
+                    <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="Chader Pahar Logo" class="img-fluid mb-3"></a>
                 </div>
             </div>
 
