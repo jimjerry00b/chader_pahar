@@ -26,7 +26,9 @@
                 <?php if ($custom_author) : ?>
                 <p class="post-author-name"><?php echo esc_html($custom_author); ?></p>
                 <?php endif; ?>
+                ddd
                 <?php the_excerpt(); ?>
+                aaaa
             </div>
           </div>
 
