@@ -269,6 +269,153 @@ function save_custom_author_meta_box_data($post_id) {
 }
 add_action('save_post', 'save_custom_author_meta_box_data');
 
+// ── Register Custom Post Type: Slider ──
+function register_slider_post_type() {
+    $labels = array(
+        'name'               => 'Slider',
+        'singular_name'      => 'Slide',
+        'menu_name'          => 'Slider',
+        'name_admin_bar'     => 'Slide',
+        'add_new'            => 'Add New Slide',
+        'add_new_item'       => 'Add New Slide',
+        'new_item'           => 'New Slide',
+        'edit_item'          => 'Edit Slide',
+        'view_item'          => 'View Slide',
+        'all_items'          => 'All Slides',
+        'search_items'       => 'Search Slides',
+        'not_found'          => 'No slides found.',
+        'not_found_in_trash' => 'No slides found in Trash.',
+        'featured_image'     => 'Slide Image',
+        'set_featured_image'  => 'Set slide image',
+        'remove_featured_image' => 'Remove slide image',
+        'use_featured_image'    => 'Use as slide image',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => false,
+        'publicly_queryable' => false,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => false,
+        'rewrite'            => false,
+        'capability_type'    => 'post',
+        'has_archive'        => false,
+        'hierarchical'       => false,
+        'menu_position'      => 4,
+        'menu_icon'          => 'dashicons-images-alt2',
+        'supports'           => array( 'title', 'thumbnail', 'page-attributes' ),
+    );
+
+    register_post_type( 'slider', $args );
+}
+add_action( 'init', 'register_slider_post_type' );
+
+// Slider meta box: Author + Custom Link
+function add_slider_meta_boxes() {
+    add_meta_box(
+        'slider_details_meta_box',
+        'Slide Details',
+        'slider_details_meta_box_callback',
+        'slider',
+        'normal',
+        'high'
+    );
+}
+add_action( 'add_meta_boxes', 'add_slider_meta_boxes' );
+
+function slider_details_meta_box_callback( $post ) {
+    wp_nonce_field( 'slider_details_meta_box', 'slider_details_meta_box_nonce' );
+    $slider_author = get_post_meta( $post->ID, '_slider_author', true );
+    $slider_link   = get_post_meta( $post->ID, '_slider_link', true );
+    ?>
+    <table class="form-table">
+        <tr>
+            <th><label for="slider_author">Author Name:</label></th>
+            <td>
+                <input type="text" id="slider_author" name="slider_author"
+                       value="<?php echo esc_attr( $slider_author ); ?>"
+                       class="regular-text" placeholder="Enter author name">
+                <p class="description">Displayed as the author on the slide.</p>
+            </td>
+        </tr>
+        <tr>
+            <th><label for="slider_link">Link URL:</label></th>
+            <td>
+                <input type="url" id="slider_link" name="slider_link"
+                       value="<?php echo esc_url( $slider_link ); ?>"
+                       class="regular-text" placeholder="https://...">
+                <p class="description">Where the slide links to when clicked. Leave empty for no link.</p>
+            </td>
+        </tr>
+    </table>
+    <?php
+}
+
+function save_slider_details_meta_box( $post_id ) {
+    if ( ! isset( $_POST['slider_details_meta_box_nonce'] ) ) {
+        return;
+    }
+    if ( ! wp_verify_nonce( $_POST['slider_details_meta_box_nonce'], 'slider_details_meta_box' ) ) {
+        return;
+    }
+    if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+    }
+    if ( ! current_user_can( 'edit_post', $post_id ) ) {
+        return;
+    }
+    if ( get_post_type( $post_id ) !== 'slider' ) {
+        return;
+    }
+    if ( isset( $_POST['slider_author'] ) ) {
+        update_post_meta( $post_id, '_slider_author', sanitize_text_field( $_POST['slider_author'] ) );
+    }
+    if ( isset( $_POST['slider_link'] ) ) {
+        update_post_meta( $post_id, '_slider_link', esc_url_raw( $_POST['slider_link'] ) );
+    }
+}
+add_action( 'save_post', 'save_slider_details_meta_box' );
+
+// Show slider thumbnail & order columns in admin list
+function slider_admin_columns( $columns ) {
+    $new = array();
+    foreach ( $columns as $key => $val ) {
+        if ( $key === 'title' ) {
+            $new['slider_thumb'] = 'Image';
+        }
+        $new[ $key ] = $val;
+        if ( $key === 'title' ) {
+            $new['slider_author_col'] = 'Author';
+            $new['menu_order']        = 'Order';
+        }
+    }
+    unset( $new['date'] );
+    $new['date'] = $columns['date'];
+    return $new;
+}
+add_filter( 'manage_slider_posts_columns', 'slider_admin_columns' );
+
+function slider_admin_column_content( $column, $post_id ) {
+    if ( $column === 'slider_thumb' ) {
+        $thumb = get_the_post_thumbnail( $post_id, array( 60, 60 ) );
+        echo $thumb ? $thumb : '—';
+    }
+    if ( $column === 'slider_author_col' ) {
+        echo esc_html( get_post_meta( $post_id, '_slider_author', true ) );
+    }
+    if ( $column === 'menu_order' ) {
+        echo intval( get_post_field( 'menu_order', $post_id ) );
+    }
+}
+add_action( 'manage_slider_posts_custom_column', 'slider_admin_column_content', 10, 2 );
+
+function slider_sortable_columns( $columns ) {
+    $columns['menu_order'] = 'menu_order';
+    return $columns;
+}
+add_filter( 'manage_edit-slider_sortable_columns', 'slider_sortable_columns' );
+
 // Convert English date to Bengali
 function convert_to_bengali_date($englishDate) {
     $engDigits  = ['0','1','2','3','4','5','6','7','8','9'];

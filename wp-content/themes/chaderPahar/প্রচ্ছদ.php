@@ -17,21 +17,21 @@
                     <div class="cp-slider-track" data-cp-track>
                         <?php
                         $featured_query = new WP_Query( array(
-                            'post_type'      => 'post',
+                            'post_type'      => 'slider',
                             'post_status'    => 'publish',
-                            'posts_per_page' => 10,
-                            'orderby'        => 'date',
-                            'order'          => 'DESC',
+                            'posts_per_page' => 20,
+                            'orderby'        => 'menu_order',
+                            'order'          => 'ASC',
                         ) );
 
                         if ( $featured_query->have_posts() ) :
                             while ( $featured_query->have_posts() ) : $featured_query->the_post();
-                                $slider_thumb = get_the_post_thumbnail_url( get_the_ID(), 'large' );
-                                $slider_author = get_post_meta( get_the_ID(), '_custom_author', true );
-                                $slider_author = $slider_author ? $slider_author : get_the_author();
+                                $slider_thumb  = get_the_post_thumbnail_url( get_the_ID(), 'large' );
+                                $slider_author = get_post_meta( get_the_ID(), '_slider_author', true );
+                                $slider_link   = get_post_meta( get_the_ID(), '_slider_link', true );
                         ?>
                             <article class="cp-slide-card" data-cp-card>
-                                <a href="<?php the_permalink(); ?>" class="cp-slide-link">
+                                <a href="<?php echo $slider_link ? esc_url( $slider_link ) : '#'; ?>" class="cp-slide-link">
                                     <div class="cp-slide-image-wrap">
                                         <?php if ( $slider_thumb ) : ?>
                                             <img src="<?php echo esc_url( $slider_thumb ); ?>" alt="<?php the_title_attribute(); ?>" class="cp-slide-image">
@@ -41,7 +41,9 @@
                                     </div>
                                     <div class="cp-slide-content">
                                         <h3 class="cp-slide-title"><?php the_title(); ?></h3>
-                                        <p class="cp-slide-author"><?php echo esc_html( $slider_author ); ?></p>
+                                        <?php if ( $slider_author ) : ?>
+                                            <p class="cp-slide-author"><?php echo esc_html( $slider_author ); ?></p>
+                                        <?php endif; ?>
                                     </div>
                                 </a>
                             </article>
