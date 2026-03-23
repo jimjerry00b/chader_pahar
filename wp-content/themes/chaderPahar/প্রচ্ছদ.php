@@ -236,11 +236,17 @@
             </div>
             <div class="row">
                 <?php
+                // $gadya_query = new WP_Query( array(
+                //     'category_name'  => 'golpo',
+                //     'posts_per_page' => 3,
+                //     'orderby'        => 'menu_order',
+                //     'order'          => 'ASC',
+                // ) );
+
                 $gadya_query = new WP_Query( array(
-                    'category_name'  => 'golpo',
+                    'post__in'       => array( 254, 84, 82),
                     'posts_per_page' => 3,
-                    'orderby'        => 'menu_order',
-                    'order'          => 'ASC',
+                    'orderby'        => 'post__in',
                 ) );
 
                 $img_index = 0;
