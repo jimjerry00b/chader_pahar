@@ -26,8 +26,6 @@
                 <?php if ($custom_author) : ?>
                 <p class="post-author-name"><?php echo esc_html($custom_author); ?></p>
                 <?php endif; ?>
-                <?php the_excerpt(); ?>
-                <?php echo category_description(); ?>
             </div>
           </div>
 
