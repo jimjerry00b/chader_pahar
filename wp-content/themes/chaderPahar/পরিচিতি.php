@@ -173,52 +173,21 @@
 
         <div id="tab-chobi" class="pahar-tab-content" style="display:none;">
             <?php
-            $chobi_per_page = 8;
-            $chobi_query = new WP_Query( array(
-                'post_type'      => 'attachment',
-                'post_mime_type' => 'image',
-                'post_status'    => 'inherit',
-                'posts_per_page' => -1,
-                'post_parent__in' => get_posts( array(
-                    'post_type'   => 'page',
-                    'name'        => 'parichiti-gallery',
-                    'fields'      => 'ids',
-                    'numberposts' => 1,
-                ) ),
-            ) );
+            $chobi_per_page = get_option( 'parichiti_gallery_per_page', 8 );
+            $gallery_ids    = get_option( 'parichiti_gallery_images', array() );
             ?>
             <div class="chobi-gallery" id="chobi-gallery">
-                <?php if ( $chobi_query->have_posts() ) : ?>
-                    <?php while ( $chobi_query->have_posts() ) : $chobi_query->the_post(); ?>
+                <?php if ( ! empty( $gallery_ids ) ) : ?>
+                    <?php foreach ( $gallery_ids as $img_id ) :
+                        $img_url = wp_get_attachment_image_url( $img_id, 'large' );
+                        if ( ! $img_url ) continue;
+                    ?>
                         <div class="chobi-item">
-                            <img src="<?php echo esc_url( wp_get_attachment_image_url( get_the_ID(), 'large' ) ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
+                            <img src="<?php echo esc_url( $img_url ); ?>" alt="<?php echo esc_attr( get_the_title( $img_id ) ); ?>" loading="lazy">
                         </div>
-                    <?php endwhile; wp_reset_postdata(); ?>
+                    <?php endforeach; ?>
                 <?php else : ?>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_01.jpg" alt="ছবি ১">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_02.jpg" alt="ছবি ২">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_03.jpg" alt="ছবি ৩">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_04.jpg" alt="ছবি ৪">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_05.jpg" alt="ছবি ৫">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_09.jpg" alt="ছবি ৬">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_10.jpg" alt="ছবি ৭">
-                    </div>
-                    <div class="chobi-item">
-                        <img src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/img_11.jpg" alt="ছবি ৮">
-                    </div>
+                    <p style="padding: 40px 0; text-align: center; color: #888;">কোনো ছবি যুক্ত করা হয়নি। অ্যাডমিন প্যানেল থেকে ছবি যুক্ত করুন।</p>
                 <?php endif; ?>
             </div>
 

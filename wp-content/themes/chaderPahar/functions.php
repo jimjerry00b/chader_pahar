@@ -954,4 +954,115 @@ function edit_member_page() {
     <?php
 }
 
+// ── পরিচিতি গ্যালারি Admin Page ──
+
+function parichiti_gallery_admin_menu() {
+    add_theme_page(
+        'পরিচিতি গ্যালারি',
+        'পরিচিতি গ্যালারি',
+        'manage_options',
+        'parichiti-gallery',
+        'parichiti_gallery_admin_page'
+    );
+}
+add_action( 'admin_menu', 'parichiti_gallery_admin_menu' );
+
+function parichiti_gallery_admin_scripts( $hook ) {
+    if ( $hook !== 'appearance_page_parichiti-gallery' ) {
+        return;
+    }
+    wp_enqueue_media();
+    wp_enqueue_script(
+        'parichiti-gallery-admin',
+        get_template_directory_uri() . '/assets/js/parichiti-gallery-admin.js',
+        array( 'jquery', 'jquery-ui-sortable' ),
+        '1.0',
+        true
+    );
+    wp_enqueue_style(
+        'parichiti-gallery-admin-css',
+        false
+    );
+    // Inline styles for the admin page
+    wp_add_inline_style( 'parichiti-gallery-admin-css', '
+        .pgallery-images { display: flex; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+        .pgallery-item { position: relative; width: 150px; height: 150px; border: 2px solid #ddd; border-radius: 4px; overflow: hidden; cursor: move; }
+        .pgallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .pgallery-item .pgallery-remove { position: absolute; top: 4px; right: 4px; background: #dc3232; color: #fff; border: none; border-radius: 50%; width: 24px; height: 24px; font-size: 16px; line-height: 22px; text-align: center; cursor: pointer; opacity: 0; transition: opacity .2s; }
+        .pgallery-item:hover .pgallery-remove { opacity: 1; }
+        .pgallery-item.ui-sortable-helper { box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+        .pgallery-item.ui-sortable-placeholder { border: 2px dashed #0073aa; background: #f0f6fc; visibility: visible !important; }
+    ' );
+}
+add_action( 'admin_enqueue_scripts', 'parichiti_gallery_admin_scripts' );
+
+function parichiti_gallery_admin_page() {
+    // Handle save
+    if ( isset( $_POST['parichiti_gallery_save'] ) ) {
+        if ( ! isset( $_POST['parichiti_gallery_nonce'] ) || ! wp_verify_nonce( $_POST['parichiti_gallery_nonce'], 'parichiti_gallery_save' ) ) {
+            wp_die( 'Security check failed.' );
+        }
+        $image_ids = array();
+        if ( ! empty( $_POST['parichiti_gallery_ids'] ) ) {
+            $image_ids = array_map( 'absint', explode( ',', sanitize_text_field( $_POST['parichiti_gallery_ids'] ) ) );
+            $image_ids = array_filter( $image_ids );
+        }
+        update_option( 'parichiti_gallery_images', $image_ids );
+
+        $per_page = isset( $_POST['parichiti_gallery_per_page'] ) ? absint( $_POST['parichiti_gallery_per_page'] ) : 8;
+        if ( $per_page < 1 ) $per_page = 8;
+        update_option( 'parichiti_gallery_per_page', $per_page );
+
+        echo '<div class="notice notice-success is-dismissible"><p>গ্যালারি সেভ করা হয়েছে।</p></div>';
+    }
+
+    $saved_ids = get_option( 'parichiti_gallery_images', array() );
+    $per_page  = get_option( 'parichiti_gallery_per_page', 8 );
+    ?>
+    <div class="wrap">
+        <h1>পরিচিতি গ্যালারি</h1>
+        <p>পরিচিতি পৃষ্ঠার "ছবি" ট্যাবে প্রদর্শিত হবে এমন ছবি যুক্ত করুন।</p>
+
+        <form method="post">
+            <?php wp_nonce_field( 'parichiti_gallery_save', 'parichiti_gallery_nonce' ); ?>
+
+            <table class="form-table">
+                <tr>
+                    <th scope="row"><label for="parichiti_gallery_per_page">প্রতি পৃষ্ঠায় ছবি সংখ্যা</label></th>
+                    <td>
+                        <input type="number" id="parichiti_gallery_per_page" name="parichiti_gallery_per_page" value="<?php echo esc_attr( $per_page ); ?>" min="1" max="50" class="small-text">
+                    </td>
+                </tr>
+            </table>
+
+            <h3>গ্যালারি ছবিসমূহ</h3>
+            <div class="pgallery-images" id="pgallery-images">
+                <?php
+                if ( ! empty( $saved_ids ) ) {
+                    foreach ( $saved_ids as $id ) {
+                        $url = wp_get_attachment_image_url( $id, 'thumbnail' );
+                        if ( $url ) {
+                            echo '<div class="pgallery-item" data-id="' . esc_attr( $id ) . '">';
+                            echo '<img src="' . esc_url( $url ) . '" alt="">';
+                            echo '<button type="button" class="pgallery-remove" title="Remove">&times;</button>';
+                            echo '</div>';
+                        }
+                    }
+                }
+                ?>
+            </div>
+            <input type="hidden" name="parichiti_gallery_ids" id="pgallery-ids" value="<?php echo esc_attr( implode( ',', $saved_ids ) ); ?>">
+
+            <p>
+                <button type="button" class="button button-secondary" id="pgallery-add">ছবি যুক্ত করুন</button>
+            </p>
+
+            <p class="submit">
+                <input type="submit" name="parichiti_gallery_save" class="button button-primary" value="সেভ করুন">
+            </p>
+        </form>
+    </div>
+    <?php
+}
+
 ?>
