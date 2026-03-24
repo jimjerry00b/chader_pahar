@@ -346,6 +346,7 @@
         .chobi-pagination {
             display: flex;
             justify-content: center;
+            align-items: center;
             gap: 8px;
             margin-top: 30px;
             padding-bottom: 10px;
@@ -364,6 +365,7 @@
             color: var(--gold-color);
             background: transparent;
             transition: all 0.2s;
+            cursor: pointer;
         }
 
         .chobi-page-link:hover {
@@ -374,6 +376,39 @@
         .chobi-page-link.active {
             background: var(--gold-color);
             color: #fff;
+        }
+
+        .chobi-page-link.disabled {
+            opacity: 0.35;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .chobi-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--gold-color);
+            background: transparent;
+            border: 1.5px solid var(--gold-color);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .chobi-nav-btn:hover {
+            background: var(--gold-color);
+            color: #fff;
+        }
+
+        .chobi-nav-btn.disabled {
+            opacity: 0.35;
+            pointer-events: none;
+            cursor: default;
         }
 
         @media (max-width: 575px) {
@@ -438,15 +473,37 @@
                 function renderPagination() {
                     if (totalPages <= 1) { paginationEl.innerHTML = ''; return; }
                     var html = '';
-                    for (var i = 1; i <= totalPages; i++) {
+                    var windowSize = 3;
+
+                    // Prev button
+                    html += '<a href="#" class="chobi-nav-btn' + (currentPage === 1 ? ' disabled' : '') + '" data-page="' + (currentPage - 1) + '">পূর্ববর্তী</a>';
+
+                    // Sliding window of page numbers
+                    var startPage = currentPage - Math.floor(windowSize / 2);
+                    if (startPage < 1) startPage = 1;
+                    var endPage = startPage + windowSize - 1;
+                    if (endPage > totalPages) {
+                        endPage = totalPages;
+                        startPage = endPage - windowSize + 1;
+                        if (startPage < 1) startPage = 1;
+                    }
+
+                    for (var i = startPage; i <= endPage; i++) {
                         html += '<a href="#" class="chobi-page-link' + (i === currentPage ? ' active' : '') + '" data-page="' + i + '">' + toBanglaNum(i) + '</a>';
                     }
+
+                    // Next button
+                    html += '<a href="#" class="chobi-nav-btn' + (currentPage === totalPages ? ' disabled' : '') + '" data-page="' + (currentPage + 1) + '">পরবর্তী</a>';
+
                     paginationEl.innerHTML = html;
-                    paginationEl.querySelectorAll('.chobi-page-link').forEach(function(link) {
+                    paginationEl.querySelectorAll('.chobi-page-link, .chobi-nav-btn').forEach(function(link) {
                         link.addEventListener('click', function(e) {
                             e.preventDefault();
-                            showPage(parseInt(this.getAttribute('data-page')));
-                            gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            var page = parseInt(this.getAttribute('data-page'));
+                            if (page >= 1 && page <= totalPages) {
+                                showPage(page);
+                                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            }
                         });
                     });
                 }
