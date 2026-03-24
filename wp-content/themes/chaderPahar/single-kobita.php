@@ -24,7 +24,7 @@
                 <!-- <h2><?//php the_title(); ?></h2> -->
                 <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                 <?php if ($custom_author) : ?>
-                <p class="post-author-name"><?php echo esc_html($custom_author); ?></p>
+                <!-- <p class="post-author-name"><?//php echo esc_html($custom_author); ?></p> -->
                 <?php endif; ?>
                 <?php echo category_description(); ?>
                 <?php the_content(); ?>
