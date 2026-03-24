@@ -67,7 +67,7 @@
   <?php if ( $kichirmichir_query->found_posts >= 3 ) : ?>
     <div class="row">
       <div class="col-12 text-center mt-3">
-        <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'শিশু-সাহিত্য' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো পড়ুন</a>
+        <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'শিশু-সাহিত্য' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো কিচিরমিচির</a>
       </div>
     </div>
   <?php endif; ?>
