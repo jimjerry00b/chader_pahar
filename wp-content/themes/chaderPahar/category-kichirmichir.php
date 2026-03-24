@@ -88,7 +88,7 @@
   $chitrankan_query  = new WP_Query( array(
     'cat'            => $chitrankan_cat_id,
     'post_type'      => 'post',
-    'posts_per_page' => 9,
+    'posts_per_page' => 3,
   ) );
   ?>
   <div class="row g-4">

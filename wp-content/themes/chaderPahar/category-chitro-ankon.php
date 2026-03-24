@@ -16,7 +16,7 @@
   $chitrankan_query = new WP_Query( array(
     'cat'            => get_queried_object_id(),
     'post_type'      => 'post',
-    'posts_per_page' => 3,
+    'posts_per_page' => 9,
     'paged'          => $paged,
   ) );
   ?>
