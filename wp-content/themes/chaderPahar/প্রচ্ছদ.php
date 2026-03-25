@@ -190,6 +190,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
+                                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                                     <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
@@ -266,6 +267,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
+                                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                                     <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
@@ -338,6 +340,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
+                                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                                     <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
@@ -407,6 +410,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php the_title(); ?></h5>
+                                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                                     <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>
@@ -427,6 +431,7 @@
                                 </div>
                                 <div class="gadya-info p-3">
                                     <h5><?php echo esc_html( $placeholder_titles[ $j ] ); ?></h5>
+                                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                                     <p class="gadya-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
                                 </div>
                             </a>

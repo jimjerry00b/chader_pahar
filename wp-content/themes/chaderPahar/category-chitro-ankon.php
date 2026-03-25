@@ -50,6 +50,7 @@
           <div class="goddo-card-body p-4">
             <h5 class="goddo-card-title"><?php echo $chitrankan_author ? esc_html( $chitrankan_author ) : esc_html( get_the_title() ); ?></h5>
             <?php if ( $chitrankan_class ) : ?>
+              <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
               <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
             <?php endif; ?>
           </div>

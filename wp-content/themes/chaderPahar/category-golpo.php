@@ -24,6 +24,7 @@
           </div>
           <div class="goddo-card-body p-4">
             <h5 class="goddo-card-title"><?php the_title(); ?></h5>
+            <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
             <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক" ?></p>
           </div>
         </a>
