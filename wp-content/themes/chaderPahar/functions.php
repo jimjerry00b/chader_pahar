@@ -1069,4 +1069,72 @@ function parichiti_gallery_admin_page() {
     <?php
 }
 
+// AJAX handler for kichirmichir pagination
+function kichirmichir_ajax_pagination() {
+    $paged  = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 1;
+    $cat_id = isset( $_POST['cat_id'] ) ? absint( $_POST['cat_id'] ) : 0;
+
+    if ( ! $cat_id ) {
+        wp_send_json_error();
+    }
+
+    $query = new WP_Query( array(
+        'cat'            => $cat_id,
+        'post_type'      => 'post',
+        'posts_per_page' => 3,
+        'paged'          => $paged,
+    ) );
+
+    ob_start();
+
+    if ( $query->have_posts() ) :
+        while ( $query->have_posts() ) : $query->the_post(); ?>
+            <div class="col-md-4 d-flex">
+                <a href="<?php the_permalink(); ?>" class="goddo-card h-100 w-100">
+                    <div class="goddo-card-img">
+                        <?php if ( has_post_thumbnail() ) : ?>
+                            <?php the_post_thumbnail( 'medium_large', array( 'class' => 'img-fluid' ) ); ?>
+                        <?php else : ?>
+                            <img class="img-fluid" src="<?php echo esc_url( get_template_directory_uri() ); ?>/assets/images/placeholder.jpg" alt="">
+                        <?php endif; ?>
+                    </div>
+                    <div class="goddo-card-body p-4">
+                        <h5 class="goddo-card-title"><?php the_title(); ?></h5>
+                        <?php $custom_author = get_post_meta( get_the_ID(), '_custom_author', true ); ?>
+                        <p class="goddo-card-desc"><?php echo $custom_author ? esc_html( $custom_author ) : 'সাধারণ লেখক'; ?></p>
+                    </div>
+                </a>
+            </div>
+        <?php endwhile;
+    else : ?>
+        <p>No posts found in this category.</p>
+    <?php endif;
+
+    $posts_html = ob_get_clean();
+
+    ob_start();
+    if ( $query->max_num_pages > 1 ) {
+        echo paginate_links( array(
+            'total'     => $query->max_num_pages,
+            'current'   => $paged,
+            'prev_text' => '&laquo;',
+            'next_text' => '&raquo;',
+            'type'      => 'list',
+            'mid_size'  => 2,
+            'end_size'  => 1,
+        ) );
+    }
+    $pagination_html = ob_get_clean();
+
+    wp_reset_postdata();
+
+    wp_send_json_success( array(
+        'posts'      => $posts_html,
+        'pagination' => $pagination_html,
+        'max_pages'  => $query->max_num_pages,
+    ) );
+}
+add_action( 'wp_ajax_kichirmichir_pagination', 'kichirmichir_ajax_pagination' );
+add_action( 'wp_ajax_nopriv_kichirmichir_pagination', 'kichirmichir_ajax_pagination' );
+
 ?>

@@ -20,7 +20,7 @@
     'paged'          => $paged,
   ) );
   ?>
-  <div id="kichirmichir-posts">
+  <div id="kichirmichir-posts" data-cat-id="<?php echo esc_attr( get_queried_object_id() ); ?>" data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" data-current-page="<?php echo esc_attr( $paged ); ?>" data-max-pages="<?php echo esc_attr( $kichirmichir_query->max_num_pages ); ?>">
   <div class="row g-4">
     <?php if ( $kichirmichir_query->have_posts() ) : while ( $kichirmichir_query->have_posts() ) : $kichirmichir_query->the_post(); ?>
     
@@ -333,22 +333,29 @@
     const container = document.getElementById('kichirmichir-posts');
     if (!container) return;
 
-    container.addEventListener('click', function(e) {
-      const link = e.target.closest('#pagination_one a.page-numbers');
-      if (!link) return;
-      e.preventDefault();
+    const ajaxUrl = container.getAttribute('data-ajax-url');
+    const catId   = container.getAttribute('data-cat-id');
 
-      const url = link.href;
+    function loadPage(page) {
       container.style.opacity = '0.5';
 
-      fetch(url)
-        .then(function(res) { return res.text(); })
-        .then(function(html) {
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          const newContent = doc.getElementById('kichirmichir-posts');
-          if (newContent) {
-            container.innerHTML = newContent.innerHTML;
+      const formData = new FormData();
+      formData.append('action', 'kichirmichir_pagination');
+      formData.append('paged', page);
+      formData.append('cat_id', catId);
+
+      fetch(ajaxUrl, { method: 'POST', body: formData })
+        .then(function(res) { return res.json(); })
+        .then(function(json) {
+          if (json.success) {
+            var postsRow = container.querySelector('.row.g-4');
+            if (postsRow) postsRow.innerHTML = json.data.posts;
+            var paginationNav = container.querySelector('#pagination_one');
+            if (paginationNav) {
+              paginationNav.innerHTML = json.data.pagination;
+            }
+            container.setAttribute('data-current-page', page);
+            container.setAttribute('data-max-pages', json.data.max_pages);
             convertToBengaliNumbers();
             window.scrollTo({ top: container.offsetTop - 80, behavior: 'smooth' });
           }
@@ -357,6 +364,26 @@
         .catch(function() {
           container.style.opacity = '1';
         });
+    }
+
+    container.addEventListener('click', function(e) {
+      const link = e.target.closest('#pagination_one a.page-numbers');
+      if (!link) return;
+      e.preventDefault();
+
+      // Extract page number from the link href
+      var page = 1;
+      var match = link.href.match(/\/page\/(\d+)/);
+      if (match) {
+        page = parseInt(match[1], 10);
+      } else {
+        var urlParams = new URLSearchParams(link.search);
+        if (urlParams.has('paged')) {
+          page = parseInt(urlParams.get('paged'), 10);
+        }
+      }
+
+      loadPage(page);
     });
   })();
 
