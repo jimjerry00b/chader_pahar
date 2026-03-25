@@ -20,6 +20,7 @@
     'paged'          => $paged,
   ) );
   ?>
+  <div id="kichirmichir-posts">
   <div class="row g-4">
     <?php if ( $kichirmichir_query->have_posts() ) : while ( $kichirmichir_query->have_posts() ) : $kichirmichir_query->the_post(); ?>
     
@@ -64,6 +65,7 @@
     </div>
   </div>
   <?php endif; ?>
+  </div><!-- #kichirmichir-posts -->
   <?php if ( $kichirmichir_query->found_posts >= 3 ) : ?>
     <div class="row">
       <div class="col-12 text-center mt-3">
@@ -325,6 +327,38 @@
   }
 
   document.addEventListener('DOMContentLoaded', convertToBengaliNumbers);
+
+  // AJAX pagination for kichirmichir
+  (function() {
+    const container = document.getElementById('kichirmichir-posts');
+    if (!container) return;
+
+    container.addEventListener('click', function(e) {
+      const link = e.target.closest('#pagination_one a.page-numbers');
+      if (!link) return;
+      e.preventDefault();
+
+      const url = link.href;
+      container.style.opacity = '0.5';
+
+      fetch(url)
+        .then(function(res) { return res.text(); })
+        .then(function(html) {
+          const parser = new DOMParser();
+          const doc = parser.parseFromString(html, 'text/html');
+          const newContent = doc.getElementById('kichirmichir-posts');
+          if (newContent) {
+            container.innerHTML = newContent.innerHTML;
+            convertToBengaliNumbers();
+            window.scrollTo({ top: container.offsetTop - 80, behavior: 'smooth' });
+          }
+          container.style.opacity = '1';
+        })
+        .catch(function() {
+          container.style.opacity = '1';
+        });
+    });
+  })();
 
   // চিত্রাঙ্কন modal
   const chitrankanModal = document.getElementById('chitrankanModal');
