@@ -512,7 +512,7 @@
             </div>
             <div class="row">
                 <div class="col-12 text-center mt-3">
-                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'kichirmichir' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো কিচিরমিচির</a>
+                    <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'কিচিরমিচির' ) ) ); ?>" class="btn btn-warning gadya-more-btn px-5 py-2">আরো কিচিরমিচির</a>
                 </div>
             </div>
         </div>
