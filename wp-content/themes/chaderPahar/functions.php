@@ -33,6 +33,10 @@ function chaderpahar_goddo_posts_per_page( $query ) {
     if ( !is_admin() && $query->is_main_query() && $query->is_category('probondho') ) {
         $query->set( 'posts_per_page', 9 );
     }
+
+    if ( !is_admin() && $query->is_main_query() && $query->is_category('golpo') ) {
+        $query->set( 'posts_per_page', 9 );
+    }
 }
 add_action( 'pre_get_posts', 'chaderpahar_goddo_posts_per_page' );
 
