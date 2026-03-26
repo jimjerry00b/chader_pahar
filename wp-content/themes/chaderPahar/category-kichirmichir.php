@@ -46,25 +46,7 @@
     <?php endif; ?>
   </div>
 
-  <?php if ( $kichirmichir_query->max_num_pages > 1 ) : ?>
-  <div class="row">
-    <div class="col-md-12">
-      <nav id="pagination_one" aria-label="Page navigation">
-        <?php
-        echo paginate_links(array(
-          'total' => $kichirmichir_query->max_num_pages,
-          'current' => $paged,
-          'prev_text' => '&laquo;',
-          'next_text' => '&raquo;',
-          'type' => 'list',
-          'mid_size' => 2,
-          'end_size' => 1,
-        ));
-        ?>
-      </nav>
-    </div>
-  </div>
-  <?php endif; ?>
+  
   </div><!-- #kichirmichir-posts -->
   <?php if ( $kichirmichir_query->found_posts >= 3 ) : ?>
     <div class="row">
