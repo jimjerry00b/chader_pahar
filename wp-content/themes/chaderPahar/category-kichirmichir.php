@@ -22,10 +22,17 @@
   ?>
   <div id="kichirmichir-posts" data-cat-id="<?php echo esc_attr( get_queried_object_id() ); ?>" data-ajax-url="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>" data-current-page="<?php echo esc_attr( $paged ); ?>" data-max-pages="<?php echo esc_attr( $kichirmichir_query->max_num_pages ); ?>">
   <div class="row g-4">
-    <?php if ( $kichirmichir_query->have_posts() ) : while ( $kichirmichir_query->have_posts() ) : $kichirmichir_query->the_post(); ?>
+    <?php if ( $kichirmichir_query->have_posts() ) : while ( $kichirmichir_query->have_posts() ) : $kichirmichir_query->the_post();
+      $custom_class = get_post_meta( get_the_ID(), '_custom_class', true );
+    ?>
     
       <div class="col-md-4 d-flex">
-        <a href="<?php the_permalink(); ?>" class="goddo-card h-100 w-100">
+        <a href="<?php the_permalink(); ?>" class="position-relative goddo-card h-100 w-100">
+          <?php if($custom_class){ ?>
+          <span class="category-badge position-absolute end-0" style="background: #001870; padding: 10px 35px; color: #fff;">
+            <?=  $custom_class; ?>
+          </span>
+          <?php }?>
           <div class="goddo-card-img">
             <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid']); ?>
