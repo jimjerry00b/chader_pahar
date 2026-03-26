@@ -637,9 +637,64 @@
         </div>
     </section>
 
+    <!-- ── স্পনসর / শুভেচ্ছা ── -->
+    <section id="section-sponsors" class="py-4">
+        <div class="container">
+            <p class="sponsor-heading text-center">চাঁদের পাহাড় - সাহিত্য, সংস্কৃতি ও চিন্তা-শিল্পের পত্রিকা আত্মপ্রকাশ<br>উপলক্ষে অনেক অনেক অভিনন্দন ও শুভেচ্ছা।</p>
+            <div class="sponsor-logos">
+                <div class="sponsor-logo-item">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-03 1.svg" alt="Sompriti Foundation">
+                </div>
+                <div class="sponsor-logo-item">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-01 1.svg" alt="Everest Pharmaceuticals Ltd.">
+                </div>
+                <div class="sponsor-logo-item">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-02 1.svg" alt="জ্ঞানগড়">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
     
 
     <style>
+
+        #section-sponsors {
+            background-color: #fff;
+            border-bottom: 10px solid var(--second-color);
+        }
+
+        .sponsor-heading {
+            font-size: 20px;
+            color: #1a1a5e;
+            font-weight: 500;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .sponsor-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .sponsor-logo-item img {
+            width: auto;
+            object-fit: contain;
+        }
+
+        @media (max-width: 575px) {
+            .sponsor-logos {
+                gap: 30px;
+            }
+            .sponsor-logo-item img {
+                max-height: 50px;
+            }
+        }
 
         #section-featured-slider {
             background: #efeff1;
