@@ -22,7 +22,7 @@
                 <?php the_content(); ?>
             </div>
           </div>
-          <div class="col-md-6 p-5 d-flex align-items-center justify-content-center">
+          <div class="col-md-6 p-5 d-flex align-items-start justify-content-center">
             <!-- <img class="img-fluid" src="<?php echo $thumb_url; ?>" alt=""> -->
             <?php if ( has_post_thumbnail() ) : ?>
                 <div class="post-thumbnail">
