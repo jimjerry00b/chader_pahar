@@ -91,7 +91,7 @@
             <div class="row">
                 <?php
                 $gadya_query = new WP_Query( array(
-                    'post__in'       => array( 155, 159, 163 ),
+                    'post__in'       => array( 157,167,564 ),
                     'posts_per_page' => 3,
                     'orderby'        => 'post__in',
                 ) );
@@ -245,7 +245,7 @@
                 // ) );
 
                 $gadya_query = new WP_Query( array(
-                    'post__in'       => array( 254, 84, 82),
+                    'post__in'       => array( 84,254,82 ),
                     'posts_per_page' => 3,
                     'orderby'        => 'post__in',
                 ) );
@@ -458,6 +458,7 @@
                 <?php
                 $gadya_query = new WP_Query( array(
                     'category_name'  => 'kichirmichir',
+                    'post__in'       => array( 287,290,582 ),
                     'posts_per_page' => 3,
                     'orderby'        => 'menu_order',
                     'order'          => 'ASC',
