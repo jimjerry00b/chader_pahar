@@ -46,7 +46,7 @@
                 <div class="contact-form-wrapper">
                     <h3 class="form-title">আমাদের লিখুন</h3>
                     <?php
-                        echo do_shortcode('[contact-form-7 id="61115dd" title="Contact form"]');
+                        echo do_shortcode('[contact-form-7 id="d485f78" title="Contact form 1"]');
                     ?>
                 </div>
             </div>
