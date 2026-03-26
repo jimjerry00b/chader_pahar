@@ -527,10 +527,9 @@
                         <h2 class="lekha-ahban-title mb-0">লেখা আহবান</h2>
                     </div>
                     <div class="col-12 col-md-6 lekha-ahban-right py-3">
-                        <p class="mb-1">আপনার লেখা গল্প, কবিতা, প্রবন্ধ, অনুবাদা, অনুগল্প</p>
-                        <p class="mb-1">আমাদের ওয়েবসাইট প্রকাশ করার জন্য লেখা পাঠান।</p>
-                        <p class="mb-1">আপনার ফোন নম্বর ও ঠিকানাসহ আমাদের ঠিকানায় ইমেইল করুন।</p>
-                        <p class="mb-0">ইমেইল : <a href="mailto:contact@chaderpahar.com" class="lekha-email-link">contact@chaderpahar.com</a></p>
+                        <p class="mb-1">আপনার লেখা গল্প, কবিতা, প্রবন্ধসহ যে কোন লেখা প্রকাশের জন্য পাঠাতে পারেন।</p>
+                        <p class="mb-1">লেখার সঙ্গে আপনার নাম, ঠিকানা ও ফোন নাম্বার দিতে হবে। </p>
+                        <p class="mb-0">ইমেল করুন : <a href="mailto:contact@chaderpahar.com" class="lekha-email-link">contact@chaderpahar.com</a></p>
                     </div>
                 </div>
             </div>

@@ -501,6 +501,16 @@ footer {
   }
 }
 
+@media (max-width: 767px) {
+  .lekha-ahban-right {
+    padding-left: 0 !important;
+  }
+
+  .lekha-ahban-left {
+    padding-right: initial !important;
+  }
+}
+
 @media (max-width: 575px) {
   .category_container {
     grid-template-columns: repeat(1, 1fr);
