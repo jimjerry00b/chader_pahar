@@ -317,10 +317,9 @@
             <div class="row">
                 <?php
                 $gadya_query = new WP_Query( array(
-                    'category_name'  => 'kobita',
+                    'post__in'       => array( 349, 182, 169, 351, 336, 372 ),
                     'posts_per_page' => 6,
-                    'orderby'        => 'menu_order',
-                    'order'          => 'ASC',
+                    'orderby'        => 'post__in',
                 ) );
 
                 $img_index = 0;
