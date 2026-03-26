@@ -91,7 +91,7 @@
             <div class="row">
                 <?php
                 $gadya_query = new WP_Query( array(
-                    'post__in'       => array( 157,167,564 ),
+                    'post__in'       => array( 155,167,564 ),
                     'posts_per_page' => 3,
                     'orderby'        => 'post__in',
                 ) );
