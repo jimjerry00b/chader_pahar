@@ -94,22 +94,22 @@
                 </div>
             </div>
 
-            <div class="col-12 col-md-2 mb-4">
+            <div class="col-12 col-md-3 mb-4">
                 <div class="">
                     <h3>ঠিকানা:</h3>
-                    চাঁদের পাহাড় বুক ক্যাফে 
-                    মোলাশীকান্দা , বান্দুরা ,
+                    চাঁদের পাহাড় বুক ক্যাফে,<br>
+                    মোলাশীকান্দা , হাসনাবাদ,<br>
                     নবাবগঞ্জ, ঢাকা ১৩২১
                 </div>
             </div>
-            <div class="col-12 col-md-5">
+            <div class="col-12 col-md-4">
                 <div class="">
                     <p>মোবাইল : ০১৯১১-৪০১৩৪৩</p>
                     <p>ইমেইল : contact@chaderpahar.com</p>
                     <div class="social-links">
-                        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.facebook.com/cpbookcafe" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
                         <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
-                        <a href="#" class="youtube"><i class="bi bi-youtube"></i></a>
+                        <a href="https://www.youtube.com/@chaderpaharbookcafe" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
                         <!-- <a href="#" class="tiktok"><i class="bi bi-tiktok"></i></a> -->
                     </div>
                 </div>
