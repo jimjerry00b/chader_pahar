@@ -29,7 +29,7 @@
       <div class="col-md-4 d-flex">
         <a href="<?php the_permalink(); ?>" class="position-relative goddo-card h-100 w-100">
           <?php if($custom_class){ ?>
-          <span class="category-badge position-absolute end-0" style="background: #001870; padding: 10px 35px; color: #fff;">
+          <span class="category-badge position-absolute end-0" style="background: #00187061; padding: 10px 35px; color: #fff;">
             <?=  $custom_class; ?>
           </span>
           <?php }?>
