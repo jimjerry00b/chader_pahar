@@ -575,6 +575,15 @@
             .pahar-tab-menu ul li a{
                 padding: 5px 8px;
             }
+
+            .boi-data-box, .ajibon-box{
+                padding: 0;
+                background: transparent;
+            }
+
+            .sodossopad-section{
+                padding: 10px;
+            }
         }
     </style>
 
