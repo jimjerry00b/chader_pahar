@@ -623,11 +623,11 @@
                     <div class="kichirmichir-content px-4 px-md-5 py-4">
                         <h2 class="kichirmichir-title">কিচিরমিচির</h2>
                         <p class="kichirmichir-desc">
-                            শিশু কিশোরদের সৃষ্টিশীল লেখা ও<br>
-                            শিল্প চর্চা দেখতে পড়ুন<br>
-                            আমাদের সব আয়োজন
+                            শিশু-কিশোরদের জন্য মজার মজার<br>
+                            ছড়া, গল্প ও শিশুদের চিত্রকর্ম  নিয়ে<br>
+                            আয়োজন
                         </p>
-                        <a href="" class="btn kichirmichir-btn">ক্লিক করুন</a>
+                        <a href="<?php echo esc_url( get_category_link( get_cat_ID( 'কিচিরমিচির' ) ) ); ?>" class="btn kichirmichir-btn">ক্লিক করুন</a>
                     </div>
                 </div>
                 <div class="col-12 col-md-6 kichirmichir-right p-0">
