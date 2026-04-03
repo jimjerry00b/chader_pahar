@@ -53,7 +53,7 @@
     <?php endif; ?>
   </div>
 
-  <?php chader_pahar_pagination( $kichirmichir_query->max_num_pages, $paged ); ?>
+  
   </div><!-- #kichirmichir-posts -->
   <?php if ( $kichirmichir_query->found_posts >= 3 ) : ?>
     <div class="row">
