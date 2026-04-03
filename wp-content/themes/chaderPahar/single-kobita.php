@@ -1,21 +1,4 @@
 <?php
-add_action('wp_head', function() {
-    $og_title = get_the_title();
-    $og_url = get_permalink();
-    $og_description = has_excerpt() ? get_the_excerpt() : wp_trim_words(strip_tags(get_the_content()), 30, '...');
-    $og_image = get_the_post_thumbnail_url(get_the_ID(), 'large');
-    ?>
-    <meta property="og:url" content="<?php echo esc_url($og_url); ?>" />
-    <meta property="og:type" content="article" />
-    <meta property="og:title" content="<?php echo esc_attr($og_title); ?>" />
-    <meta property="og:description" content="<?php echo esc_attr($og_description); ?>" />
-    <?php if ($og_image) : ?>
-    <meta property="og:image" content="<?php echo esc_url($og_image); ?>" />
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="550">
-    <?php endif; ?>
-    <?php
-});
 get_header(); ?>
 
 <div class="container">

@@ -12,6 +12,8 @@
       <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>" />
       <?php if ( has_post_thumbnail() ) : ?>
         <meta property="og:image" content="<?php echo esc_url( get_the_post_thumbnail_url( null, 'full' ) ); ?>" />
+        <meta property="og:image:width" content="1024">
+        <meta property="og:image:height" content="550">
       <?php endif; ?>
       <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo('name') ); ?>" />
     <?php endif; ?>
