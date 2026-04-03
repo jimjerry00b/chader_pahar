@@ -53,7 +53,7 @@
     <?php endif; ?>
   </div>
 
-  
+  <?php chader_pahar_pagination( $kichirmichir_query->max_num_pages, $paged ); ?>
   </div><!-- #kichirmichir-posts -->
   <?php if ( $kichirmichir_query->found_posts >= 3 ) : ?>
     <div class="row">
@@ -231,19 +231,7 @@
     color: var(--second-color);
   }
 
-  #pagination_one .page-numbers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    gap: 5px;
-  }
 
-  #pagination_one .page-numbers li {
-    display: inline-block;
-  }
 
   .chitrankan-notice-box {
     border: 1px solid #e0e0e0;
@@ -301,21 +289,6 @@
 </style>
 
 <script>
-  // Convert English numbers to Bengali numbers
-  function convertToBengaliNumbers() {
-    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    const paginationLinks = document.querySelectorAll('#pagination_one .page-numbers a, #pagination_one .page-numbers .current');
-
-    paginationLinks.forEach(link => {
-      const text = link.textContent;
-      if (/^\d+$/.test(text.trim())) {
-        const bengaliText = text.replace(/\d/g, digit => bengaliDigits[parseInt(digit, 10)]);
-        link.textContent = bengaliText;
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', convertToBengaliNumbers);
 
   // AJAX pagination for kichirmichir
   (function() {
@@ -339,13 +312,16 @@
           if (json.success) {
             var postsRow = container.querySelector('.row.g-4');
             if (postsRow) postsRow.innerHTML = json.data.posts;
-            var paginationNav = container.querySelector('#pagination_one');
-            if (paginationNav) {
-              paginationNav.innerHTML = json.data.pagination;
+            var oldPagination = container.querySelector('.chobi-pagination');
+            if (oldPagination && json.data.pagination) {
+              oldPagination.outerHTML = json.data.pagination;
+            } else if (!oldPagination && json.data.pagination) {
+              container.insertAdjacentHTML('beforeend', json.data.pagination);
+            } else if (oldPagination && !json.data.pagination) {
+              oldPagination.remove();
             }
             container.setAttribute('data-current-page', page);
             container.setAttribute('data-max-pages', json.data.max_pages);
-            convertToBengaliNumbers();
             window.scrollTo({ top: container.offsetTop - 80, behavior: 'smooth' });
           }
           container.style.opacity = '1';
@@ -356,7 +332,7 @@
     }
 
     container.addEventListener('click', function(e) {
-      const link = e.target.closest('#pagination_one a.page-numbers');
+      const link = e.target.closest('.chobi-pagination a');
       if (!link) return;
       e.preventDefault();
 

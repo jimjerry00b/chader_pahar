@@ -62,25 +62,7 @@
     <?php endif; ?>
   </div>
 
-  <?php if ( $chitrankan_query->max_num_pages > 1 ) : ?>
-  <div class="row">
-    <div class="col-md-12">
-      <nav id="pagination_one" aria-label="Page navigation">
-        <?php
-        echo paginate_links(array(
-          'total' => $chitrankan_query->max_num_pages,
-          'current' => $paged,
-          'prev_text' => '&laquo;',
-          'next_text' => '&raquo;',
-          'type' => 'list',
-          'mid_size' => 2,
-          'end_size' => 1,
-        ));
-        ?>
-      </nav>
-    </div>
-  </div>
-  <?php endif; ?>
+  <?php chader_pahar_pagination( $chitrankan_query->max_num_pages, $paged ); ?>
 
   <?php wp_reset_postdata(); ?>
 </div>
@@ -161,19 +143,7 @@
     color: var(--second-color);
   }
 
-  #pagination_one .page-numbers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    gap: 5px;
-  }
 
-  #pagination_one .page-numbers li {
-    display: inline-block;
-  }
 
   .chitrankan-card {
     cursor: pointer;

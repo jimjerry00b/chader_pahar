@@ -35,23 +35,10 @@
     <?php endif; ?>
   </div>
 
-  <?php if (have_posts()) : ?>
-  <div class="row">
-    <div class="col-md-12">
-      <nav id="pagination_one" aria-label="Page navigation">
-        <?php
-        echo paginate_links(array(
-          'prev_text' => '&laquo;',
-          'next_text' => '&raquo;',
-          'type' => 'list',
-          'mid_size' => 2,
-          'end_size' => 1,
-        ));
-        ?>
-      </nav>
-    </div>
-  </div>
-  <?php endif; ?>
+  <?php
+  global $wp_query;
+  chader_pahar_pagination( $wp_query->max_num_pages, max( 1, get_query_var( 'paged' ) ) );
+  ?>
 </div>
 
 <style>
@@ -105,37 +92,9 @@
     color: var(--second-color);
   }
 
-  #pagination_one .page-numbers {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    padding: 0;
-    margin: 20px 0;
-    gap: 5px;
-  }
 
-  #pagination_one .page-numbers li {
-    display: inline-block;
-  }
 </style>
 
-<script>
-  // Convert English numbers to Bengali numbers
-  function convertToBengaliNumbers() {
-    const bengaliDigits = ['০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'];
-    const paginationLinks = document.querySelectorAll('#pagination_one .page-numbers a, #pagination_one .page-numbers .current');
 
-    paginationLinks.forEach(link => {
-      const text = link.textContent;
-      if (/^\d+$/.test(text.trim())) {
-        const bengaliText = text.replace(/\d/g, digit => bengaliDigits[parseInt(digit, 10)]);
-        link.textContent = bengaliText;
-      }
-    });
-  }
-
-  document.addEventListener('DOMContentLoaded', convertToBengaliNumbers);
-</script>
 
 <?php get_footer(); ?>

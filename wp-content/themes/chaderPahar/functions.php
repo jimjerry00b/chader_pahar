@@ -1085,6 +1085,78 @@ function parichiti_gallery_admin_page() {
     <?php
 }
 
+// ── Chobi-pagination: shared helper, CSS & scroll ──
+
+function chader_pahar_pagination( $total_pages, $current_page ) {
+    if ( $total_pages <= 1 ) return;
+
+    $big   = 999999999;
+    $links = paginate_links( array(
+        'base'      => str_replace( $big, '%#%', esc_url( get_pagenum_link( $big ) ) ),
+        'format'    => '?paged=%#%',
+        'total'     => $total_pages,
+        'current'   => $current_page,
+        'prev_text' => 'পূর্ববর্তী',
+        'next_text' => 'পরবর্তী',
+        'type'      => 'array',
+        'mid_size'  => 1,
+        'end_size'  => 0,
+    ) );
+
+    if ( ! $links ) return;
+
+    $bengali = array( '০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯' );
+
+    echo '<div class="chobi-pagination">';
+    foreach ( $links as $link ) {
+        if ( strpos( $link, 'prev page-numbers' ) !== false ) {
+            $link = str_replace( 'prev page-numbers', 'chobi-nav-btn', $link );
+        } elseif ( strpos( $link, 'next page-numbers' ) !== false ) {
+            $link = str_replace( 'next page-numbers', 'chobi-nav-btn', $link );
+        } elseif ( strpos( $link, 'current' ) !== false ) {
+            $link = str_replace( 'page-numbers current', 'chobi-page-link active', $link );
+        } elseif ( strpos( $link, 'dots' ) !== false ) {
+            $link = str_replace( 'page-numbers dots', 'chobi-page-link disabled', $link );
+        } else {
+            $link = str_replace( 'page-numbers', 'chobi-page-link', $link );
+        }
+        $link = preg_replace_callback( '/>(\d+)</', function( $m ) use ( $bengali ) {
+            return '>' . preg_replace_callback( '/\d/', function( $d ) use ( $bengali ) {
+                return $bengali[ (int) $d[0] ];
+            }, $m[1] ) . '<';
+        }, $link );
+        echo $link;
+    }
+    echo '</div>';
+}
+
+function chader_pahar_pagination_css() { ?>
+<style>
+.chobi-pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:30px;padding-bottom:10px}
+.chobi-page-link{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;font-size:16px;font-weight:600;text-decoration:none;color:var(--gold-color);background:transparent;transition:all .2s;cursor:pointer}
+.chobi-page-link:hover{background:var(--gold-color);color:#fff}
+.chobi-page-link.active{background:var(--gold-color);color:#fff}
+.chobi-page-link.disabled{opacity:.35;pointer-events:none;cursor:default}
+.chobi-nav-btn{display:inline-flex;align-items:center;justify-content:center;padding:6px 14px;border-radius:20px;font-size:14px;font-weight:600;text-decoration:none;color:var(--gold-color);background:transparent;border:1.5px solid var(--gold-color);transition:all .2s;cursor:pointer}
+.chobi-nav-btn:hover{background:var(--gold-color);color:#fff}
+.chobi-nav-btn.disabled{opacity:.35;pointer-events:none;cursor:default}
+</style>
+<?php }
+add_action( 'wp_head', 'chader_pahar_pagination_css' );
+
+function chader_pahar_pagination_scroll() {
+    $paged = get_query_var( 'paged', 0 );
+    if ( $paged > 1 ) : ?>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+    var p=document.querySelector('.chobi-pagination');
+    if(p){var c=p.closest('.container')||p.parentElement;if(c)window.scrollTo({top:c.offsetTop-20,behavior:'smooth'});}
+});
+</script>
+<?php endif;
+}
+add_action( 'wp_footer', 'chader_pahar_pagination_scroll' );
+
 // AJAX handler for kichirmichir pagination
 function kichirmichir_ajax_pagination() {
     $paged  = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 1;
@@ -1130,15 +1202,7 @@ function kichirmichir_ajax_pagination() {
 
     ob_start();
     if ( $query->max_num_pages > 1 ) {
-        echo paginate_links( array(
-            'total'     => $query->max_num_pages,
-            'current'   => $paged,
-            'prev_text' => '&laquo;',
-            'next_text' => '&raquo;',
-            'type'      => 'list',
-            'mid_size'  => 2,
-            'end_size'  => 1,
-        ) );
+        chader_pahar_pagination( $query->max_num_pages, $paged );
     }
     $pagination_html = ob_get_clean();
 
