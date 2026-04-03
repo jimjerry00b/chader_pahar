@@ -37,7 +37,7 @@
             <?php if (has_post_thumbnail()) : ?>
               <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid']); ?>
             <?php else : ?>
-              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg" alt="">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
             <?php endif; ?>
           </div>
           <div class="goddo-card-body p-4">
@@ -106,7 +106,7 @@
             <?php if ( has_post_thumbnail() ) : ?>
               <?php the_post_thumbnail( 'medium_large', [ 'class' => 'img-fluid' ] ); ?>
             <?php else : ?>
-              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg" alt="">
+              <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/assets/images/placeholder.jpg" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
             <?php endif; ?>
           </div>
           <div class="goddo-card-body p-4">

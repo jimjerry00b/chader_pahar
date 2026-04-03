@@ -4,7 +4,9 @@
 
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php bloginfo('name'); ?></title>
+    <?php if ( ! function_exists( '_wp_render_title_tag' ) ) : ?>
+      <title><?php wp_title( '|', true, 'right' ); bloginfo('name'); ?></title>
+    <?php endif; ?>
 
     <?php if ( is_singular() ) : ?>
       <?php
@@ -33,28 +35,42 @@
         <?php endif; ?>
       <?php endif; ?>
       <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo('name') ); ?>" />
+      <!-- Twitter Card -->
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content="<?php echo esc_attr( get_the_title() ); ?>" />
+      <meta name="twitter:description" content="<?php echo esc_attr( $og_desc ); ?>" />
+      <?php if ( ! empty( $og_image_url ) ) : ?>
+        <meta name="twitter:image" content="<?php echo esc_url( $og_image_url ); ?>" />
+      <?php endif; ?>
+    <?php else : ?>
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content="<?php echo esc_attr( get_bloginfo('name') ); ?>" />
+      <meta property="og:description" content="<?php echo esc_attr( get_bloginfo('description') ); ?>" />
+      <meta property="og:url" content="<?php echo esc_url( home_url('/') ); ?>" />
+      <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo('name') ); ?>" />
     <?php endif; ?>
     <link href="<?php echo get_template_directory_uri(); ?>/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=10">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>/assets/css/style.css?v=11">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"></noscript>
     <?php wp_head(); ?>
   </head>
   <body <?php body_class(); ?>>
 
-    <button id="scrollTopBtn"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/scroll_top.svg" style=" width: 20px; height: auto; " alt="Scroll to Top"></button>
+    <button id="scrollTopBtn" aria-label="Scroll to top"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/scroll_top.svg" width="20" height="20" alt="Scroll to Top"></button>
     
-    <section id="header">
+    <header id="header">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="Chader Pahar Logo" class="img-fluid" style="max-width: 215px;"></a>
+                    <a href="<?php echo home_url(); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="চাঁদের পাহাড়" class="img-fluid" width="215" height="80" style="max-width: 215px;"></a>
                     <p class="site-description">সাহিত্য, সংস্কৃতি ও চিন্তা-শিল্পের পত্রিকা</p>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
 
-    <nav id="main_menu" class="navbar navbar-expand-lg">
+    <nav id="main_menu" class="navbar navbar-expand-lg" aria-label="Primary navigation">
         <div class="container">
             <button class="navbar-toggler main-menu-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#primaryMenu" aria-controls="primaryMenu" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -85,3 +101,5 @@
             </div>
         </div>
     </nav>
+
+    <main id="main-content">

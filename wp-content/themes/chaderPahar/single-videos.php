@@ -22,7 +22,7 @@ $video_id = get_youtube_id($youtube_url);
   <div class="row">
     <div class="col-md-12 p-0 mt-5 mb-2">
       <div class="category-header">
-        <h3><?php the_title(); ?></h3>
+        <h1><?php the_title(); ?></h1>
       </div>
       <div class="border category-description">
         <div class="row">

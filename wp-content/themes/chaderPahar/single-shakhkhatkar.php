@@ -21,7 +21,7 @@
           <div class="col-md-9 d-flex align-items-center justify-content-center">
             <?php echo category_description(); ?>
             <div class="default_text_one">
-                <h2><?php the_title(); ?></h2>
+                <h1><?php the_title(); ?></h1>
                 <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                 <?php if ($custom_author) : ?>
                 <p class="post-author-name"><?php echo esc_html($custom_author); ?></p>

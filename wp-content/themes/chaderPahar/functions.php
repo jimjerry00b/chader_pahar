@@ -1217,4 +1217,192 @@ function kichirmichir_ajax_pagination() {
 add_action( 'wp_ajax_kichirmichir_pagination', 'kichirmichir_ajax_pagination' );
 add_action( 'wp_ajax_nopriv_kichirmichir_pagination', 'kichirmichir_ajax_pagination' );
 
+// ============================================================
+// SEO & PERFORMANCE OPTIMIZATIONS
+// ============================================================
+
+/**
+ * 1. Force search engine indexing (remove noindex/nofollow).
+ *    Also go to WP Admin → Settings → Reading → uncheck "Discourage search engines".
+ */
+function chaderpahar_allow_indexing( array $robots ) {
+    unset( $robots['noindex'] );
+    unset( $robots['nofollow'] );
+    $robots['index']  = true;
+    $robots['follow'] = true;
+    return $robots;
+}
+add_filter( 'wp_robots', 'chaderpahar_allow_indexing', 9999 );
+
+/**
+ * 2. Add meta description & canonical URL via wp_head.
+ */
+function chaderpahar_seo_meta_tags() {
+    $description = '';
+    $canonical   = '';
+
+    if ( is_front_page() || is_home() ) {
+        $description = get_bloginfo( 'description' );
+        $canonical   = home_url( '/' );
+    } elseif ( is_singular() ) {
+        $post = get_queried_object();
+        if ( has_excerpt( $post ) ) {
+            $description = get_the_excerpt( $post );
+        } else {
+            $description = wp_trim_words( strip_tags( $post->post_content ), 30, '…' );
+        }
+        $canonical = get_permalink( $post );
+    } elseif ( is_category() || is_tag() || is_tax() ) {
+        $term = get_queried_object();
+        $description = $term->description ?: $term->name . ' — ' . get_bloginfo( 'name' );
+        $canonical   = get_term_link( $term );
+    } elseif ( is_post_type_archive() ) {
+        $description = post_type_archive_title( '', false ) . ' — ' . get_bloginfo( 'name' );
+        $canonical   = get_post_type_archive_link( get_queried_object()->name );
+    }
+
+    if ( $description ) {
+        $description = esc_attr( wp_strip_all_tags( $description ) );
+        echo '<meta name="description" content="' . $description . '">' . "\n";
+    }
+    if ( $canonical && ! is_wp_error( $canonical ) ) {
+        echo '<link rel="canonical" href="' . esc_url( $canonical ) . '">' . "\n";
+    }
+}
+add_action( 'wp_head', 'chaderpahar_seo_meta_tags', 1 );
+
+/**
+ * 3. Add lazy loading to all post-content images & iframes.
+ */
+function chaderpahar_lazy_load_content_images( $content ) {
+    if ( is_admin() ) {
+        return $content;
+    }
+    // Add loading="lazy" to images that don't already have it
+    $content = preg_replace(
+        '/<img(?![^>]*loading=)([^>]*)>/i',
+        '<img loading="lazy"$1>',
+        $content
+    );
+    // Add loading="lazy" to iframes
+    $content = preg_replace(
+        '/<iframe(?![^>]*loading=)([^>]*)>/i',
+        '<iframe loading="lazy"$1>',
+        $content
+    );
+    return $content;
+}
+add_filter( 'the_content', 'chaderpahar_lazy_load_content_images' );
+
+/**
+ * 4. Add JSON-LD schema markup (Organization + WebSite).
+ */
+function chaderpahar_schema_markup() {
+    if ( ! is_front_page() && ! is_home() ) {
+        return;
+    }
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@graph'   => array(
+            array(
+                '@type' => 'Organization',
+                'name'  => get_bloginfo( 'name' ),
+                'url'   => home_url( '/' ),
+                'logo'  => get_template_directory_uri() . '/assets/images/logo-03 1.svg',
+                'sameAs' => array(
+                    'https://www.facebook.com/cpbookcafe',
+                    'https://www.youtube.com/@chaderpaharbookcafe',
+                ),
+            ),
+            array(
+                '@type'           => 'WebSite',
+                'name'            => get_bloginfo( 'name' ),
+                'url'             => home_url( '/' ),
+                'description'     => get_bloginfo( 'description' ),
+                'inLanguage'      => 'bn',
+            ),
+        ),
+    );
+    echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'chaderpahar_schema_markup' );
+
+/**
+ * 5. Add Article schema for single posts.
+ */
+function chaderpahar_article_schema() {
+    if ( ! is_singular( 'post' ) ) {
+        return;
+    }
+    $post       = get_queried_object();
+    $thumb_url  = get_the_post_thumbnail_url( $post, 'full' );
+    $custom_author = get_post_meta( $post->ID, '_custom_author', true );
+    $author_name   = $custom_author ?: get_the_author_meta( 'display_name', $post->post_author );
+
+    $schema = array(
+        '@context'      => 'https://schema.org',
+        '@type'         => 'Article',
+        'headline'      => get_the_title( $post ),
+        'url'           => get_permalink( $post ),
+        'datePublished' => get_the_date( 'c', $post ),
+        'dateModified'  => get_the_modified_date( 'c', $post ),
+        'author'        => array(
+            '@type' => 'Person',
+            'name'  => $author_name,
+        ),
+        'publisher'     => array(
+            '@type' => 'Organization',
+            'name'  => get_bloginfo( 'name' ),
+            'logo'  => array(
+                '@type' => 'ImageObject',
+                'url'   => get_template_directory_uri() . '/assets/images/logo-03 1.svg',
+            ),
+        ),
+    );
+    if ( $thumb_url ) {
+        $schema['image'] = $thumb_url;
+    }
+    echo '<script type="application/ld+json">' . wp_json_encode( $schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE ) . '</script>' . "\n";
+}
+add_action( 'wp_head', 'chaderpahar_article_schema' );
+
+/**
+ * 6. Preconnect to CDN for Bootstrap Icons & set font-display.
+ */
+function chaderpahar_resource_hints() {
+    echo '<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>' . "\n";
+    echo '<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">' . "\n";
+}
+add_action( 'wp_head', 'chaderpahar_resource_hints', 0 );
+
+/**
+ * 7. Add rel="noopener noreferrer" to external links in content.
+ */
+function chaderpahar_external_link_rels( $content ) {
+    if ( is_admin() ) {
+        return $content;
+    }
+    $content = preg_replace_callback(
+        '/<a\s([^>]*target=["\']_blank["\'][^>]*)>/i',
+        function ( $matches ) {
+            if ( stripos( $matches[1], 'rel=' ) === false ) {
+                return '<a ' . $matches[1] . ' rel="noopener noreferrer">';
+            }
+            return $matches[0];
+        },
+        $content
+    );
+    return $content;
+}
+add_filter( 'the_content', 'chaderpahar_external_link_rels' );
+
+/**
+ * 8. Proper title tag support.
+ */
+function chaderpahar_theme_support_extras() {
+    add_theme_support( 'title-tag' );
+    add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+}
+add_action( 'after_setup_theme', 'chaderpahar_theme_support_extras' );
+
 ?>

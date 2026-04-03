@@ -11,7 +11,7 @@
         <?php $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : ''; ?>
         <div class="row">
           <div class="col-md-6 d-flex align-items-center justify-content-center p-4">
-            <img class="img-fluid" src="<?php echo $thumb_url; ?>" alt="">
+            <img class="img-fluid" src="<?php echo $thumb_url; ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
             <?php if ( has_post_thumbnail() ) : ?>
                 <div class="post-thumbnail">
                     <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-3']); ?>
@@ -21,7 +21,7 @@
           <div class="col-md-6 d-flex align-items-center justify-content-center p-4">
             <?php echo category_description(); ?>
             <div class="default_text_one text-center">
-                <h2 class="default_text_one_title"><?php the_title(); ?></h2>
+                <h1 class="default_text_one_title"><?php the_title(); ?></h1>
                 <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                 <?php if ($custom_author) : ?>
                 <p class="post-author-name"><?php echo esc_html($custom_author); ?></p>

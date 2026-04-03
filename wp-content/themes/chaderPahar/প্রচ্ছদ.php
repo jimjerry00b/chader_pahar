@@ -631,7 +631,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-md-6 kichirmichir-right p-0">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_15.jpg" alt="কিচিরমিচির" class="img-fluid w-100 kichirmichir-img">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/img_15.jpg" alt="কিচিরমিচির" class="img-fluid w-100 kichirmichir-img" loading="lazy" width="600" height="400">
                 </div>
             </div>
         </div>
@@ -643,13 +643,13 @@
             <p class="sponsor-heading text-center">চাঁদের পাহাড় - সাহিত্য, সংস্কৃতি ও চিন্তা-শিল্পের পত্রিকা আত্মপ্রকাশ<br>উপলক্ষে অনেক অনেক অভিনন্দন ও শুভেচ্ছা।</p>
             <div class="sponsor-logos">
                 <div class="sponsor-logo-item">
-                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-03 1.svg" alt="Sompriti Foundation">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-03 1.svg" alt="Sompriti Foundation" loading="lazy" width="200" height="80">
                 </div>
                 <div class="sponsor-logo-item">
-                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-01 1.svg" alt="Everest Pharmaceuticals Ltd.">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-01 1.svg" alt="Everest Pharmaceuticals Ltd." loading="lazy" width="200" height="80">
                 </div>
                 <div class="sponsor-logo-item">
-                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-02 1.svg" alt="জ্ঞানগড়">
+                    <img src="<?= get_template_directory_uri(); ?>/assets/images/sponsor logo-02 1.svg" alt="জ্ঞানগড়" loading="lazy" width="200" height="80">
                 </div>
             </div>
         </div>

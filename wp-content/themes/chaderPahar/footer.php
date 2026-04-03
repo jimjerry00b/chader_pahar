@@ -1,8 +1,10 @@
-<div class="footer">
+    </main><!-- #main-content -->
+
+    <div class="footer">
         <div class="footer_section_one container py-5">
             <div class="row">
                 <div class="col-12 text-center py-3">
-                    <h1 class="text-secondary">চাঁদের পাহাড় বুক ক্যাফে এর সদস্যপদ গ্রহন করুন</h1>
+                    <h2 class="text-secondary">চাঁদের পাহাড় বুক ক্যাফে এর সদস্যপদ গ্রহন করুন</h2>
                     <p>মোবাইল : ০১৯১১-৪০১৩৪৩ , ইমেইল : contact@chaderpahar.com </p>
                     <button id="registration-btn" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#registrationModal">রেজিস্ট্রেশন</button>
                 </div>
@@ -90,7 +92,7 @@
         <div class="row">
             <div class="col-12 col-md-5 mb-4 mb-md-0 d-grid align-items-center justify-content-center justify-content-lg-start">
                 <div class="">
-                    <a href="#"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="Chader Pahar Logo" class="img-fluid mb-3"></a>
+                    <a href="<?php echo home_url(); ?>" aria-label="<?php echo esc_attr( get_bloginfo('name') ); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo-03 1.svg" alt="চাঁদের পাহাড়" class="img-fluid mb-3" width="215" height="80" loading="lazy"></a>
                 </div>
             </div>
 
@@ -107,9 +109,9 @@
                     <p>মোবাইল : ০১৯১১-৪০১৩৪৩</p>
                     <p>ইমেইল : contact@chaderpahar.com</p>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/cpbookcafe" target="_blank" class="facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="https://www.facebook.com/cpbookcafe" target="_blank" rel="noopener noreferrer" class="facebook" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
                         <!-- <a href="#" class="instagram"><i class="bi bi-instagram"></i></a> -->
-                        <a href="https://www.youtube.com/@chaderpaharbookcafe" target="_blank" class="youtube"><i class="bi bi-youtube"></i></a>
+                        <a href="https://www.youtube.com/@chaderpaharbookcafe" target="_blank" rel="noopener noreferrer" class="youtube" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
                         <!-- <a href="#" class="tiktok"><i class="bi bi-tiktok"></i></a> -->
                     </div>
                 </div>
@@ -171,11 +173,16 @@
         window.addEventListener("scroll", function() {
         const header = document.querySelector("nav"); // target <nav>
         const headerOffset = header.offsetTop;
+        const headerHeight = header.offsetHeight;
 
         if (window.scrollY > headerOffset) {
-            header.classList.add("fixed-header");
+            if (!header.classList.contains("fixed-header")) {
+                header.classList.add("fixed-header");
+                document.body.style.paddingTop = headerHeight + "px";
+            }
         } else {
             header.classList.remove("fixed-header");
+            document.body.style.paddingTop = "0";
         }
         });
 
