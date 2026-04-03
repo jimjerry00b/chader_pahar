@@ -16,6 +16,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ## Files Changed
 
 ### 1. `functions.php`
+
 **Path:** `wp-content/themes/chaderPahar/functions.php`
 
 - Added `chader_pahar_pagination()` — reusable helper that renders the chobi-pagination HTML with Bengali numerals
@@ -26,6 +27,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 2. `category-godya.php` (গদ্য)
+
 **Path:** `wp-content/themes/chaderPahar/category-godya.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -35,6 +37,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 3. `category-golpo.php` (গল্প)
+
 **Path:** `wp-content/themes/chaderPahar/category-golpo.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -44,6 +47,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 4. `category-kobita.php` (কবিতা)
+
 **Path:** `wp-content/themes/chaderPahar/category-kobita.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -53,6 +57,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 5. `category-pradarshany.php` (প্রদর্শনী)
+
 **Path:** `wp-content/themes/chaderPahar/category-pradarshany.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -62,6 +67,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 6. `category-probondho.php` (প্রবন্ধ)
+
 **Path:** `wp-content/themes/chaderPahar/category-probondho.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -71,6 +77,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 7. `category.php` (default category)
+
 **Path:** `wp-content/themes/chaderPahar/category.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -80,6 +87,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 8. `category-chitro-ankon.php` (চিত্রাঙ্কন)
+
 **Path:** `wp-content/themes/chaderPahar/category-chitro-ankon.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -88,6 +96,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 9. `প্রতিবেদন.php` (Report)
+
 **Path:** `wp-content/themes/chaderPahar/প্রতিবেদন.php`
 
 - Replaced `<nav id="pagination_one">` with `chader_pahar_pagination()` call
@@ -97,6 +106,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 10. `ভিডিও.php` (Video)
+
 **Path:** `wp-content/themes/chaderPahar/ভিডিও.php`
 
 - Removed `convert_pagination_numbers_to_bengali()` PHP function
@@ -106,6 +116,7 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ---
 
 ### 11. `category-kichirmichir.php` (কিচিরমিচির / শিশু-সাহিত্য)
+
 **Path:** `wp-content/themes/chaderPahar/category-kichirmichir.php`
 
 - Added initial `chader_pahar_pagination()` call inside `#kichirmichir-posts`
@@ -119,4 +130,5 @@ All paginations across the theme have been updated to match the **chobi-paginati
 ## Not Changed
 
 ### `পরিচিতি.php` (Reference file)
+
 This is the **reference pagination** (client-side JS gallery pagination). Its inline CSS remains as-is — the global CSS in `wp_head` now provides the same styles everywhere.
