@@ -11,6 +11,8 @@ add_action('wp_head', function() {
     <meta property="og:description" content="<?php echo esc_attr($og_description); ?>" />
     <?php if ($og_image) : ?>
     <meta property="og:image" content="<?php echo esc_url($og_image); ?>" />
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="550">
     <?php endif; ?>
     <?php
 });
