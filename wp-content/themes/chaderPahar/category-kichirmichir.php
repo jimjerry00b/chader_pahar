@@ -391,12 +391,12 @@
       classEl.textContent = classText;
       classEl.style.display = classText ? '' : 'none';
 
-      const encodedImg = encodeURIComponent(imgUrl);
+      const encodedUrl = encodeURIComponent(url);
       const encodedTitle = encodeURIComponent(title);
-      document.getElementById('chitrankanShareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedImg;
-      document.getElementById('chitrankanShareLi').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedImg;
-      document.getElementById('chitrankanShareTw').href = 'https://twitter.com/intent/tweet?url=' + encodedImg + '&text=' + encodedTitle;
-      document.getElementById('chitrankanShareWa').href = 'https://wa.me/?text=' + encodedTitle + '%20' + encodedImg;
+      document.getElementById('chitrankanShareFb').href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl;
+      document.getElementById('chitrankanShareLi').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + encodedUrl;
+      document.getElementById('chitrankanShareTw').href = 'https://twitter.com/intent/tweet?url=' + encodedUrl + '&text=' + encodedTitle;
+      document.getElementById('chitrankanShareWa').href = 'https://wa.me/?text=' + encodedTitle + '%20' + encodedUrl;
     });
   }
 </script>
