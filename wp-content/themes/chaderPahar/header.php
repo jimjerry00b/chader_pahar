@@ -7,13 +7,30 @@
     <title><?php bloginfo('name'); ?></title>
 
     <?php if ( is_singular() ) : ?>
+      <?php
+        $og_thumb_id = get_post_thumbnail_id();
+        $og_image_raw = $og_thumb_id ? wp_get_attachment_url( $og_thumb_id ) : '';
+        // Encode non-ASCII characters in the filename for Facebook compatibility
+        if ( $og_image_raw ) {
+            $og_image_parts = explode( '/', $og_image_raw );
+            $og_image_parts[ count($og_image_parts) - 1 ] = rawurlencode( $og_image_parts[ count($og_image_parts) - 1 ] );
+            $og_image_url = implode( '/', $og_image_parts );
+        } else {
+            $og_image_url = '';
+        }
+        $og_desc = has_excerpt() ? get_the_excerpt() : wp_trim_words( strip_tags( get_the_content() ), 30, '...' );
+      ?>
       <meta property="og:type" content="article" />
       <meta property="og:title" content="<?php echo esc_attr( get_the_title() ); ?>" />
+      <meta property="og:description" content="<?php echo esc_attr( $og_desc ); ?>" />
       <meta property="og:url" content="<?php echo esc_url( get_permalink() ); ?>" />
-      <?php if ( has_post_thumbnail() ) : ?>
-        <meta property="og:image" content="<?php echo esc_url( get_the_post_thumbnail_url( null, 'full' ) ); ?>" />
-        <meta property="og:image:width" content="1024">
-        <meta property="og:image:height" content="550">
+      <?php if ( $og_image_url ) : ?>
+        <meta property="og:image" content="<?php echo esc_url( $og_image_url ); ?>" />
+        <?php $og_meta = wp_get_attachment_metadata( $og_thumb_id ); ?>
+        <?php if ( $og_meta && isset( $og_meta['width'], $og_meta['height'] ) ) : ?>
+          <meta property="og:image:width" content="<?php echo (int) $og_meta['width']; ?>">
+          <meta property="og:image:height" content="<?php echo (int) $og_meta['height']; ?>">
+        <?php endif; ?>
       <?php endif; ?>
       <meta property="og:site_name" content="<?php echo esc_attr( get_bloginfo('name') ); ?>" />
     <?php endif; ?>
