@@ -45,15 +45,15 @@
                 <h2 class="sp-title">সম্পাদনা পরিষদ</h2>
                 <div class="sp-body">
                     <div class="sp-role">
-                        <p class="sp-role-name">সম্পাদক-</p>
+                        <p class="sp-role-name">সম্পাদক</p>
                         <p class="sp-role-members">জেমস আনজুস</p>
                     </div>
                     <div class="sp-role">
-                        <p class="sp-role-name">নির্বাহী সম্পাদক-</p>
+                        <p class="sp-role-name">নির্বাহী সম্পাদক</p>
                         <p class="sp-role-members">প্লাসিড প্রণয় গমেজ</p>
                     </div>
                     <div class="sp-role">
-                        <p class="sp-role-name">সম্পাদনা সহযোগী-</p>
+                        <p class="sp-role-name">সম্পাদনা সহযোগী</p>
                         <p class="sp-role-members">মোহাম্মদ আল-হাসান<br>ফ্রান্সিসকা জেনেভী<br>অমিত কুমার বর্মণ<br>গ্রেণার দীপ<br>স্টালিন সাগর রোজারিও।</p>
                     </div>
                     <div class="sp-role">
