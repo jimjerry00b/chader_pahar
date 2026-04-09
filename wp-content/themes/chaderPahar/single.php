@@ -26,7 +26,7 @@ if (!empty($categories)) {
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <div class="default_text_one p-4 text-center">
-                <h1><?php the_title(); ?></h1>
+                <h1 class="default_text_one_title"><?php the_title(); ?></h1>
                 <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
                 <p class="post-author-name"><?php echo $custom_author ? esc_html($custom_author) : get_the_author(); ?></p>
             </div>
