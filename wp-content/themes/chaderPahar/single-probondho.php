@@ -11,7 +11,11 @@
         <?php $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : ''; ?>
         <div class="row">
           <div class="col-md-6 d-flex align-items-center justify-content-center">
-            
+            <?php if ( has_post_thumbnail() ) : ?>
+                <div class="post-thumbnail">
+                    <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-3']); ?>
+                </div>
+            <?php endif; ?>
           </div>
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <?php echo category_description(); ?>
