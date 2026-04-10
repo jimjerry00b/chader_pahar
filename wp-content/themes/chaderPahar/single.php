@@ -24,7 +24,6 @@ if (!empty($categories)) {
                 <?php the_post_thumbnail('large', ['class' => 'single-post-thumbnail']); ?>
             <?php endif; ?>
           </div>
-          
           <div class="col-md-6 d-flex align-items-center justify-content-center">
             <div class="default_text_one p-4 text-center">
                 <h1 class="default_text_one_title"><?php the_title(); ?></h1>
