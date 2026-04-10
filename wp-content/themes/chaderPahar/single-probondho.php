@@ -14,7 +14,7 @@
             <?php if ( has_post_thumbnail() ) : ?>
               <?php
                 echo "<pre>";  
-                print_r(the_post_thumbnail());
+                print_r(the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-3']));
                 echo "</pre>";
                 die('eeeeeeee');  
               ?>
