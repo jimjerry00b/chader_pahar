@@ -1,5 +1,11 @@
 <?php get_header(); ?>
 
+<style>
+  .default_text_one {
+      overflow: hidden;
+  }
+</style>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 p-0 mt-5 mb-2">
