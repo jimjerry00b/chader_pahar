@@ -1,35 +1,98 @@
 <?php
 get_header(); ?>
 
+<style>
+  .category-header{
+    text-align: left;
+    border-bottom: 2px solid #0000001f;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+  }
+  .category-header h1{
+    font-size: 30px;
+  }
+
+  .right-siderbar h1{
+    font-size: 25px;
+    text-align: center;
+  }
+  .post-thumbnail img{
+    width: 100%;
+    height: auto;
+  }
+
+</style>
+
 <div class="container">
   <div class="row">
     <div class="col-md-12 p-0 mt-5 mb-2">
-      <div class="category-header">
-        <h1><?php the_title(); ?></h1>
-      </div>
-      <div class="border category-description">
+      
+      <div class="category-description">
         <?php $category_id = get_queried_object_id(); ?>
         <?php $thumb_url = function_exists('z_taxonomy_image_url') ? z_taxonomy_image_url($cat->term_id) : ''; ?>
         <div class="row">
-          <div class="col-md-6 p-5">
-            <?php echo category_description(); ?>
-            <div class="default_text_one">
-                <!-- <h2><?//php the_title(); ?></h2> -->
-                <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
-                <?php if ($custom_author) : ?>
-                <!-- <p class="post-author-name"><?//php echo esc_html($custom_author); ?></p> -->
+          <div class="col-md-8">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="category-header d-flex justify-content-between align-items-center">
+                  <h1 class="mb-0"><?php the_title(); ?></h1>
+                  <span style="font-size: 17px;"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock me-1" viewBox="0 0 16 16"><path d="M8 3.5a.5.5 0 0 0-1 0V8a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 7.71z"/><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/></svg> <?php echo get_the_date(); ?></span>
+                </div>
+                <?php if ( has_post_thumbnail() ) : ?>
+                    <div class="post-thumbnail">
+                        <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-3']); ?>
+                    </div>
                 <?php endif; ?>
+              </div>
+              <div class="col-md-12">
                 <?php echo category_description(); ?>
-                <?php the_content(); ?>
+                <div class="default_text_one">
+                    <!-- <h2><?//php the_title(); ?></h2> -->
+                    <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
+                    <?php if ($custom_author) : ?>
+                    <!-- <p class="post-author-name"><?//php echo esc_html($custom_author); ?></p> -->
+                    <?php endif; ?>
+                    <?php echo category_description(); ?>
+                    <?php the_content(); ?>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-md-6 p-5 d-flex align-items-start justify-content-center">
-            <!-- <img class="img-fluid" src="<?php echo $thumb_url; ?>" alt=""> -->
-            <?php if ( has_post_thumbnail() ) : ?>
-                <div class="post-thumbnail">
-                    <?php the_post_thumbnail('large', ['class' => 'img-fluid rounded mb-3']); ?>
-                </div>
-            <?php endif; ?>
+          <div class="col-md-4">
+            <div class="right-siderbar">
+              <h1>আরো পড়ুন</h1>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <?php
+                $related_posts = new WP_Query([
+                  'category_name'  => 'kobita',
+                  'posts_per_page' => 10,
+                  'post__not_in'   => [get_the_ID()],
+                  'orderby'        => 'date',
+                  'order'          => 'DESC',
+                ]);
+                if ($related_posts->have_posts()) :
+                  while ($related_posts->have_posts()) : $related_posts->the_post(); ?>
+                    <a href="<?php the_permalink(); ?>" class="goddo-card mb-3 d-block">
+                      <div class="goddo-card-img">
+                        <?php if (has_post_thumbnail()) : ?>
+                          <?php the_post_thumbnail('medium_large', ['class' => 'img-fluid']); ?>
+                        <?php endif; ?>
+                      </div>
+                      <div class="goddo-card-body p-3">
+                        <h5 class="goddo-card-title"><?php the_title(); ?></h5>
+                        <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
+                        <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক"; ?></p>
+                      </div>
+                    </a>
+                  <?php endwhile;
+                  wp_reset_postdata();
+                endif;
+                ?>
+              </div>
+            </div>
           </div>
           
         </div>
