@@ -68,7 +68,7 @@ get_header(); ?>
                 <?php
                 $related_posts = new WP_Query([
                   'category_name'  => 'kobita',
-                  'posts_per_page' => 10,
+                  'posts_per_page' => 5,
                   'post__not_in'   => [get_the_ID()],
                   'orderby'        => 'date',
                   'order'          => 'DESC',
@@ -84,7 +84,6 @@ get_header(); ?>
                       <div class="goddo-card-body p-3">
                         <h5 class="goddo-card-title"><?php the_title(); ?></h5>
                         <?php $custom_author = get_post_meta(get_the_ID(), '_custom_author', true); ?>
-                        <p class="goddo-card-desc"><?php echo $custom_author ? esc_html($custom_author) : "সাধারণ লেখক"; ?></p>
                       </div>
                     </a>
                   <?php endwhile;
